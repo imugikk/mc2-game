@@ -15,79 +15,75 @@ class GameScene: SKScene {
     var graphs = [String : GKGraph]()
     
     private var lastUpdateTime : TimeInterval = 0
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
+    private var foxIdle : SKSpriteNode!
     
     //controller
     var controller: GCController = GCController()
+    var isRunning = false
     
     override func sceneDidLoad() {
         
         self.lastUpdateTime = 0
         
-        // Get label node from scene and store it for use later
-        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-        if let label = self.label {
-            label.alpha = 0.0
-            label.run(SKAction.fadeIn(withDuration: 2.0))
-        }
-        
-        // Create shape node to use during mouse interaction
-        let w = (self.size.width + self.size.height) * 0.05
-        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
-        
-        if let spinnyNode = self.spinnyNode {
-            spinnyNode.lineWidth = 2.5
-            
-            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
-            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-                                              SKAction.fadeOut(withDuration: 0.5),
-                                              SKAction.removeFromParent()]))
-        }
+//        foxIdle = childNode(withName: "fox-idle") as? SKSpriteNode
     }
     
-    
-    func touchDown(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.green
-            self.addChild(n)
-        }
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.blue
-            self.addChild(n)
-        }
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.red
-            self.addChild(n)
-        }
-    }
-    
-    override func mouseDown(with event: NSEvent) {
-        self.touchDown(atPoint: event.location(in: self))
-    }
-    
-    override func mouseDragged(with event: NSEvent) {
-        self.touchMoved(toPoint: event.location(in: self))
-    }
-    
-    override func mouseUp(with event: NSEvent) {
-        self.touchUp(atPoint: event.location(in: self))
-    }
-    
+//    func touchDown(atPoint pos : CGPoint) {
+//        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
+//            n.position = pos
+//            n.strokeColor = SKColor.green
+//            self.addChild(n)
+//        }
+//    }
+//
+//    func touchMoved(toPoint pos : CGPoint) {
+//        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
+//            n.position = pos
+//            n.strokeColor = SKColor.blue
+//            self.addChild(n)
+//        }
+//    }
+//
+//    func touchUp(atPoint pos : CGPoint) {
+//        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
+//            n.position = pos
+//            n.strokeColor = SKColor.red
+//            self.addChild(n)
+//        }
+//    }
+//
+//    override func mouseDown(with event: NSEvent) {
+//        self.touchDown(atPoint: event.location(in: self))
+//    }
+//
+//    override func mouseDragged(with event: NSEvent) {
+//        self.touchMoved(toPoint: event.location(in: self))
+//    }
+//
+//    override func mouseUp(with event: NSEvent) {
+//        self.touchUp(atPoint: event.location(in: self))
+//    }
+
     override func keyDown(with event: NSEvent) {
         switch event.keyCode {
         case 0x31:
-            if let label = self.label {
-                label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
+            jumpingAnimation()
+        case 124:
+            if !isRunning {
+                runningAnimation()
+                isRunning = true
+            }
+        default:
+            print("keyDown: \(event.characters!) keyCode: \(event.keyCode)")
+        }
+    }
+    
+    override func keyUp(with event: NSEvent) {
+        switch event.keyCode {
+        case 124:
+            if isRunning {
+                runIdleAnimation()
+                isRunning = false
             }
         default:
             print("keyDown: \(event.characters!) keyCode: \(event.keyCode)")
@@ -96,6 +92,74 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         ObserveForGameControllers()
+        
+        // Create the character sprite node
+        foxIdle = childNode(withName: "fox-idle") as? SKSpriteNode
+        
+        // Start idle animation by default
+        runIdleAnimation()
+//        runningAnimation()
+//        jumpingAnimation()
+    }
+    
+    func runIdleAnimation() {
+        let idleTextures = [
+            SKTexture(imageNamed: "player-idle-1"),
+            SKTexture(imageNamed: "player-idle-2"),
+            SKTexture(imageNamed: "player-idle-3"),
+            SKTexture(imageNamed: "player-idle-4")
+        ]
+        
+        let idleAnimation = SKAction.animate(with: idleTextures, timePerFrame: 0.2)
+        let idleAction = SKAction.repeatForever(idleAnimation)
+        
+        foxIdle.run(idleAction, withKey: "idleAnimation")
+    }
+    
+    func runningAnimation() {
+        let runTextures = [
+            SKTexture(imageNamed: "player-run-1"),
+            SKTexture(imageNamed: "player-run-2"),
+            SKTexture(imageNamed: "player-run-3"),
+            SKTexture(imageNamed: "player-run-4"),
+            SKTexture(imageNamed: "player-run-5"),
+            SKTexture(imageNamed: "player-run-6")
+        ]
+        
+        let runAnimation = SKAction.animate(with: runTextures, timePerFrame: 0.1)
+        let runAction = SKAction.repeatForever(runAnimation)
+        
+        foxIdle.run(runAction, withKey: "runAnimation")
+    }
+    
+    func jumpingAnimation() {
+        let jumpTextures = [
+            SKTexture(imageNamed: "player-jump-1"),
+            SKTexture(imageNamed: "player-jump-2"),
+        ]
+        
+        let jumpAnimation = SKAction.animate(with: jumpTextures,    timePerFrame: 0.2)
+        let jumpAction = SKAction.repeat(jumpAnimation, count: 1)
+        
+        foxIdle.run(jumpAction, withKey: "jumpAnimation")
+    }
+    
+    // Call this method when the character starts running
+    func characterStartedRunning() {
+        foxIdle.removeAction(forKey: "idleAnimation")
+        runningAnimation()
+    }
+
+    // Call this method when the character stops running
+    func characterStoppedRunning() {
+        foxIdle.removeAction(forKey: "runningAnimation")
+        runIdleAnimation()
+    }
+
+    // Call this method when the character jumps
+    func characterJumped() {
+        foxIdle.removeAction(forKey: "idleAnimation")
+        jumpingAnimation()
     }
     
     // Function to run intially to lookout for any MFI or Remote Controllers in the area
