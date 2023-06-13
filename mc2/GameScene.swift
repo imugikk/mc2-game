@@ -13,9 +13,17 @@ class GameScene: SKScene {
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
     
+    var scoreLabel:SKLabelNode!
+    var score:Int=0 {
+        didSet{
+            scoreLabel.text = "Score: \(score)"
+        }
+    }
+    
     private var lastUpdateTime : TimeInterval = 0
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
+    
     
     override func sceneDidLoad() {
         
@@ -27,6 +35,19 @@ class GameScene: SKScene {
             label.alpha = 0.0
             label.run(SKAction.fadeIn(withDuration: 2.0))
         }
+        
+        
+        
+        scoreLabel = SKLabelNode(text: "Score: 0")
+        scoreLabel.position = CGPoint(x:  size.width/2 - 100, y: size.height/2 - 100)
+//        scoreLabel.position = CGPoint(x: 0, y: 0)
+        scoreLabel.fontName = "AmericanTypewriter-Bold"
+        //http://iosfonts.com
+        scoreLabel.fontSize = 30
+        scoreLabel.fontColor = NSColor.white
+        score = 0
+        
+        self.addChild(scoreLabel)
         
         // Create shape node to use during mouse interaction
         let w = (self.size.width + self.size.height) * 0.05
