@@ -14,7 +14,7 @@ class GameScene: SKScene {
     var graphs = [String : GKGraph]()
     
     var scoreLabel:SKLabelNode!
-    var score:Int=0 {
+    var score:Int = 0 {
         didSet{
             scoreLabel.text = "Score: \(score)"
         }
@@ -40,7 +40,6 @@ class GameScene: SKScene {
         
         scoreLabel = SKLabelNode(text: "Score: 0")
         scoreLabel.position = CGPoint(x:  size.width/2 - 100, y: size.height/2 - 100)
-//        scoreLabel.position = CGPoint(x: 0, y: 0)
         scoreLabel.fontName = "AmericanTypewriter-Bold"
         //http://iosfonts.com
         scoreLabel.fontSize = 30
@@ -106,10 +105,24 @@ class GameScene: SKScene {
             if let label = self.label {
                 label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
             }
+        //press "i" -> keycode : 34
+        case 34:
+            score += 1
         default:
             print("keyDown: \(event.characters!) keyCode: \(event.keyCode)")
         }
     }
+    
+//    func increaseScore(by value: Int) {
+//            score += value
+//        }
+    
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        for touch in touches{
+//            let location = touch.location(in: self)
+//            score += 5
+//        }
+//    }
     
     
     override func update(_ currentTime: TimeInterval) {
