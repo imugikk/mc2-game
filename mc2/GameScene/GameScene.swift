@@ -7,14 +7,16 @@
 
 import SpriteKit
 import GameplayKit
+import GameController
 
 class GameScene: SKScene {
     
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
     
-    var horizontalInput: CGFloat = 0.0
-    var verticalInput: CGFloat = 0.0
+    var controllerInput = (x: 0.0, y: 0.0)
+    
+    var controller: GCController = GCController()
     
     private var lastUpdateTime : TimeInterval = 0
     
@@ -26,11 +28,15 @@ class GameScene: SKScene {
         player = childNode(withName: "player") as? Player
     }
     
+    override func didMove(to view: SKView) {
+        self.ObserveForGameControllers()
+    }
+    
     var timeOnLastFrame: TimeInterval = 0
     override func update(_ currentTime: TimeInterval) {
         let deltaTime = calculateDeltaTime(from: currentTime)
         
-        player.movement(hInput: horizontalInput, vInput: verticalInput, deltaTime: deltaTime)
+        player.movement(hInput: controllerInput.x, vInput: controllerInput.y, deltaTime: deltaTime)
     }
     
     //calculate the time difference between the current and previous frame
