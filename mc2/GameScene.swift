@@ -20,6 +20,13 @@ class GameScene: SKScene {
         }
     }
     
+    var highScoreLabel:SKLabelNode!
+    var highScore:Int = 0 {
+        didSet{
+            highScoreLabel.text = "High Score: \(highScore)"
+        }
+    }
+    
     private var lastUpdateTime : TimeInterval = 0
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
@@ -46,7 +53,17 @@ class GameScene: SKScene {
         scoreLabel.fontColor = NSColor.white
         score = 0
         
+        highScoreLabel = SKLabelNode(text: "High Score: 0")
+        highScoreLabel.position = CGPoint(x:  size.width/2 - 875, y: size.height/2 - 100)
+        highScoreLabel.fontName = "AmericanTypewriter-Bold"
+        //http://iosfonts.com
+        highScoreLabel.fontSize = 30
+        highScoreLabel.fontColor = NSColor.white
+        highScore = 0
+        
+        
         self.addChild(scoreLabel)
+        self.addChild(highScoreLabel)
         
         // Create shape node to use during mouse interaction
         let w = (self.size.width + self.size.height) * 0.05
@@ -112,18 +129,6 @@ class GameScene: SKScene {
             print("keyDown: \(event.characters!) keyCode: \(event.keyCode)")
         }
     }
-    
-//    func increaseScore(by value: Int) {
-//            score += value
-//        }
-    
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for touch in touches{
-//            let location = touch.location(in: self)
-//            score += 5
-//        }
-//    }
-    
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
