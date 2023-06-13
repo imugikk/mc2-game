@@ -98,8 +98,6 @@ class GameScene: SKScene {
         
         // Start idle animation by default
         runIdleAnimation()
-//        runningAnimation()
-//        jumpingAnimation()
     }
     
     func runIdleAnimation() {
