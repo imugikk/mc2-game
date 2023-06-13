@@ -12,37 +12,9 @@ import GameController
 extension GameScene {
     func controllerInputDetected(gamepad: GCExtendedGamepad, element: GCControllerElement, index: Int) {
         if element == gamepad.leftThumbstick{
-//            if gamepad.leftThumbstick.xAxis.value >= 0{
-//            //Add your function for the right direction
-//                print("Controller: \(index) : \(gamepad.leftThumbstick.xAxis)")
-//            }else if gamepad.leftThumbstick.xAxis.value <= 0{
-//            //Add your function for the left direction
-//                print("Controller: \(index) : \(gamepad.leftThumbstick.xAxis)")
-//            }
-//            if gamepad.leftThumbstick.yAxis.value >= 0{
-//            //Add your function for the up direction
-//                print("Controller: \(index) : \(gamepad.leftThumbstick.yAxis)")
-//            }else if gamepad.leftThumbstick.yAxis.value <= 0{
-//            //Add your function for the down direction
-//                print("Controller: \(index) : \(gamepad.leftThumbstick.yAxis)")
-//            }
-            print("LJ\(index): (\(gamepad.leftThumbstick.xAxis.value), \(gamepad.leftThumbstick.yAxis.value))")
+            print("Left Joystick\(index): (\(gamepad.leftThumbstick.xAxis.value), \(gamepad.leftThumbstick.yAxis.value))")
         } else if (element == gamepad.rightThumbstick) {
-//            if gamepad.rightThumbstick.xAxis.value >= 0{
-//            //Add your function for the right direction
-//                print("Controller: \(index) : \(gamepad.rightThumbstick.xAxis)")
-//            }else if gamepad.rightThumbstick.xAxis.value <= 0{
-//            //Add your function for the left direction
-//                print("Controller: \(index) : \(gamepad.rightThumbstick.xAxis)")
-//            }
-//            if gamepad.rightThumbstick.yAxis.value >= 0{
-//            //Add your function for the up direction
-//                print("Controller: \(index) : \(gamepad.rightThumbstick.yAxis)")
-//            }else if gamepad.rightThumbstick.yAxis.value <= 0{
-//            //Add your function for the down direction
-//                print("Controller: \(index) : \(gamepad.rightThumbstick.yAxis)")
-//            }
-            print("RJ\(index): (\(gamepad.rightThumbstick.xAxis.value), \(gamepad.rightThumbstick.yAxis.value))")
+            print("Right Joystick\(index): (\(gamepad.rightThumbstick.xAxis.value), \(gamepad.rightThumbstick.yAxis.value))")
         } else if (element == gamepad.leftShoulder) {
             if(gamepad.leftShoulder.value != 0) {
                 print("Controller: \(index) : L1")

@@ -107,11 +107,11 @@
 				F14C59322A373D83000F3D22 /* GameScene.sks */,
 				F14C59342A373D83000F3D22 /* Actions.sks */,
 				F14C59362A373D83000F3D22 /* GameScene.swift */,
+				F14C59612A380DE9000F3D22 /* Controls.swift */,
 				F14C59382A373D83000F3D22 /* ViewController.swift */,
 				F14C593A2A373D84000F3D22 /* Assets.xcassets */,
 				F14C593C2A373D84000F3D22 /* Main.storyboard */,
 				F14C593F2A373D84000F3D22 /* mc2.entitlements */,
-				F14C59612A380DE9000F3D22 /* Controls.swift */,
 			);
 			path = mc2;
 			sourceTree = "<group>";
