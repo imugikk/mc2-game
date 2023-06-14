@@ -24,12 +24,9 @@ class GameScene: SKScene {
     
     override func sceneDidLoad() {
         self.lastUpdateTime = 0
-        
-        player = childNode(withName: "player") as? Player
-    }
-    
-    override func didMove(to view: SKView) {
         self.ObserveForGameControllers()
+        player = childNode(withName: "player") as? Player
+        player.setup(killedAction: restartScene)
     }
     
     var timeOnLastFrame: TimeInterval = 0
@@ -45,5 +42,30 @@ class GameScene: SKScene {
         let deltaTime = currentTime - timeOnLastFrame
         timeOnLastFrame = currentTime
         return deltaTime
+    }
+    
+    override func keyDown(with event: NSEvent) {
+        if event.keyCode == 49 {
+            player.decreaseHealth(damage: 1)
+        }
+    }
+    
+    func restartScene() {
+        self.run (SKAction.wait (forDuration: 2)) {
+            if let scene = GKScene(fileNamed: "GameScene") {
+                // Get the SKScene from the loaded GKScene
+                if let sceneNode = scene.rootNode as! GameScene? {
+                    
+                    // Copy gameplay related content over to the scene
+                    sceneNode.entities = scene.entities
+                    sceneNode.graphs = scene.graphs
+                    
+                    // Set the scale mode to scale to fit the window
+                    sceneNode.scaleMode = .aspectFit
+                    
+                    self.view?.presentScene(sceneNode)
+                }
+            }
+        }
     }
 }
