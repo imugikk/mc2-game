@@ -10,30 +10,29 @@ import GameplayKit
 import GameController
 
 class GameScene: SKScene {
-    
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
     
-    var controllerInput = (x: 0.0, y: 0.0)
-    
     var controller: GCController = GCController()
-    
-    private var lastUpdateTime : TimeInterval = 0
+    var leftJoystickInput1 = (x: 0.0, y: 0.0)
+    var rightJoystickInput1 = (x: 0.0, y: 0.0)
     
     private var player: Player!
+    private var weapon: Weapon!
     
     override func sceneDidLoad() {
-        self.lastUpdateTime = 0
         self.ObserveForGameControllers()
         player = childNode(withName: "player") as? Player
         player.setup(killedAction: restartScene)
+        weapon = player.childNode(withName: "weaponPivot") as? Weapon
     }
     
     var timeOnLastFrame: TimeInterval = 0
     override func update(_ currentTime: TimeInterval) {
         let deltaTime = calculateDeltaTime(from: currentTime)
         
-        player.movement(hInput: controllerInput.x, vInput: controllerInput.y, deltaTime: deltaTime)
+        player.movement(hInput: leftJoystickInput1.x, vInput: leftJoystickInput1.y, deltaTime: deltaTime)
+        weapon.rotate(followPos: CGPoint(x: rightJoystickInput1.x, y: rightJoystickInput1.y))
     }
     
     //calculate the time difference between the current and previous frame

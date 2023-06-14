@@ -8,7 +8,6 @@
 import SpriteKit
 
 class Player: SKSpriteNode {
-    
     private let moveSpeed = 200.0
     private var health = 3 {
         didSet {
@@ -41,6 +40,7 @@ class Player: SKSpriteNode {
             destroy()
         }
     }
+    
     func destroy() {
         killedAction()
         removeFromParent()

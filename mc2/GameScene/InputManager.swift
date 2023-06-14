@@ -50,13 +50,16 @@ extension GameScene {
     func controllerInputDetected(gamepad: GCExtendedGamepad, element: GCControllerElement, index: Int) {
         if element == gamepad.leftThumbstick{
             if index == 1 {
-                controllerInput.x = Double(gamepad.leftThumbstick.xAxis.value)
-                controllerInput.y = Double(gamepad.leftThumbstick.yAxis.value)
+                leftJoystickInput1.x = Double(gamepad.leftThumbstick.xAxis.value)
+                leftJoystickInput1.y = Double(gamepad.leftThumbstick.yAxis.value)
             }
-            
-            print("Left Joystick\(index): (\(gamepad.leftThumbstick.xAxis.value), \(gamepad.leftThumbstick.yAxis.value))")
         } else if (element == gamepad.rightThumbstick) {
-            print("Right Joystick\(index): (\(gamepad.rightThumbstick.xAxis.value), \(gamepad.rightThumbstick.yAxis.value))")
+            if index == 1 {
+                rightJoystickInput1.x = Double(gamepad.rightThumbstick.xAxis.value)
+                rightJoystickInput1.y = Double(gamepad.rightThumbstick.yAxis.value)
+                
+                print("\(rightJoystickInput1.x), \(rightJoystickInput1.y)")
+            }
         } else if (element == gamepad.leftShoulder) {
             if(gamepad.leftShoulder.value != 0) {
                 print("Controller: \(index) : L1")
