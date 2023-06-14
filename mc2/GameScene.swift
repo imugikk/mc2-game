@@ -27,6 +27,8 @@ class GameScene: SKScene {
         }
     }
     
+    let scoreKey = "HighScoreKey"
+    
     private var lastUpdateTime : TimeInterval = 0
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
@@ -59,8 +61,7 @@ class GameScene: SKScene {
         //http://iosfonts.com
         highScoreLabel.fontSize = 30
         highScoreLabel.fontColor = NSColor.white
-        highScore = 0
-        
+        highScore = UserDefaults.standard.integer(forKey: scoreKey)
         
         self.addChild(scoreLabel)
         self.addChild(highScoreLabel)
@@ -125,6 +126,14 @@ class GameScene: SKScene {
         //press "i" -> keycode : 34
         case 34:
             score += 1
+            
+        case 1:
+            if score > highScore {
+                highScore = score
+                UserDefaults.standard.set(score, forKey: scoreKey)
+//                defaults.set(score)
+            }
+            
         default:
             print("keyDown: \(event.characters!) keyCode: \(event.keyCode)")
         }
