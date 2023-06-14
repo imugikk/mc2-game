@@ -14,5 +14,12 @@ class Weapon: SKSpriteNode {
         if followPos.length() >= 0.5 {
             self.zRotation = angle
         }
+        
+        if self.zRotation >= 0 && self.zRotation <= 179 {
+            self.zPosition = -1
+        }
+        else {
+            self.zPosition = 1
+        }
     }
 }
