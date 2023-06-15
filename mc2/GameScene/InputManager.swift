@@ -7,8 +7,10 @@
 
 import Foundation
 import GameController
+import SpriteKit
 
 extension GameScene {
+    
     // Function to run intially to lookout for any MFI or Remote Controllers in the area
     func ObserveForGameControllers() {
         NotificationCenter.default.addObserver(self, selector: #selector(connectControllers), name: NSNotification.Name.GCControllerDidConnect, object: nil)
@@ -101,6 +103,7 @@ extension GameScene {
         {
             if (gamepad.buttonA.value != 0)
             {
+                player?.handlePickupAction()
                 print("Controller: \(index), A-Button Pressed!")
             }
         }
