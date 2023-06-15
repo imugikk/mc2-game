@@ -14,6 +14,7 @@ class Player: SKSpriteNode {
     var ingredientNode2: SKSpriteNode?
     var popupLabel: SKLabelNode?
     var ingredientImage: SKSpriteNode?
+    var ingredientImageHold: SKSpriteNode?
     
     var heldIngredient: SKSpriteNode?
     var pickIngredient: SKSpriteNode?
@@ -22,6 +23,8 @@ class Player: SKSpriteNode {
         let direction = CGPoint(x: hInput, y: vInput).normalized()
         let movement = moveSpeed * deltaTime * direction
         self.position += movement
+        
+        ingredientImageHold?.position = CGPoint(x: self.position.x, y: self.position.y + 50)
     }
     
     func showPickupPopup(ingredientNode1: SKSpriteNode?) {
@@ -54,6 +57,7 @@ class Player: SKSpriteNode {
         if let ingredientImage = self.ingredientImage {
             // Remove ingredient image from the scene
             ingredientImage.removeFromParent()
+            ingredientImageHold?.removeFromParent()
             self.ingredientImage = nil
 
             // Respawn ingredient at player's position
@@ -83,70 +87,20 @@ class Player: SKSpriteNode {
                 // Create image node for the ingredient UI
                 if pickIngredient == ingredientNode2 {
                     ingredientImage = SKSpriteNode(imageNamed: "Star-2")
+                    ingredientImageHold = SKSpriteNode(imageNamed: "Star-2")
                 } else {
                     ingredientImage = SKSpriteNode(imageNamed: "Star")
+                    ingredientImageHold = SKSpriteNode(imageNamed: "Star")
                 }
 
                 ingredientImage?.size = CGSize(width: 50, height: 50) // Set the desired size here
                 ingredientImage?.position = CGPoint(x: self.scene!.size.width/2 - 50, y: self.scene!.size.height/2 - 50)
                 self.scene?.addChild(ingredientImage!)
+                
+                ingredientImageHold?.size = CGSize(width: 50, height: 50) // Set the desired size here
+                self.scene?.addChild(ingredientImageHold!)
 
             }
         }
     }
-    
-//    func handlePickupAction() {
-//        if let playerPhysicsBody = self.physicsBody, let ingredientPhysicsBody = heldIngredient?.physicsBody {
-//            if playerPhysicsBody.allContactedBodies().contains(ingredientPhysicsBody) {
-//                // Remove ingredient from the scene
-//                if let heldIngredientNode = getHeldIngredientNode() {
-//                    heldIngredientNode.removeFromParent()
-//
-//                    if pickIngredient == nil {
-//                        pickIngredient = heldIngredientNode
-//                    } else {
-//                        // Respawn the old ingredient at player's position
-//                        spawnIngredientAtPlayerPosition(pickIngredient!)
-//                        heldIngredient = heldIngredientNode
-//                    }
-//                }
-//
-//                // Remove pickup label
-//                removePickupPopup()
-//                ingredientImage?.removeFromParent()
-//
-//                // Create image node for the ingredient UI
-//                if let imageName = getIngredientImageName() {
-//                    ingredientImage = SKSpriteNode(imageNamed: imageName)
-//                    ingredientImage?.size = CGSize(width: 50, height: 50)
-//                    ingredientImage?.position = CGPoint(x: self.scene!.size.width/2 - 50, y: self.scene!.size.height/2 - 50)
-//                    self.scene?.addChild(ingredientImage!)
-//                }
-//            }
-//        }
-//    }
-//
-//    func getHeldIngredientNode() -> SKSpriteNode? {
-//        let ingredientNodeMap: [SKSpriteNode: SKSpriteNode] = [
-//            ingredientNode!: ingredientNode!,
-//            ingredientNode2!: ingredientNode2!,
-//        ]
-//        return ingredientNodeMap[heldIngredient!]
-//    }
-//
-//    func getIngredientImageName() -> String? {
-//        let ingredientImageNameMap: [SKSpriteNode: String] = [
-//            ingredientNode!: "Star",
-//            ingredientNode2!: "Star-2",
-//        ]
-//        return ingredientImageNameMap[heldIngredient!]
-//    }
-//
-//    func spawnIngredientAtPlayerPosition(_ ingredient: SKSpriteNode) {
-//       ingredient.position = self.position
-//       self.scene?.addChild(ingredient)
-//
-//       // Assign the newly spawned ingredient as the held ingredient
-//       self.heldIngredient = ingredient
-//   }
 }
