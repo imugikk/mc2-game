@@ -9,104 +9,130 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene {
+    private var playerEntity: GKEntity!
+    private var enemyEntities: [GKEntity] = []
+    private var enemyQueue: [GKEntity] = []  // Queue to store enemy entities
+    private var waveNumber: Int = 0
+    private var enemiesSpawned: Int = 0
+    private var enemiesKilled: Int = 0
+    private var maxEnemiesPerWave: Int = 10
+    private var enemySpawnRate: TimeInterval = 1.0
+    private var wavePause: TimeInterval = 5.0
+    private var enemySpawnTimer: Timer?
     
-    var entities = [GKEntity]()
-    var graphs = [String : GKGraph]()
+    private var playerNode: SKSpriteNode!
+    private var waveLabel: SKLabelNode!
     
-    private var lastUpdateTime : TimeInterval = 0
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
-    
-    override func sceneDidLoad() {
+    override func didMove(to view: SKView) {
+        playerNode = childNode(withName: "player") as? SKSpriteNode
+        playerEntity = GKEntity()
+        playerEntity.addComponent(PlayerComponent(node: playerNode))
         
-        self.lastUpdateTime = 0
+        waveLabel = childNode(withName: "waveText") as? SKLabelNode
         
-        // Get label node from scene and store it for use later
-        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-        if let label = self.label {
-            label.alpha = 0.0
-            label.run(SKAction.fadeIn(withDuration: 2.0))
+        startNextWave()
+    }
+    
+    override func update(_ currentTime: TimeInterval) {
+        super.update(currentTime)
+        
+        // Update the player entity
+        playerEntity.update(deltaTime: currentTime - (lastUpdateTime ?? currentTime))
+        
+        // Update the enemy entities
+        for enemyEntity in enemyEntities {
+            enemyEntity.update(deltaTime: currentTime - (lastUpdateTime ?? currentTime))
         }
         
-        // Create shape node to use during mouse interaction
-        let w = (self.size.width + self.size.height) * 0.05
-        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
+        lastUpdateTime = currentTime
+    }
+    
+    private func startNextWave() {
+        waveNumber += 1
+        updateWaveLabel()
         
-        if let spinnyNode = self.spinnyNode {
-            spinnyNode.lineWidth = 2.5
-            
-            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
-            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-                                              SKAction.fadeOut(withDuration: 0.5),
-                                              SKAction.removeFromParent()]))
+        // Increase spawn rate and number of enemies for each wave
+        if waveNumber > 1 {
+            enemySpawnRate -= 0.1
+            maxEnemiesPerWave += 5
+        }
+        
+        // Reset enemies spawned and killed count
+        enemiesSpawned = 0
+        enemiesKilled = 0
+        
+        // Schedule enemy spawning timer
+        startSpawningEnemy()
+    }
+    
+    private func startSpawningEnemy() {
+        // Create and add enemy entity
+        let enemyNode = SKSpriteNode(color: .red, size: CGSize(width: 50, height: 50))
+        let enemyEntity = GKEntity()
+        let enemyComponent = EnemyComponent(node: enemyNode, targetEntity: playerEntity, scene: self, health: 3)
+        enemyEntity.addComponent(enemyComponent)
+        enemyEntities.append(enemyEntity)
+        enemyQueue.append(enemyEntity)  // Add the enemy entity to the queue
+        addChild(enemyNode)
+        
+        // Position enemy randomly outside the frame
+        enemyNode.position = getRandomPositionOutsideFrame()
+        
+        enemiesSpawned += 1
+        if enemiesSpawned < maxEnemiesPerWave {
+            self.run(SKAction.wait(forDuration: enemySpawnRate)) {
+                self.startSpawningEnemy()
+            }
         }
     }
     
-    
-    func touchDown(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.green
-            self.addChild(n)
+    private func updateWaveLabel() {
+        waveLabel.text = "Wave: \(waveNumber)"
+    }
+
+    private func getRandomPositionOutsideFrame() -> CGPoint {
+        let playableRect = frame.insetBy(dx: -frame.size.width/2, dy: -frame.size.height/2)
+        let randomEdge = arc4random_uniform(4) // Randomly select one of the four edges
+        var randomX: CGFloat = 0.0
+        var randomY: CGFloat = 0.0
+        
+        switch randomEdge {
+        case 0: // Top edge
+            randomX = CGFloat.random(in: playableRect.minX...playableRect.maxX)
+            randomY = playableRect.maxY
+        case 1: // Bottom edge
+            randomX = CGFloat.random(in: playableRect.minX...playableRect.maxX)
+            randomY = playableRect.minY
+        case 2: // Left edge
+            randomX = playableRect.minX
+            randomY = CGFloat.random(in: playableRect.minY...playableRect.maxY)
+        case 3: // Right edge
+            randomX = playableRect.maxX
+            randomY = CGFloat.random(in: playableRect.minY...playableRect.maxY)
+        default:
+            break
         }
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.blue
-            self.addChild(n)
-        }
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.red
-            self.addChild(n)
-        }
-    }
-    
-    override func mouseDown(with event: NSEvent) {
-        self.touchDown(atPoint: event.location(in: self))
-    }
-    
-    override func mouseDragged(with event: NSEvent) {
-        self.touchMoved(toPoint: event.location(in: self))
-    }
-    
-    override func mouseUp(with event: NSEvent) {
-        self.touchUp(atPoint: event.location(in: self))
+        
+        return CGPoint(x: randomX, y: randomY)
     }
     
     override func keyDown(with event: NSEvent) {
-        switch event.keyCode {
-        case 0x31:
-            if let label = self.label {
-                label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
+        if event.keyCode == 49 {
+            if !enemyQueue.isEmpty {
+                let enemyEntity = enemyQueue.removeFirst()
+                enemyEntity.component(ofType: EnemyComponent.self)?.takeDamage(amount: 1)
+                enemyEntity.component(ofType: EnemyComponent.self)?.dropItem()
+                enemiesKilled += 1
             }
-        default:
-            print("keyDown: \(event.characters!) keyCode: \(event.keyCode)")
+                        
+            if enemiesKilled >= maxEnemiesPerWave {
+                // All enemies for the wave have been killed
+                self.run(SKAction.wait(forDuration: wavePause)) {
+                    self.startNextWave()
+                }
+            }
         }
     }
-    
-    
-    override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
         
-        // Initialize _lastUpdateTime if it has not already been
-        if (self.lastUpdateTime == 0) {
-            self.lastUpdateTime = currentTime
-        }
-        
-        // Calculate time since last update
-        let dt = currentTime - self.lastUpdateTime
-        
-        // Update entities
-        for entity in self.entities {
-            entity.update(deltaTime: dt)
-        }
-        
-        self.lastUpdateTime = currentTime
-    }
+    private var lastUpdateTime: TimeInterval?
 }
