@@ -12,6 +12,7 @@ class Player: SKSpriteNode {
     let moveSpeed = 300.0
     var ingredientNode: SKSpriteNode?
     var ingredientNode2: SKSpriteNode?
+    var ingredientNode3: SKSpriteNode?
     var popupLabel: SKLabelNode?
     var ingredientImage: SKSpriteNode?
     var ingredientImageHold: SKSpriteNode?
@@ -67,6 +68,9 @@ class Player: SKSpriteNode {
             } else if pickIngredient == ingredientNode2 {
                 ingredientNode2?.position = self.position
                 self.scene?.addChild(ingredientNode2!)
+            } else if pickIngredient == ingredientNode3 {
+                ingredientNode3?.position = self.position
+                self.scene?.addChild(ingredientNode3!)
             }
         }
         
@@ -77,6 +81,8 @@ class Player: SKSpriteNode {
                     ingredientNode?.removeFromParent()
                 } else if heldIngredient == ingredientNode2 {
                     ingredientNode2?.removeFromParent()
+                } else if heldIngredient == ingredientNode3 {
+                    ingredientNode3?.removeFromParent()
                 }
                 
                 pickIngredient = heldIngredient
@@ -88,9 +94,12 @@ class Player: SKSpriteNode {
                 if pickIngredient == ingredientNode2 {
                     ingredientImage = SKSpriteNode(imageNamed: "Star-2")
                     ingredientImageHold = SKSpriteNode(imageNamed: "Star-2")
-                } else {
+                } else if pickIngredient == ingredientNode {
                     ingredientImage = SKSpriteNode(imageNamed: "Star")
                     ingredientImageHold = SKSpriteNode(imageNamed: "Star")
+                } else if pickIngredient == ingredientNode3 {
+                    ingredientImage = SKSpriteNode(imageNamed: "Star-3")
+                    ingredientImageHold = SKSpriteNode(imageNamed: "Star-3")
                 }
 
                 ingredientImage?.size = CGSize(width: 50, height: 50) // Set the desired size here
