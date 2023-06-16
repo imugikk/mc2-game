@@ -8,7 +8,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     private var playerEntity: GKEntity!
     private var enemyEntities: [GKEntity] = []
     private var enemyQueue: [GKEntity] = []  // Queue to store enemy entities
@@ -26,10 +26,23 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         playerNode = childNode(withName: "player") as? SKSpriteNode
         playerEntity = GKEntity()
-        playerEntity.addComponent(PlayerComponent(node: playerNode))
+        let playerComponent = PlayerComponent(node: playerNode)
+        playerEntity.addComponent(playerComponent)
         
         waveLabel = childNode(withName: "waveText") as? SKLabelNode
         
+        // Add physics body to the player node
+        let physicsBody = SKPhysicsBody(rectangleOf: playerNode.size)
+        physicsBody.affectedByGravity = false
+        playerComponent.node.physicsBody = physicsBody
+        playerComponent.node.physicsBody?.isDynamic = false
+        
+        playerComponent.node.physicsBody?.categoryBitMask = 0x1
+        playerComponent.node.physicsBody?.collisionBitMask = 0
+        playerComponent.node.physicsBody?.contactTestBitMask = 0x2
+        
+        physicsWorld.contactDelegate = self
+
         startNextWave()
     }
     
@@ -132,7 +145,40 @@ class GameScene: SKScene {
                 }
             }
         }
+        if let playerComponent = playerEntity.component(ofType: PlayerComponent.self) {
+            switch event.keyCode {
+            case 2: // "D" key
+                playerComponent.node.position.x += 30 // Adjust the position as needed
+            default:
+                print("keydown: \(event.characters!) keyCode: \(event.keyCode)")
+            }
+        }
+        
+    }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        let bodyA = contact.bodyA
+        let bodyB = contact.bodyB
+        
+        // Check if the bodies belong to the nodes you are interested in
+        if bodyA.categoryBitMask == 0x1 && bodyB.categoryBitMask == 0x2 {
+            // Handle the collision between an enemy and a bullet
+            playerNodeHitByBullet(playerBody: bodyA, bulletBody: bodyB)
+        } else if bodyA.categoryBitMask == 0x2 && bodyB.categoryBitMask == 0x1 {
+            // Handle the collision between an enemy and a bullet
+            playerNodeHitByBullet(playerBody: bodyB, bulletBody: bodyA)
+        }
+    }
+    
+    func playerNodeHitByBullet(playerBody: SKPhysicsBody, bulletBody: SKPhysicsBody) {
+        // Get the enemy node and bullet node from their respective bodies
+        guard let bulletNode = bulletBody.node as? SKSpriteNode else {
+            return
+        }
+        
+        bulletNode.removeFromParent()
     }
         
     private var lastUpdateTime: TimeInterval?
+    
 }
