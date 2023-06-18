@@ -11,6 +11,10 @@
 		BF85CA162A38285700AC95E8 /* CGPointExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF85CA152A38285700AC95E8 /* CGPointExtension.swift */; };
 		BF9500532A392A6800E2B780 /* InputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9500512A392A6800E2B780 /* InputManager.swift */; };
 		BF9500552A3983F700E2B780 /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9500542A3983F700E2B780 /* Weapon.swift */; };
+		BF9500572A3AABAD00E2B780 /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9500562A3AABAD00E2B780 /* Bullet.swift */; };
+		BF95005A2A3BA77300E2B780 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9500592A3BA77300E2B780 /* Event.swift */; };
+		BFCA4F152A3D77570013DA14 /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCA4F142A3D77570013DA14 /* CGFloatExtension.swift */; };
+		BFCA4F172A3F25B00013DA14 /* ContactDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCA4F162A3F25B00013DA14 /* ContactDelegate.swift */; };
 		F14C59312A373D83000F3D22 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14C59302A373D83000F3D22 /* AppDelegate.swift */; };
 		F14C59332A373D83000F3D22 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F14C59322A373D83000F3D22 /* GameScene.sks */; };
 		F14C59352A373D83000F3D22 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = F14C59342A373D83000F3D22 /* Actions.sks */; };
@@ -18,9 +22,6 @@
 		F14C59392A373D83000F3D22 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14C59382A373D83000F3D22 /* ViewController.swift */; };
 		F14C593B2A373D84000F3D22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F14C593A2A373D84000F3D22 /* Assets.xcassets */; };
 		F14C593E2A373D84000F3D22 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F14C593C2A373D84000F3D22 /* Main.storyboard */; };
-		F14C59492A373D84000F3D22 /* mc2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14C59482A373D84000F3D22 /* mc2Tests.swift */; };
-		F14C59532A373D84000F3D22 /* mc2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14C59522A373D84000F3D22 /* mc2UITests.swift */; };
-		F14C59552A373D84000F3D22 /* mc2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14C59542A373D84000F3D22 /* mc2UITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,10 @@
 		BF85CA152A38285700AC95E8 /* CGPointExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPointExtension.swift; sourceTree = "<group>"; };
 		BF9500512A392A6800E2B780 /* InputManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputManager.swift; sourceTree = "<group>"; };
 		BF9500542A3983F700E2B780 /* Weapon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
+		BF9500562A3AABAD00E2B780 /* Bullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
+		BF9500592A3BA77300E2B780 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		BFCA4F142A3D77570013DA14 /* CGFloatExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatExtension.swift; sourceTree = "<group>"; };
+		BFCA4F162A3F25B00013DA14 /* ContactDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDelegate.swift; sourceTree = "<group>"; };
 		F14C592D2A373D83000F3D22 /* mc2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mc2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F14C59302A373D83000F3D22 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F14C59322A373D83000F3D22 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -55,10 +60,7 @@
 		F14C593D2A373D84000F3D22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F14C593F2A373D84000F3D22 /* mc2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = mc2.entitlements; sourceTree = "<group>"; };
 		F14C59442A373D84000F3D22 /* mc2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mc2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F14C59482A373D84000F3D22 /* mc2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mc2Tests.swift; sourceTree = "<group>"; };
 		F14C594E2A373D84000F3D22 /* mc2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mc2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F14C59522A373D84000F3D22 /* mc2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mc2UITests.swift; sourceTree = "<group>"; };
-		F14C59542A373D84000F3D22 /* mc2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mc2UITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF08BA5E2A3BBE1800C4DCC5 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				BF9500512A392A6800E2B780 /* InputManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		BF85CA112A38234900AC95E8 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,20 +126,35 @@
 			children = (
 				F14C59322A373D83000F3D22 /* GameScene.sks */,
 				F14C59362A373D83000F3D22 /* GameScene.swift */,
-				BF85CA0F2A3822AB00AC95E8 /* Player.swift */,
-				BF85CA152A38285700AC95E8 /* CGPointExtension.swift */,
-				BF9500512A392A6800E2B780 /* InputManager.swift */,
-				BF9500542A3983F700E2B780 /* Weapon.swift */,
+				BFCA4F162A3F25B00013DA14 /* ContactDelegate.swift */,
 			);
 			path = GameScene;
+			sourceTree = "<group>";
+		};
+		BF9500582A3BA71400E2B780 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				BF85CA152A38285700AC95E8 /* CGPointExtension.swift */,
+				BFCA4F142A3D77570013DA14 /* CGFloatExtension.swift */,
+				BF9500592A3BA77300E2B780 /* Event.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		BFCA4F182A3F28910013DA14 /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				BF85CA0F2A3822AB00AC95E8 /* Player.swift */,
+				BF9500542A3983F700E2B780 /* Weapon.swift */,
+				BF9500562A3AABAD00E2B780 /* Bullet.swift */,
+			);
+			path = Nodes;
 			sourceTree = "<group>";
 		};
 		F14C59242A373D83000F3D22 = {
 			isa = PBXGroup;
 			children = (
 				F14C592F2A373D83000F3D22 /* mc2 */,
-				F14C59472A373D84000F3D22 /* mc2Tests */,
-				F14C59512A373D84000F3D22 /* mc2UITests */,
 				F14C592E2A373D83000F3D22 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -150,28 +175,14 @@
 				BF85CA122A38237400AC95E8 /* Setup */,
 				BF85CA132A38237F00AC95E8 /* Actions */,
 				BF85CA142A38239F00AC95E8 /* GameScene */,
+				BFCA4F182A3F28910013DA14 /* Nodes */,
+				BF08BA5E2A3BBE1800C4DCC5 /* Managers */,
+				BF9500582A3BA71400E2B780 /* Utils */,
 				BF85CA112A38234900AC95E8 /* ViewController */,
 				F14C593A2A373D84000F3D22 /* Assets.xcassets */,
 				F14C593F2A373D84000F3D22 /* mc2.entitlements */,
 			);
 			path = mc2;
-			sourceTree = "<group>";
-		};
-		F14C59472A373D84000F3D22 /* mc2Tests */ = {
-			isa = PBXGroup;
-			children = (
-				F14C59482A373D84000F3D22 /* mc2Tests.swift */,
-			);
-			path = mc2Tests;
-			sourceTree = "<group>";
-		};
-		F14C59512A373D84000F3D22 /* mc2UITests */ = {
-			isa = PBXGroup;
-			children = (
-				F14C59522A373D84000F3D22 /* mc2UITests.swift */,
-				F14C59542A373D84000F3D22 /* mc2UITestsLaunchTests.swift */,
-			);
-			path = mc2UITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,11 +319,15 @@
 			files = (
 				BF85CA102A3822AB00AC95E8 /* Player.swift in Sources */,
 				F14C59392A373D83000F3D22 /* ViewController.swift in Sources */,
+				BFCA4F172A3F25B00013DA14 /* ContactDelegate.swift in Sources */,
 				BF9500532A392A6800E2B780 /* InputManager.swift in Sources */,
 				BF9500552A3983F700E2B780 /* Weapon.swift in Sources */,
 				F14C59372A373D83000F3D22 /* GameScene.swift in Sources */,
 				BF85CA162A38285700AC95E8 /* CGPointExtension.swift in Sources */,
+				BFCA4F152A3D77570013DA14 /* CGFloatExtension.swift in Sources */,
 				F14C59312A373D83000F3D22 /* AppDelegate.swift in Sources */,
+				BF9500572A3AABAD00E2B780 /* Bullet.swift in Sources */,
+				BF95005A2A3BA77300E2B780 /* Event.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,7 +335,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F14C59492A373D84000F3D22 /* mc2Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,8 +342,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F14C59532A373D84000F3D22 /* mc2UITests.swift in Sources */,
-				F14C59552A373D84000F3D22 /* mc2UITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

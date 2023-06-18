@@ -5,14 +5,18 @@
 //  Created by Ardli Fadhillah on 14/06/23.
 //
 
+import Foundation
 import SpriteKit
 
 class Weapon: SKSpriteNode {
-    func rotate(followPos: CGPoint) {
-        let offset = followPos - position
+    let minJoystickInputForRotation = 0.5
+    
+    func update(deltaTime: Double) {
+        let offset = InputManager.shared.getRightJoystickInput(controllerIndex: 0)
         let angle = atan2(offset.y, offset.x)
-        if followPos.length() >= 0.5 {
-            self.zRotation = angle
+        if offset.length() >= minJoystickInputForRotation {
+            let degreesOffset: CGFloat = 90.0
+            self.zRotation = angle - degreesOffset.toRadians()
         }
         
         if self.zRotation >= 0 && self.zRotation <= 179 {
