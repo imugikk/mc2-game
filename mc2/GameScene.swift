@@ -9,21 +9,24 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene {
-    
     var entities = [GKEntity]()
-    var graphs = [String : GKGraph]()
     
     var scoreLabel:SKLabelNode!
     var score:Int = 0 {
         didSet{
-            scoreLabel.text = "Score: \(score)"
+            if scoreLabel != nil {
+                scoreLabel.text = "Score: \(score)"
+            }
         }
     }
     
     var highScoreLabel:SKLabelNode!
     var highScore:Int = 0 {
         didSet{
-            highScoreLabel.text = "High Score: \(highScore)"
+            if highScoreLabel != nil{
+                highScoreLabel.text = "High Score: \(highScore)"
+                
+            }
         }
     }
     
@@ -40,14 +43,25 @@ class GameScene: SKScene {
     
     override func keyDown(with event: NSEvent) {
         switch event.keyCode {
-        //press "i" -> keycode : 34
+        //"i"
         case 34:
             score += 1
-            
+        //"s"
         case 1:
             if score > highScore {
                 highScore = score
                 UserDefaults.standard.set(score, forKey: scoreKey)
+            }
+        case 5:
+            if let view = self.view {
+                if let scene = SKScene(fileNamed: "GameOverScene") as? GameOverScene {
+                    scene.score = score
+                    scene.highScore = highScore
+                    scene.updateLabels()
+                    scene.entities = self.entities
+                    scene.scaleMode = .aspectFit
+                    view.presentScene(scene)
+                }
             }
             
         default:
