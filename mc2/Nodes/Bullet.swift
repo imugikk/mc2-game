@@ -35,6 +35,8 @@ class Bullet: SKSpriteNode {
         self.physicsBody?.categoryBitMask = BitMask.bullet
         self.physicsBody?.contactTestBitMask = BitMask.obstacle
         self.physicsBody?.collisionBitMask = 0
+        
+        position = CGPoint(x: 0, y: 0)
     }
     
     func update(deltaTime: Double) {

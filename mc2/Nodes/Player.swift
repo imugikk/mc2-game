@@ -28,14 +28,14 @@ class Player: SKSpriteNode {
         health = 3
         self.killedAction = killedAction
     }
-    
+
     func update(deltaTime: Double) {
         let input = InputManager.shared.getLeftJoystickInput(controllerIndex: 0)
         let direction = CGPoint(x: input.x, y: input.y).normalized()
         let movement = moveSpeed * deltaTime * direction
         self.position += movement
         
-        if InputManager.shared.rightTriggerPressed {
+        if InputManager.shared.rightTriggerHeld {
             shootBullet()
         }
         

@@ -19,7 +19,8 @@ class Weapon: SKSpriteNode {
             self.zRotation = angle - degreesOffset.toRadians()
         }
         
-        if self.zRotation >= 0 && self.zRotation <= 179 {
+        if self.zRotation >= CGFloat(-90.0).toRadians() &&
+            self.zRotation <= CGFloat(89.0).toRadians() {
             self.zPosition = -1
         }
         else {

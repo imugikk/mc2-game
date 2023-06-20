@@ -15,8 +15,12 @@ struct BitMask {
 }
 
 class GameScene: SKScene {
+    
     var entities = [GKEntity]()
-    var graphs = [String : GKGraph]()
+    
+    lazy var componentSystems : [GKComponentSystem] = {
+        return []
+    }()
     
     private var controller: GCController = GCController()
     private var restartDelay = 2.0
@@ -46,6 +50,28 @@ class GameScene: SKScene {
         self.isPaused = true
     }
 
+    func setUpEntities() {
+//        let redBoxEntity = makeBoxEntity(forNodeWithName: "redBox")
+//        let yellowBoxEntity = makeBoxEntity(forNodeWithName: "yellowBox", withParticleComponentNamed: "Fire")
+//        let greenBoxEntity = makeBoxEntity(forNodeWithName: "greenBox", wantsPlayerControlComponent: true)
+//        let blueBoxEntity = makeBoxEntity(forNodeWithName: "blueBox", wantsPlayerControlComponent: true, withParticleComponentNamed: "Sparkle")
+
+        // Create the box entity and grab its node from the scene.
+        let playerEntity = GKEntity()
+        let node = NodeComponent(forNodeWithName: "player", in: self)
+        let spriteRenderer = SpriteRendererComponent(forNodeWithName: "player", in: self)
+        playerEntity.addComponent(node)
+        playerEntity.addComponent(spriteRenderer)
+        entities.append(playerEntity)
+    }
+    
+//    func addComponentsToComponentSystems() {
+//        for box in entities {
+//            particleComponentSystem.addComponent(foundIn: box)
+//            playerControlComponentSystem.addComponent(foundIn: box)
+//        }
+//    }
+    
     override func update(_ currentTime: TimeInterval) {
         let deltaTime = calculateDeltaTime(from: currentTime)
 
@@ -74,7 +100,6 @@ class GameScene: SKScene {
             if let scene = GKScene(fileNamed: self.getClassName()) {
                 if let sceneNode = scene.rootNode as! GameScene? {
                     sceneNode.entities = scene.entities
-                    sceneNode.graphs = scene.graphs
                     sceneNode.scaleMode = .aspectFit
 
                     self.view?.presentScene(sceneNode)
@@ -82,6 +107,7 @@ class GameScene: SKScene {
             }
         }
     }
+    
     private func getClassName() -> String {
         return String(describing: type(of: self))
     }
