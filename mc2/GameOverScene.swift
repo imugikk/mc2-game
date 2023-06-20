@@ -20,9 +20,9 @@ class GameOverScene: SKScene {
     var scoreLabel: SKLabelNode!
     var highScoreLabel: SKLabelNode!
     
-    override func didMove(to view: SKView){
-        restartButtonNode = self.childNode(withName: "restartButton") as! SKSpriteNode
-    }
+//    override func didMove(to view: SKView){
+//        restartButtonNode = self.childNode(withName: "restartButton") as! SKSpriteNode
+//    }
         
     override func sceneDidLoad() {
         super.sceneDidLoad()
@@ -31,19 +31,24 @@ class GameOverScene: SKScene {
         highScoreLabel = self.childNode(withName: "highScoreText") as? SKLabelNode
     }
     
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        let touch = touches.first
-//        
-//        if let location = touch?.location(in: self){
-//            let nodesArray = self.nodes(at: location)
-//            
-//            if nodesArray.first?.name == "restartButton" {
-//                let transition = SKTransition.flipHorizontal(withDuration: 0.5)
-//                let gameScene = GameScene(size = self.size)
-//                self.view?.presentScene(gameScene, transition:transition)
-//            }
-//        }
-//    }
+    override func keyDown(with event: NSEvent) {
+        switch event.keyCode {
+            //"x"
+        case 7:
+//            restartGame()
+            if let view = self.view {
+                if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
+                    scene.score = 0
+                    scene.highScore = highScore
+                    scene.entities = self.entities
+                    scene.scaleMode = .aspectFit
+                    view.presentScene(scene)
+                }
+            }
+        default:
+            print("keyDown: \(event.characters!) keyCode: \(event.keyCode)")
+        }
+    }
 
     func updateLabels() {
         scoreLabel.text = "Score: \(score)"
