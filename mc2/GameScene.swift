@@ -52,10 +52,22 @@ class GameScene: SKScene {
                 highScore = score
                 UserDefaults.standard.set(score, forKey: scoreKey)
             }
+        //"g"
         case 5:
             if let view = self.view {
                 if let scene = SKScene(fileNamed: "GameOverScene") as? GameOverScene {
                     scene.score = score
+                    scene.highScore = highScore
+                    scene.updateLabels()
+                    scene.entities = self.entities
+                    scene.scaleMode = .aspectFit
+                    view.presentScene(scene)
+                }
+            }
+        //"e"
+        case 14:
+            if let view = self.view {
+                if let scene = SKScene(fileNamed: "StartScene") as? StartScene {
                     scene.highScore = highScore
                     scene.updateLabels()
                     scene.entities = self.entities
