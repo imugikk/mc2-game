@@ -35,7 +35,7 @@ class Player: SKSpriteNode {
         let movement = moveSpeed * deltaTime * direction
         self.position += movement
         
-        if InputManager.shared.rightTriggerPressed {
+        if InputManager.shared.rightTriggerHeld {
             shootBullet()
         }
         

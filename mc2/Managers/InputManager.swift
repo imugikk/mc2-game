@@ -14,7 +14,7 @@ class InputManager {
     
     private var leftJoystickInput = [CGPoint]()
     private var rightJoystickInput = [CGPoint]()
-    private var isRightTriggerPressed = false
+    private var isRightTriggerHeld = false
     
     func getLeftJoystickInput(controllerIndex: Int) -> CGPoint {
         if leftJoystickInput.count == 0 {
@@ -30,8 +30,8 @@ class InputManager {
         return rightJoystickInput[controllerIndex]
     }
     
-    var rightTriggerPressed: Bool {
-        return isRightTriggerPressed
+    var rightTriggerHeld: Bool {
+        return isRightTriggerHeld
     }
     
     // Function to run intially to lookout for any MFI or Remote Controllers in the area
@@ -97,12 +97,12 @@ class InputManager {
         }
         else if (element == gamepad.rightTrigger) {
             if gamepad.rightTrigger.isPressed {
-                if !self.isRightTriggerPressed {
-                    self.isRightTriggerPressed = true
+                if !self.isRightTriggerHeld {
+                    self.isRightTriggerHeld = true
                 }
             } else {
-                if self.isRightTriggerPressed {
-                    self.isRightTriggerPressed = false
+                if self.isRightTriggerHeld {
+                    self.isRightTriggerHeld = false
                 }
             }
         }

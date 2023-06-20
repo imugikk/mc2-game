@@ -6,7 +6,6 @@
 //
 
 import SpriteKit
-import GameplayKit
 import GameController
 
 struct BitMask {
@@ -15,9 +14,6 @@ struct BitMask {
 }
 
 class GameScene: SKScene {
-    var entities = [GKEntity]()
-    var graphs = [String : GKGraph]()
-    
     private var controller: GCController = GCController()
     private var restartDelay = 2.0
     
@@ -71,18 +67,7 @@ class GameScene: SKScene {
 
     private func restartScene() {
         self.run (SKAction.wait (forDuration: restartDelay)) {
-            if let scene = GKScene(fileNamed: self.getClassName()) {
-                if let sceneNode = scene.rootNode as! GameScene? {
-                    sceneNode.entities = scene.entities
-                    sceneNode.graphs = scene.graphs
-                    sceneNode.scaleMode = .aspectFit
-
-                    self.view?.presentScene(sceneNode)
-                }
-            }
+            GameViewController.changeScene(to: "GameScene", in: self.view!)
         }
-    }
-    private func getClassName() -> String {
-        return String(describing: type(of: self))
     }
 }
