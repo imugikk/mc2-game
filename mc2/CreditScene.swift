@@ -36,21 +36,7 @@ class CreditScene: SKScene {
                     view.presentScene(scene)
                 }
             }
-            //"e"
-        case 14:
-            if let view = self.view {
-                if let scene = SKScene(fileNamed: "StartScene") as? StartScene {
-                    scene.highScore = highScore
-                    scene.entities = self.entities
-                    scene.updateLabels()
-                    scene.scaleMode = .aspectFit
-                    view.presentScene(scene)
-                }
-            }
             
-        //"z"
-        case 6:
-            exit(0)
             
         default:
             print("keyDown: \(event.characters!) keyCode: \(event.keyCode)")
