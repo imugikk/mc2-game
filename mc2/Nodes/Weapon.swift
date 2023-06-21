@@ -21,14 +21,13 @@ class Weapon: SKSpriteNode {
         let angle = atan2(input.y, input.x)
         
         if input.length() >= minJoystickInputForRotation {
-            let rotationOffset = CGFloat(90.0).toRadians()
-            self.zRotation = angle - rotationOffset
+            self.zRotation = angle
         }
     }
     
     func handleZPosBasedOnRotation() {
-        let minRotation = CGFloat(-90.0).toRadians()
-        let maxRotation = CGFloat(89.0).toRadians()
+        let minRotation = CGFloat(1.0).toRadians()
+        let maxRotation = CGFloat(179.0).toRadians()
         
         if self.zRotation >= minRotation && self.zRotation <= maxRotation {
             self.zPosition = -1

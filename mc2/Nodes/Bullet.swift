@@ -31,10 +31,9 @@ class Bullet: SKSpriteNode {
         color = .systemPink
         self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width/2)
         self.physicsBody?.isDynamic = true
-        self.physicsBody?.affectedByGravity = false
-        self.physicsBody?.categoryBitMask = BitMask.bullet
-        self.physicsBody?.contactTestBitMask = BitMask.obstacle
+        self.physicsBody?.categoryBitMask = CBitMask.bullet
         self.physicsBody?.collisionBitMask = 0
+        self.physicsBody?.contactTestBitMask = CBitMask.obstacle | CBitMask.enemy
     }
     
     func update(deltaTime: Double) {
@@ -52,6 +51,6 @@ class Bullet: SKSpriteNode {
     
     func destroy() {
         destroyed = true
-        removeFromParent()
+        self.removeFromParent()
     }
 }

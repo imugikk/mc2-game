@@ -8,21 +8,36 @@
 import SpriteKit
 
 class Player: SKSpriteNode {
-    private let moveSpeed = 200.0
+    var screenHeight: Double { scene!.frame.size.height }
+    var screenWidth: Double { scene!.frame.size.width }
+    
+    private let moveSpeed = 300.0
+    
     private var shootDelayDuration = 0.25
     private var shootDelay = false
+    private var bulletSpawnPos: SKNode!
+    
     private var health = 3 {
         didSet {
             healthText.text = "HP: \(health)"
         }
     }
     private var healthText: SKLabelNode!
-    private var bulletSpawnPos: SKNode!
+    private let iFrameDuration = 1.0
+    private var iFrameActive = false
     private var killedAction: (() -> Void)!
+    var destroyed = false
     
     private var bullets = [Bullet]()
     
     func setup(killedAction: @escaping () -> Void) {
+        self.physicsBody = SKPhysicsBody(texture: texture!, alphaThreshold: 0.1, size: size)
+        self.physicsBody?.isDynamic = true
+        self.physicsBody?.allowsRotation = false
+        self.physicsBody?.categoryBitMask = CBitMask.player
+        self.physicsBody?.collisionBitMask = CBitMask.obstacle
+        self.physicsBody?.contactTestBitMask = CBitMask.enemy
+        
         healthText = scene?.childNode(withName: "healthText") as? SKLabelNode
         bulletSpawnPos = childNode(withName: "weaponPivot")?.childNode(withName: "bulletSpawnPos")
         health = 3
@@ -30,10 +45,13 @@ class Player: SKSpriteNode {
     }
     
     func update(deltaTime: Double) {
+        if destroyed { return }
+        
         let input = InputManager.shared.getLeftJoystickInput(controllerIndex: 0)
         let direction = CGPoint(x: input.x, y: input.y).normalized()
         let movement = moveSpeed * deltaTime * direction
         self.position += movement
+        self.position = constrainedPosition()
         
         if InputManager.shared.rightTriggerHeld {
             shootBullet()
@@ -46,6 +64,21 @@ class Player: SKSpriteNode {
                 bullets.removeAll(where: { $0 == bullet })
             }
         }
+    }
+    
+    func constrainedPosition() -> CGPoint {
+        let objectHalfWidth = size.width / 2
+        let objectHalfHeight = size.height / 2
+        
+        let minX = -screenWidth / 2 + objectHalfWidth
+        let maxX = screenWidth / 2 - objectHalfWidth
+        let minY = -screenHeight / 2 + objectHalfHeight
+        let maxY = screenHeight / 2 - objectHalfHeight
+        
+        let constrainedX = min(max(position.x, minX), maxX)
+        let constrainedY = min(max(position.y, minY), maxY)
+        
+        return CGPoint(x: constrainedX, y: constrainedY)
     }
     
     func shootBullet() {
@@ -78,19 +111,28 @@ class Player: SKSpriteNode {
         return rotation
     }
     
-    func decreaseHealth(damage: Int) {
-        guard health > 0 else { return }
+    func decreaseHealth(amount: Int) {
+        guard health > 0, !iFrameActive else { return }
         
-        health -= damage
+        health -= amount
         health = max(0, health)
+        enableIFrame()
         
         if health == 0 {
             destroy()
         }
     }
     
+    func enableIFrame() {
+        iFrameActive = true
+        self.run(SKAction.wait(forDuration: iFrameDuration)) {
+            self.iFrameActive = false
+        }
+    }
+    
     func destroy() {
+        destroyed = true
         killedAction()
-        removeFromParent()
+        self.removeFromParent()
     }
 }
