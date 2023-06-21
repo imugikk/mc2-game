@@ -21,7 +21,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
     
-    var controllerInput = (x: 0.0, y: 0.0)
+    var controllerInput = CGPoint(x: 0.0, y: 0.0)
     
     var controller: GCController = GCController()
     
@@ -55,6 +55,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         square_1 = childNode(withName: "square_1") as? SKSpriteNode
         square_2 = childNode(withName: "square_2") as? SKSpriteNode
         square_3 = childNode(withName: "square_3") as? SKSpriteNode
+        
+        highlight = childNode(withName: "highlight_1") as? SKSpriteNode
+        highlight?.isHidden = true
     }
     
     override func didMove(to view: SKView) {
@@ -144,53 +147,34 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
            (bodyB.node is Player && bodyA.node == (bodyB.node as? Player)?.ingredientNode) {
             // Player body contacted with ingredient body
             (bodyA.node as? Player)?.showPickupPopup(ingredientNode1: ingredientNode)
-            print("test")
-
-            // Disable collision between player and ingredient
-            bodyA.collisionBitMask = 0
-            bodyB.collisionBitMask = 0
         }
         
         if (bodyA.node is Player && bodyB.node == (bodyA.node as? Player)?.ingredientNode2) ||
            (bodyB.node is Player && bodyA.node == (bodyB.node as? Player)?.ingredientNode2) {
             // Player body contacted with ingredient body
             (bodyA.node as? Player)?.showPickupPopup(ingredientNode1: ingredientNode2)
-            print("test")
-
-            // Disable collision between player and ingredient
-            bodyA.collisionBitMask = 0
-            bodyB.collisionBitMask = 0
         }
         
         if (bodyA.node is Player && bodyB.node == (bodyA.node as? Player)?.ingredientNode3) ||
            (bodyB.node is Player && bodyA.node == (bodyB.node as? Player)?.ingredientNode3) {
             // Player body contacted with ingredient body
             (bodyA.node as? Player)?.showPickupPopup(ingredientNode1: ingredientNode3)
-            print("test")
-
-            // Disable collision between player and ingredient
-            bodyA.collisionBitMask = 0
-            bodyB.collisionBitMask = 0
         }
         
-//        if (categoryA == bitMask.raycast.rawValue && categoryB == bitMask.square_1.rawValue) {
-//            highlight = childNode(withName: "highlight") as? SKSpriteNode
-//            highlight?.position = contact.bodyB.node!.position
-//
-//            self.scene?.addChild(highlight!)
-//        } else {
-//            highlight?.removeFromParent()
-//        }
-        
-        // Enable collision between player and ingredient
-        bodyA.collisionBitMask = 1
-        bodyB.collisionBitMask = 1
+        print("test enter \(categoryA)_\(categoryB)")
+        if (categoryA == bitMask.raycast.rawValue && categoryB == bitMask.square.rawValue) ||
+            (categoryB == bitMask.raycast.rawValue && categoryA == bitMask.square.rawValue) {
+            highlight?.isHidden = false
+        }
         
     }
     
     func didEnd(_ contact: SKPhysicsContact) {
         let bodyA = contact.bodyA
         let bodyB = contact.bodyB
+        
+        let categoryA = contact.bodyA.categoryBitMask
+        let categoryB = contact.bodyB.categoryBitMask
         
         if (bodyA.node is Player && bodyB.node == (bodyA.node as? Player)?.ingredientNode) ||
            (bodyB.node is Player && bodyA.node == (bodyB.node as? Player)?.ingredientNode) ||
@@ -202,6 +186,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // Player body no longer in contact with ingredient body
             (bodyA.node as? Player)?.removePickupPopup()
         }
+        
+        print("test exit \(categoryA)_\(categoryB)")
+        if (categoryA == bitMask.raycast.rawValue && categoryB == bitMask.square.rawValue) ||
+            (categoryB == bitMask.raycast.rawValue && categoryA == bitMask.square.rawValue) {
+            print("test exit raycast-square")
+            // Perform actions when raycast ends contact with square
+        }
     }
     
     var timeOnLastFrame: TimeInterval = 0
@@ -210,9 +201,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         player.movement(hInput: controllerInput.x, vInput: controllerInput.y, deltaTime: deltaTime)
         
-        let lastPos = player.position
-        let rayPos = CGPoint(x: lastPos.x + 70, y: lastPos.y + 70)
-        
+        let minJoystickInput = 0.5
+        let lastPos = (controllerInput.length() < minJoystickInput) ? lastRayPos : player.position
+        let offsetMultiplier: CGFloat = 60 // Adjust this value as needed for the desired offset
+        let offset = CGPoint(x: controllerInput.x * offsetMultiplier, y: controllerInput.y * offsetMultiplier)
+        let rayPos = CGPoint(x: lastPos.x + offset.x, y: lastPos.y + offset.y)
         ray = SKPhysicsBody(circleOfRadius: 10, center: rayPos)
         ray.categoryBitMask = bitMask.raycast.rawValue
         ray.contactTestBitMask = bitMask.square.rawValue

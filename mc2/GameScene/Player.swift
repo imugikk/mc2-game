@@ -9,7 +9,7 @@ import SpriteKit
 
 class Player: SKSpriteNode {
     
-    let moveSpeed = 300.0
+    let moveSpeed = 200.0
     var ingredientNode: SKSpriteNode?
     var ingredientNode2: SKSpriteNode?
     var ingredientNode3: SKSpriteNode?

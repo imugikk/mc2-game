@@ -17,7 +17,7 @@ extension CGPoint {
     static func * (point: CGPoint, scalar: CGFloat) -> CGPoint {
         return CGPoint(x: point.x * scalar, y: point.y * scalar)
     }
-
+    
     static func * (scalar: CGFloat, point: CGPoint) -> CGPoint {
         return point * scalar
     }
@@ -29,5 +29,8 @@ extension CGPoint {
         } else {
             return CGPoint.zero
         }
+    }
+    func length() -> CGFloat {
+        return sqrt(pow(x, 2) + pow(y, 2))
     }
 }
