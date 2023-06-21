@@ -7,7 +7,7 @@
 
 import SpriteKit
 
-class Player: SKSpriteNode {
+class Player: SKSpriteNode, Processable {
     var screenHeight: Double { scene!.frame.size.height }
     var screenWidth: Double { scene!.frame.size.width }
     
@@ -84,7 +84,7 @@ class Player: SKSpriteNode {
     func shootBullet() {
         if shootDelay { return }
         
-        let bullet = Bullet(imageNamed: "Circle", in: scene!)
+        let bullet = Bullet(in: scene!)
         bullet.setScale(1.25)
         let spawnPos = bulletSpawnPos.parent!.convert(bulletSpawnPos.position, to: scene!)
         let spawnRot = globalZRotation(for: bulletSpawnPos)

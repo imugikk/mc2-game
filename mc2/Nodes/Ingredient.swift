@@ -11,8 +11,8 @@ class Ingredient: SKSpriteNode {
     let objectName = "ingredient"
     let spriteSize = (width: 30.0, height: 30.0)
     
-    init(imageName: String, in scene: SKScene) {
-        let texture = SKTexture(imageNamed: imageName)
+    init(in scene: SKScene) {
+        let texture = SKTexture(imageNamed: "Star")
         super.init(texture: texture, color: .green, size: texture.size())
         
         self.name = objectName

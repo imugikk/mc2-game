@@ -8,7 +8,7 @@
 import Foundation
 import SpriteKit
 
-class Weapon: SKSpriteNode {
+class Weapon: SKSpriteNode, Processable {
     let minJoystickInputForRotation = 0.5
     
     func update(deltaTime: Double) {

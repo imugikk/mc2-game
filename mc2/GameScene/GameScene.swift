@@ -8,20 +8,11 @@
 import SpriteKit
 import GameController
 
-struct CBitMask {
-    static let player: UInt32 = 1
-    static let bullet: UInt32 = 2
-    static let obstacle: UInt32 = 4
-    static let enemy: UInt32 = 8
-}
-
 class GameScene: SKScene {
     private var controller: GCController = GCController()
     
     private var player: Player!
-    private var weapon: Weapon!
     private var obstacle: SKSpriteNode!
-    private var enemies: [WalkingEnemy] = []
     private var waveLabel: SKLabelNode!
     
     private var restartDelay = 2.0
@@ -42,13 +33,19 @@ class GameScene: SKScene {
         NotificationCenter.default.addObserver(self, selector: #selector(controllerConnected), name: NSNotification.Name.GCControllerDidConnect, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(controllerDisconnected), name: NSNotification.Name.GCControllerDidDisconnect, object: nil)
     }
+    @objc func controllerConnected() {
+        self.isPaused = false
+    }
+    @objc func controllerDisconnected() {
+        self.isPaused = true
+    }
     
     override func didMove(to view: SKView) {
         physicsWorld.contactDelegate = self
         
         player = childNode(withName: "player") as? Player
         player.setup(killedAction: restartScene)
-        weapon = player.childNode(withName: "weaponPivot") as? Weapon
+        
         waveLabel = childNode(withName: "waveText") as? SKLabelNode
         waveLabel.alpha = 0
         
@@ -68,28 +65,13 @@ class GameScene: SKScene {
     override func willMove(from view: SKView) {
         WalkingEnemy.killedAction.unsubscribe(node: self)
     }
-    
-    @objc func controllerConnected() {
-        // Unpause the Game if it is currently paused
-        self.isPaused = false
-    }
-    
-    @objc func controllerDisconnected() {
-        // Pause the Game if a controller is disconnected ~ This is mandated by Apple
-        self.isPaused = true
-    }
 
     override func update(_ currentTime: TimeInterval) {
         let deltaTime = calculateDeltaTime(from: currentTime)
-
-        player.update(deltaTime: deltaTime)
-        weapon.update(deltaTime: deltaTime)
         
-        for enemy in enemies {
-            enemy.update(deltaTime: deltaTime)
-            
-            if enemy.destroyed {
-                enemies.removeAll(where: { $0 == enemy })
+        self.traverseNodes { node in
+            if let process = node as? Processable {
+                process.update(deltaTime: deltaTime)
             }
         }
     }
@@ -104,8 +86,7 @@ class GameScene: SKScene {
     }
 
     override func keyDown(with event: NSEvent) {
-        //Spacebar
-        if event.keyCode == 49 {
+        if event.keyCode == 49 { //Spacebar
 //            player.decreaseHealth(damage: 1)
         }
     }
@@ -137,8 +118,15 @@ class GameScene: SKScene {
     }
     
     private func startSpawningEnemy() {
-        let enemyNode = WalkingEnemy(imageName: "Capsule", in: self, playerNode: player)
-        enemies.append(enemyNode)
+        let randomNumber = Int.random(in: 1...2)
+        if randomNumber == 1 {
+            let enemyNode = WalkingEnemy(in: self, playerNode: player)
+            enemyNode.setup()
+        }
+        else if randomNumber == 2 {
+            let enemyNode = ShootingEnemy(in: self, playerNode: player)
+            enemyNode.setup()
+        }
         
         enemiesSpawned += 1
         if enemiesSpawned < maxEnemiesPerWave {
