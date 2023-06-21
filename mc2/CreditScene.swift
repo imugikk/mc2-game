@@ -47,6 +47,11 @@ class CreditScene: SKScene {
                     view.presentScene(scene)
                 }
             }
+            
+        //"z"
+        case 6:
+            exit(0)
+            
         default:
             print("keyDown: \(event.characters!) keyCode: \(event.keyCode)")
         }
