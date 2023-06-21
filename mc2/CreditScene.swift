@@ -1,57 +1,45 @@
 //
-//  GameOverScene.swift
+//  CreditScene.swift
 //  mc2
 //
-//  Created by Michelle Annice on 16/06/23.
+//  Created by Michelle Annice on 21/06/23.
 //
 
 import SpriteKit
 import GameplayKit
 
-class GameOverScene: SKScene {
+class CreditScene: SKScene {
     var entities = [GKEntity]()
-    
+
     var score:Int = 0
     var highScore:Int = 0
     
-    var scoreLabel: SKLabelNode!
     var highScoreLabel: SKLabelNode!
+    var scoreLabel: SKLabelNode!
         
-    override func sceneDidLoad() {
-        super.sceneDidLoad()
-
-        scoreLabel = self.childNode(withName: "scoreText") as? SKLabelNode
-        highScoreLabel = self.childNode(withName: "highScoreText") as? SKLabelNode
-    }
+//    override func sceneDidLoad() {
+//        super.sceneDidLoad()
+//        highScoreLabel = self.childNode(withName: "highScoreText") as? SKLabelNode
+//    }
     
     override func keyDown(with event: NSEvent) {
         switch event.keyCode {
-            //"x"
-        case 7:
+            //"g"
+        case 5:
             if let view = self.view {
-                if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
-                    scene.score = 0
+                if let scene = SKScene(fileNamed: "GameOverScene") as? GameOverScene {
+                    scene.score = score
                     scene.highScore = highScore
+                    scene.updateLabels()
                     scene.entities = self.entities
                     scene.scaleMode = .aspectFit
                     view.presentScene(scene)
                 }
             }
+            //"e"
         case 14:
             if let view = self.view {
                 if let scene = SKScene(fileNamed: "StartScene") as? StartScene {
-                    scene.highScore = highScore
-                    scene.entities = self.entities
-                    scene.updateLabels()
-                    scene.scaleMode = .aspectFit
-                    view.presentScene(scene)
-                }
-            }
-        //"c"
-        case 8:
-            if let view = self.view {
-                if let scene = SKScene(fileNamed: "CreditScene") as? CreditScene {
-                    scene.score = score
                     scene.highScore = highScore
                     scene.entities = self.entities
                     scene.updateLabels()
@@ -65,7 +53,7 @@ class GameOverScene: SKScene {
     }
 
     func updateLabels() {
-        scoreLabel.text = "Score: \(score)"
-        highScoreLabel.text = "High Score: \(highScore)"
+//        highScoreLabel.text = "High Score: \(highScore)"
     }
 }
+

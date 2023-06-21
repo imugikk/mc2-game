@@ -65,16 +65,16 @@ class GameScene: SKScene {
                 }
             }
         //"e"
-        case 14:
-            if let view = self.view {
-                if let scene = SKScene(fileNamed: "StartScene") as? StartScene {
-                    scene.highScore = highScore
-                    scene.updateLabels()
-                    scene.entities = self.entities
-                    scene.scaleMode = .aspectFit
-                    view.presentScene(scene)
-                }
-            }
+//        case 14:
+//            if let view = self.view {
+//                if let scene = SKScene(fileNamed: "StartScene") as? StartScene {
+//                    scene.highScore = highScore
+//                    scene.updateLabels()
+//                    scene.entities = self.entities
+//                    scene.scaleMode = .aspectFit
+//                    view.presentScene(scene)
+//                }
+//            }
             
         default:
             print("keyDown: \(event.characters!) keyCode: \(event.keyCode)")
