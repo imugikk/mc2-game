@@ -11,7 +11,7 @@ class Player: SKSpriteNode, Processable {
     var screenHeight: Double { scene!.frame.size.height }
     var screenWidth: Double { scene!.frame.size.width }
     
-    private let moveSpeed = 300.0
+    private let moveSpeed = 425.0
     
     private var shootDelayDuration = 0.25
     private var shootDelay = false
@@ -25,12 +25,10 @@ class Player: SKSpriteNode, Processable {
     private var healthText: SKLabelNode!
     private let iFrameDuration = 1.0
     private var iFrameActive = false
-    private var killedAction: (() -> Void)!
+    static var killedAction = Event()
     var destroyed = false
     
-    private var bullets = [Bullet]()
-    
-    func setup(killedAction: @escaping () -> Void) {
+    func setup() {
         self.physicsBody = SKPhysicsBody(texture: texture!, alphaThreshold: 0.1, size: size)
         self.physicsBody?.isDynamic = true
         self.physicsBody?.allowsRotation = false
@@ -41,28 +39,19 @@ class Player: SKSpriteNode, Processable {
         healthText = scene?.childNode(withName: "healthText") as? SKLabelNode
         bulletSpawnPos = childNode(withName: "weaponPivot")?.childNode(withName: "bulletSpawnPos")
         health = 3
-        self.killedAction = killedAction
     }
     
-    func update(deltaTime: Double) {
+    func update(deltaTime: TimeInterval) {
         if destroyed { return }
         
         let input = InputManager.shared.getLeftJoystickInput(controllerIndex: 0)
-        let direction = CGPoint(x: input.x, y: input.y)
+        let direction = CGPoint(x: input.x, y: input.y).normalized()
         let movement = moveSpeed * deltaTime * direction
         self.position += movement
         self.position = constrainedPosition()
         
         if InputManager.shared.rightTriggerHeld {
             shootBullet()
-        }
-        
-        for bullet in bullets {
-            bullet.update(deltaTime: deltaTime)
-            
-            if bullet.destroyed {
-                bullets.removeAll(where: { $0 == bullet })
-            }
         }
     }
     
@@ -91,7 +80,6 @@ class Player: SKSpriteNode, Processable {
         bullet.position = spawnPos
         bullet.zPosition = bulletSpawnPos.zPosition
         bullet.zRotation = spawnRot
-        bullets.append(bullet)
 
         shootDelay = true
         self.run(SKAction.wait(forDuration: shootDelayDuration)) {
@@ -132,7 +120,7 @@ class Player: SKSpriteNode, Processable {
     
     func destroy() {
         destroyed = true
-        killedAction()
+        Player.killedAction.invoke()
         self.removeFromParent()
     }
 }

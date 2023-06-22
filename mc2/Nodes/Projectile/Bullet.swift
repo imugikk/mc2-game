@@ -13,7 +13,7 @@ class Bullet: SKSpriteNode, Processable {
     
     let bulletName = "bullet"
     let bulletSize = (width: 25, height: 25)
-    let moveSpeed = 900.0
+    let moveSpeed = 1800.0
     var damage = 1
     let bulletColor = NSColor.systemPink
     var destroyed = false
@@ -39,7 +39,7 @@ class Bullet: SKSpriteNode, Processable {
         self.physicsBody?.contactTestBitMask = CBitMask.obstacle | CBitMask.enemy
     }
     
-    func update(deltaTime: Double) {
+    func update(deltaTime: TimeInterval) {
         if destroyed { return }
         
         let direction = CGPoint(x: cos(zRotation), y: sin(zRotation))

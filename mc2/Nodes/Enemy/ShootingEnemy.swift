@@ -10,7 +10,6 @@ import SpriteKit
 class ShootingEnemy: Enemy {
     let shootingRange = 300.0
     let bulletSpawnRate = 2.5
-    let bulletSpeed = 300.0
     var canShoot = true
     
     required init?(coder: NSCoder) {
@@ -22,7 +21,7 @@ class ShootingEnemy: Enemy {
         
         enemyName = "shootingEnemy"
         spriteSize = (width: 56.1, height: 25.8)
-        moveSpeed = 200.0
+        moveSpeed = 150.0
         health = 2
     }
     

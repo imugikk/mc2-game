@@ -5,8 +5,8 @@
 //  Created by Ardli Fadhillah on 22/06/23.
 //
 
-import Foundation
+import SpriteKit
 
 protocol Processable {
-    func update(deltaTime: Double)
+    func update(deltaTime: TimeInterval)
 }

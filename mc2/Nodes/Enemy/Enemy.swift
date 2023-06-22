@@ -94,7 +94,7 @@ class Enemy: SKSpriteNode, Processable {
     }
     
     func destroyEnemy() {
-        WalkingEnemy.killedAction.invoke()
+        Enemy.killedAction.invoke()
         destroyed = true
         self.removeFromParent()
     }

@@ -8,24 +8,29 @@
 import SpriteKit
 import GameController
 
-class GameScene: SKScene {
-    private var controller: GCController = GCController()
+class GameScene: Scene {
+    private let disableWave = false
     
     private var player: Player!
-    private var obstacle: SKSpriteNode!
-    private var waveLabel: SKLabelNode!
+    private var obstacle: Obstacle!
+    private var waveText: SKLabelNode!
     
-    private var restartDelay = 2.0
     private var enemiesSpawned: Int = 0
     private var enemiesKilled: Int = 0
-    private var maxEnemiesPerWave: Int = 5
-    private var enemySpawnRate: TimeInterval = 2.0
-    private var maxEnemySpawnRate: TimeInterval = 0.3
-    private var wavePause: TimeInterval = 3.0
+    
+    private var maxEnemyCount: Int = 5
+    private let maxEnemyCountIncrement: Int = 5
+    
+    private var enemySpawnRate = 2.0
+    private let maxEnemySpawnRate = 0.3
+    private var enemySpawnRateDecrement = 0.1
+    
+    private let wavePause = 3.0
+    private let restartDelay = 2.0
     
     private var waveNumber: Int = 0  {
         didSet {
-            waveLabel.text = "Wave \(waveNumber)"
+            waveText.text = "Wave \(waveNumber)"
         }
     }
     
@@ -42,54 +47,30 @@ class GameScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        physicsWorld.contactDelegate = self
+        physicsWorld.contactDelegate = ContactManager.shared
+        
+        Player.killedAction.subscribe(node: self, closure: restartScene)
+        Enemy.killedAction.subscribe(node: self, closure: enemyKilledAction)
         
         player = childNode(withName: "player") as? Player
-        player.setup(killedAction: restartScene)
+        player.setup()
         
-        waveLabel = childNode(withName: "waveText") as? SKLabelNode
-        waveLabel.alpha = 0
+        obstacle = childNode(withName: "obstacle") as? Obstacle
+        obstacle.setup()
         
-        obstacle = childNode(withName: "obstacle") as? SKSpriteNode
-        obstacle.physicsBody = SKPhysicsBody(rectangleOf: obstacle.size)
-        obstacle.physicsBody?.isDynamic = false
-        obstacle.physicsBody?.categoryBitMask = CBitMask.obstacle
-        obstacle.physicsBody?.collisionBitMask = CBitMask.player
-        obstacle.physicsBody?.contactTestBitMask = CBitMask.bullet
+        waveText = childNode(withName: "waveText") as? SKLabelNode
+        waveText.alpha = 0
         
-        WalkingEnemy.killedAction.subscribe(node: self, closure: enemyKilledAction)
+        guard !disableWave else { return }
         
         self.run(SKAction.wait(forDuration: wavePause)) {
             self.startNextWave()
         }
     }
+    
     override func willMove(from view: SKView) {
-        WalkingEnemy.killedAction.unsubscribe(node: self)
-    }
-
-    override func update(_ currentTime: TimeInterval) {
-        let deltaTime = calculateDeltaTime(from: currentTime)
-        
-        self.traverseNodes { node in
-            if let process = node as? Processable {
-                process.update(deltaTime: deltaTime)
-            }
-        }
-    }
-
-    //calculate the time difference between the current and previous frame
-    private var timeOnLastFrame: TimeInterval = 0
-    private func calculateDeltaTime(from currentTime: TimeInterval) -> TimeInterval {
-        if timeOnLastFrame.isZero { timeOnLastFrame = currentTime }
-        let deltaTime = currentTime - timeOnLastFrame
-        timeOnLastFrame = currentTime
-        return deltaTime
-    }
-
-    override func keyDown(with event: NSEvent) {
-        if event.keyCode == 49 { //Spacebar
-//            player.decreaseHealth(damage: 1)
-        }
+        Player.killedAction.unsubscribe(node: self)
+        Enemy.killedAction.unsubscribe(node: self)
     }
 
     private func restartScene() {
@@ -102,9 +83,9 @@ class GameScene: SKScene {
         waveNumber += 1
         
         if waveNumber > 1 {
-            enemySpawnRate -= 0.1
+            enemySpawnRate -= enemySpawnRateDecrement
             enemySpawnRate = max(enemySpawnRate, maxEnemySpawnRate)
-            maxEnemiesPerWave += 5
+            maxEnemyCount += maxEnemyCountIncrement
         }
         
         enemiesSpawned = 0
@@ -114,7 +95,7 @@ class GameScene: SKScene {
         let waitDuration = SKAction.wait(forDuration: 0.5)
         let fadeOutAction = SKAction.fadeOut(withDuration: 0.5)
         let sequenceAction = SKAction.sequence([fadeInAction, waitDuration, fadeOutAction])
-        waveLabel.run(sequenceAction, completion: {
+        waveText.run(sequenceAction, completion: {
             self.startSpawningEnemy()
         })
     }
@@ -131,7 +112,7 @@ class GameScene: SKScene {
         }
         
         enemiesSpawned += 1
-        if enemiesSpawned < maxEnemiesPerWave {
+        if enemiesSpawned < maxEnemyCount {
             self.run(SKAction.wait(forDuration: enemySpawnRate)) {
                 self.startSpawningEnemy()
             }
@@ -140,7 +121,7 @@ class GameScene: SKScene {
     
     private func enemyKilledAction() {
         enemiesKilled += 1
-        if enemiesKilled >= maxEnemiesPerWave {
+        if enemiesKilled >= maxEnemyCount {
             self.run(SKAction.wait(forDuration: wavePause)) {
                 self.startNextWave()
             }

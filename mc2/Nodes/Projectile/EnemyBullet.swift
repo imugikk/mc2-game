@@ -13,7 +13,7 @@ class EnemyBullet: SKSpriteNode, Processable {
     
     let bulletName = "enemyBullet"
     let bulletSize = (width: 15, height: 15)
-    let moveSpeed = 300.0
+    let moveSpeed = 600.0
     let bulletColor = NSColor.purple
     var destroyed = false
     let playerNode: Player?
@@ -50,7 +50,7 @@ class EnemyBullet: SKSpriteNode, Processable {
         }
     }
     
-    func update(deltaTime: Double) {
+    func update(deltaTime: TimeInterval) {
         if destroyed { return }
 
         if abs(self.position.y) >= screenHeight/2 + self.size.height ||

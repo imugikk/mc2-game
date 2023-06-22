@@ -22,7 +22,7 @@ class WalkingEnemy: Enemy {
         health = 3
     }
     
-    override func update(deltaTime: Double) {
+    override func update(deltaTime: TimeInterval) {
         if destroyed { return }
         guard let playerNode, !playerNode.destroyed else { return }
         
