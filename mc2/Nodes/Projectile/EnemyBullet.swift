@@ -18,15 +18,18 @@ class EnemyBullet: SKSpriteNode, Processable {
     var destroyed = false
     let playerNode: Player?
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("error")
-    }
-    
-    init(in scene: SKScene, playerNode: Player) {
+    init(playerNode: Player) {
         self.playerNode = playerNode
         
         let texture = SKTexture(imageNamed: "Circle")
         super.init(texture: texture, color: .white, size: texture.size())
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("error")
+    }
+    
+    func spawn(in scene: SKScene) {
         scene.addChild(self)
         
         self.name = bulletName
@@ -39,9 +42,7 @@ class EnemyBullet: SKSpriteNode, Processable {
         self.physicsBody?.categoryBitMask = CBitMask.enemyBullet
         self.physicsBody?.collisionBitMask = 0
         self.physicsBody?.contactTestBitMask = CBitMask.player
-    }
-    
-    func setup() {
+        
         if let playerNode {
             let direction = (playerNode.position - self.position).normalized()
             let velocity = direction * moveSpeed

@@ -31,7 +31,7 @@ class Enemy: SKSpriteNode, Processable {
         scene.addChild(self)
     }
     
-    func setup() {
+    func spawn() {
         self.name = enemyName
         self.size = CGSize(width: spriteSize.width, height: spriteSize.height)
         self.colorBlendFactor = 1
@@ -89,8 +89,9 @@ class Enemy: SKSpriteNode, Processable {
     }
 
     func dropItem() {
-        let itemNode = Ingredient(in: scene!)
+        let itemNode = Ingredient()
         itemNode.position = position
+        itemNode.spawn(in: self.scene!)
     }
     
     func destroyEnemy() {

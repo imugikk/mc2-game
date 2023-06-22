@@ -35,5 +35,4 @@ class Weapon: SKSpriteNode, Processable {
             self.zPosition = 1
         }
     }
-    
 }

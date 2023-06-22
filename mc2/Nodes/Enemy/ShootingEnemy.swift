@@ -49,9 +49,9 @@ class ShootingEnemy: Enemy {
         guard canShoot else { return }
         canShoot = false
         
-        let bulletNode = EnemyBullet(in: scene!, playerNode: playerNode!)
+        let bulletNode = EnemyBullet(playerNode: playerNode!)
         bulletNode.position = self.position
-        bulletNode.setup()
+        bulletNode.spawn(in: scene!)
         
         scene!.run(SKAction.wait(forDuration: bulletSpawnRate)) {
             self.canShoot = true

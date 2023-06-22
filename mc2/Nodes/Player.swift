@@ -73,14 +73,14 @@ class Player: SKSpriteNode, Processable {
     func shootBullet() {
         if shootDelay { return }
         
-        let bullet = Bullet(in: scene!)
-        bullet.setScale(1.25)
+        let bullet = Bullet()
         let spawnPos = bulletSpawnPos.parent!.convert(bulletSpawnPos.position, to: scene!)
         let spawnRot = globalZRotation(for: bulletSpawnPos)
         bullet.position = spawnPos
-        bullet.zPosition = bulletSpawnPos.zPosition
         bullet.zRotation = spawnRot
-
+        bullet.zPosition = bulletSpawnPos.zPosition
+        bullet.spawn(in: scene!)
+        
         shootDelay = true
         self.run(SKAction.wait(forDuration: shootDelayDuration)) {
             self.shootDelay = false
