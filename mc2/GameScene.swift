@@ -85,6 +85,14 @@ class GameScene: SKScene {
             if let label = self.label {
                 label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
             }
+        case 0x22: // "I" key
+            SoundManager.shared.playBGM(audioFileName: "Ambient SFX loop.wav")
+        case 0x1F: // "O" key
+            SoundManager.shared.playSoundEffect(audioFileName: "Projectile.wav", volume: 1.0, randomizePitch: true)
+        case 0x23: // "P" key
+            SoundManager.shared.pauseBGM()
+        case 0x25: // "L" key
+            SoundManager.shared.resumeBGM()
         default:
             print("keyDown: \(event.characters!) keyCode: \(event.keyCode)")
         }
