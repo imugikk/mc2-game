@@ -13,7 +13,7 @@ class Bullet: SKSpriteNode, Processable {
     
     let bulletName = "bullet"
     let bulletSize = (width: 25, height: 25)
-    let moveSpeed = 400.0
+    let moveSpeed = 900.0
     let bulletColor = NSColor.systemPink
     var destroyed = false
     

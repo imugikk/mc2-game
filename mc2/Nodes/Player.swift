@@ -48,7 +48,7 @@ class Player: SKSpriteNode, Processable {
         if destroyed { return }
         
         let input = InputManager.shared.getLeftJoystickInput(controllerIndex: 0)
-        let direction = CGPoint(x: input.x, y: input.y).normalized()
+        let direction = CGPoint(x: input.x, y: input.y)
         let movement = moveSpeed * deltaTime * direction
         self.position += movement
         self.position = constrainedPosition()

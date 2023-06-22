@@ -18,8 +18,9 @@ class GameScene: SKScene {
     private var restartDelay = 2.0
     private var enemiesSpawned: Int = 0
     private var enemiesKilled: Int = 0
-    private var maxEnemiesPerWave: Int = 10
-    private var enemySpawnRate: TimeInterval = 1.0
+    private var maxEnemiesPerWave: Int = 5
+    private var enemySpawnRate: TimeInterval = 2.0
+    private var maxEnemySpawnRate: TimeInterval = 0.3
     private var wavePause: TimeInterval = 3.0
     
     private var waveNumber: Int = 0  {
@@ -102,6 +103,7 @@ class GameScene: SKScene {
         
         if waveNumber > 1 {
             enemySpawnRate -= 0.1
+            enemySpawnRate = max(enemySpawnRate, maxEnemySpawnRate)
             maxEnemiesPerWave += 5
         }
         
