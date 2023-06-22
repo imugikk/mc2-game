@@ -11,10 +11,12 @@ class Player: SKSpriteNode, Processable {
     var screenHeight: Double { scene!.frame.size.height }
     var screenWidth: Double { scene!.frame.size.width }
     
+    private var inputIndex = 0
     private let moveSpeed = 425.0
     
     private var shootDelayDuration = 0.25
     private var shootDelay = false
+    private var weapon: Weapon!
     private var bulletSpawnPos: SKNode!
     
     private var health = 3 {
@@ -28,7 +30,9 @@ class Player: SKSpriteNode, Processable {
     static var killedAction = Event()
     var destroyed = false
     
-    func setup() {
+    func setup(inputIndex: Int) {
+        self.inputIndex = inputIndex
+        
         self.physicsBody = SKPhysicsBody(texture: texture!, alphaThreshold: 0.1, size: size)
         self.physicsBody?.isDynamic = true
         self.physicsBody?.allowsRotation = false
@@ -37,20 +41,22 @@ class Player: SKSpriteNode, Processable {
         self.physicsBody?.contactTestBitMask = CBitMask.enemy
         
         healthText = scene?.childNode(withName: "healthText") as? SKLabelNode
-        bulletSpawnPos = childNode(withName: "weaponPivot")?.childNode(withName: "bulletSpawnPos")
+        weapon = self.childNode(withName: "weaponPivot") as? Weapon
+        weapon.setup(inputIndex: inputIndex)
+        bulletSpawnPos = weapon.childNode(withName: "bulletSpawnPos")
         health = 3
     }
     
     func update(deltaTime: TimeInterval) {
         if destroyed { return }
         
-        let input = InputManager.shared.getLeftJoystickInput(controllerIndex: 0)
+        let input = InputManager.shared.getLeftJoystickInput(controllerIndex: inputIndex)
         let direction = CGPoint(x: input.x, y: input.y).normalized()
         let movement = moveSpeed * deltaTime * direction
         self.position += movement
         self.position = constrainedPosition()
         
-        if InputManager.shared.rightTriggerHeld {
+        if InputManager.shared.isrightTriggerHeld(controllerIndex: inputIndex) {
             shootBullet()
         }
     }

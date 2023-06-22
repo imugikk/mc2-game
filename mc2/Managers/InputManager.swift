@@ -14,25 +14,30 @@ class InputManager {
     
     private var leftJoystickInput = [CGPoint]()
     private var rightJoystickInput = [CGPoint]()
-    private var isRightTriggerHeld = false
+    private var holdingRightTriggerInput = [Bool]()
     
     func getLeftJoystickInput(controllerIndex: Int) -> CGPoint {
-        if leftJoystickInput.count == 0 {
+        if controllerIndex >= leftJoystickInput.count {
             return CGPoint.zero
         }
         return leftJoystickInput[controllerIndex]
     }
     
     func getRightJoystickInput(controllerIndex: Int) -> CGPoint {
-        if rightJoystickInput.count == 0 {
+        if controllerIndex >= rightJoystickInput.count {
             return CGPoint.zero
         }
         return rightJoystickInput[controllerIndex]
     }
     
-    var rightTriggerHeld: Bool {
-        return isRightTriggerHeld
+    func isrightTriggerHeld(controllerIndex: Int) -> Bool {
+        if controllerIndex >= holdingRightTriggerInput.count {
+            return false
+        }
+        return holdingRightTriggerInput[controllerIndex]
     }
+    
+    
     
     // Function to run intially to lookout for any MFI or Remote Controllers in the area
     func ObserveForGameControllers() {
@@ -51,6 +56,7 @@ class InputManager {
                 indexNumber += 1
                 leftJoystickInput.append(CGPoint.zero)
                 rightJoystickInput.append(CGPoint.zero)
+                holdingRightTriggerInput.append(false)
                 setupControllerControls(controller: controller)
             }
         }
@@ -96,15 +102,7 @@ class InputManager {
             }
         }
         else if (element == gamepad.rightTrigger) {
-            if gamepad.rightTrigger.isPressed {
-                if !self.isRightTriggerHeld {
-                    self.isRightTriggerHeld = true
-                }
-            } else {
-                if self.isRightTriggerHeld {
-                    self.isRightTriggerHeld = false
-                }
-            }
+            holdingRightTriggerInput[index] = gamepad.rightTrigger.isPressed
         }
         
         // D-Pad

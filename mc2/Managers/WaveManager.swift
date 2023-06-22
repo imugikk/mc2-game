@@ -8,7 +8,7 @@
 import SpriteKit
 
 class WaveManager {
-    private let disableWave = false
+    private let disableWave = true
     
     private var gameScene: GameScene
     private var waveText: SKLabelNode!

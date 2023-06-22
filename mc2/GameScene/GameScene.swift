@@ -10,6 +10,7 @@ import GameController
 
 class GameScene: Scene {
     var player: Player!
+    var player2: Player!
     var obstacle: Obstacle!
     var waveManager: WaveManager!
     
@@ -32,7 +33,10 @@ class GameScene: Scene {
         Player.killedAction.subscribe(node: self, closure: restartScene)
                 
         player = childNode(withName: "player") as? Player
-        player.setup()
+        player.setup(inputIndex: 0)
+        
+        player2 = childNode(withName: "player2") as? Player
+        player2.setup(inputIndex: 1)
         
         obstacle = childNode(withName: "obstacle") as? Obstacle
         obstacle.setup()

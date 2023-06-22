@@ -9,7 +9,12 @@ import Foundation
 import SpriteKit
 
 class Weapon: SKSpriteNode, Processable {
+    var inputIndex = 0
     let minJoystickInputForRotation = 0.5
+    
+    func setup(inputIndex: Int) {
+        self.inputIndex = inputIndex
+    }
     
     func update(deltaTime: TimeInterval) {
         handleRotationInput()
@@ -17,7 +22,7 @@ class Weapon: SKSpriteNode, Processable {
     }
     
     func handleRotationInput() {
-        let input = InputManager.shared.getRightJoystickInput(controllerIndex: 0)
+        let input = InputManager.shared.getRightJoystickInput(controllerIndex: inputIndex)
         let angle = atan2(input.y, input.x)
         
         if input.length() >= minJoystickInputForRotation {
