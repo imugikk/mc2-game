@@ -70,7 +70,7 @@ extension GameScene: SKPhysicsContactDelegate {
     }
     func bulletTouchesEnemy(bullet: Bullet, enemy: Enemy) {
         bullet.destroy()
-        enemy.decreaseHealth(amount: 1)
+        enemy.decreaseHealth(amount: bullet.damage)
     }
     func playerTouchesEnemy(player: Player, enemy: Enemy) {
         player.decreaseHealth(amount: 1)
