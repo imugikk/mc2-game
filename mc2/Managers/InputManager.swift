@@ -36,8 +36,10 @@ class InputManager {
         }
         return holdingRightTriggerInput[controllerIndex]
     }
-    
-    
+    static let buttonAPressed = Event()
+    static let buttonBPressed = Event()
+    static let buttonXPressed = Event()
+    static let buttonYPressed = Event()
     
     // Function to run intially to lookout for any MFI or Remote Controllers in the area
     func ObserveForGameControllers() {
@@ -129,24 +131,28 @@ class InputManager {
         else if (gamepad.buttonA == element) {
             if (gamepad.buttonA.value != 0) {
                 print("Controller: \(index), A-Button Pressed!")
+                InputManager.buttonAPressed.invoke()
             }
         }
         // B-Button
         else if (gamepad.buttonB == element) {
             if (gamepad.buttonB.value != 0) {
                 print("Controller: \(index), B-Button Pressed!")
+                InputManager.buttonBPressed.invoke()
             }
         }
         // X-Button
         else if (gamepad.buttonX == element) {
             if (gamepad.buttonX.value != 0) {
                 print("Controller: \(index), X-Button Pressed!")
+                InputManager.buttonXPressed.invoke()
             }
         }
         // Y-Button
         else if (gamepad.buttonY == element) {
             if (gamepad.buttonY.value != 0) {
                 print("Controller: \(index), Y-Button Pressed!")
+                InputManager.buttonYPressed.invoke()
             }
         }
         

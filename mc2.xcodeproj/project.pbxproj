@@ -10,6 +10,13 @@
 		BF12034A2A4368EC00A54351 /* ShootingEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1203492A4368EC00A54351 /* ShootingEnemy.swift */; };
 		BF12034C2A436A5800A54351 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF12034B2A436A5800A54351 /* Enemy.swift */; };
 		BF3E31EC2A4495D1002C7214 /* WaveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3E31EB2A4495D1002C7214 /* WaveManager.swift */; };
+		BF3E31F52A451028002C7214 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3E31ED2A451028002C7214 /* GameOverScene.swift */; };
+		BF3E31F62A451028002C7214 /* ScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3E31EE2A451028002C7214 /* ScoreManager.swift */; };
+		BF3E31F82A451028002C7214 /* CreditScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = BF3E31F02A451028002C7214 /* CreditScene.sks */; };
+		BF3E31F92A451028002C7214 /* MainMenu.sks in Resources */ = {isa = PBXBuildFile; fileRef = BF3E31F12A451028002C7214 /* MainMenu.sks */; };
+		BF3E31FA2A451028002C7214 /* GameOverScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = BF3E31F22A451028002C7214 /* GameOverScene.sks */; };
+		BF3E31FB2A451028002C7214 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3E31F32A451028002C7214 /* MainMenuScene.swift */; };
+		BF3E31FC2A451028002C7214 /* CreditScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3E31F42A451028002C7214 /* CreditScene.swift */; };
 		BF85CA102A3822AB00AC95E8 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF85CA0F2A3822AB00AC95E8 /* Player.swift */; };
 		BF85CA162A38285700AC95E8 /* CGPointExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF85CA152A38285700AC95E8 /* CGPointExtension.swift */; };
 		BF91DCDF2A446BF2004DC17F /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF91DCDE2A446BF2004DC17F /* Obstacle.swift */; };
@@ -54,6 +61,13 @@
 		BF1203492A4368EC00A54351 /* ShootingEnemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShootingEnemy.swift; sourceTree = "<group>"; };
 		BF12034B2A436A5800A54351 /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		BF3E31EB2A4495D1002C7214 /* WaveManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveManager.swift; sourceTree = "<group>"; };
+		BF3E31ED2A451028002C7214 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
+		BF3E31EE2A451028002C7214 /* ScoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreManager.swift; sourceTree = "<group>"; };
+		BF3E31F02A451028002C7214 /* CreditScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CreditScene.sks; sourceTree = "<group>"; };
+		BF3E31F12A451028002C7214 /* MainMenu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MainMenu.sks; sourceTree = "<group>"; };
+		BF3E31F22A451028002C7214 /* GameOverScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOverScene.sks; sourceTree = "<group>"; };
+		BF3E31F32A451028002C7214 /* MainMenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
+		BF3E31F42A451028002C7214 /* CreditScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditScene.swift; sourceTree = "<group>"; };
 		BF85CA0F2A3822AB00AC95E8 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		BF85CA152A38285700AC95E8 /* CGPointExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPointExtension.swift; sourceTree = "<group>"; };
 		BF91DCDE2A446BF2004DC17F /* Obstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
@@ -112,8 +126,57 @@
 				BF9500512A392A6800E2B780 /* InputManager.swift */,
 				BFCA4F162A3F25B00013DA14 /* ContactManager.swift */,
 				BF3E31EB2A4495D1002C7214 /* WaveManager.swift */,
+				BF3E31EE2A451028002C7214 /* ScoreManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		BF3E31FD2A453001002C7214 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				BF3E32012A453086002C7214 /* Game */,
+				BF3E32002A453069002C7214 /* GameOver */,
+				BF3E31FF2A453050002C7214 /* Credits */,
+				BF3E32022A45309A002C7214 /* MainMenu */,
+				BF91DCE22A447598004DC17F /* Scene.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		BF3E31FF2A453050002C7214 /* Credits */ = {
+			isa = PBXGroup;
+			children = (
+				BF3E31F02A451028002C7214 /* CreditScene.sks */,
+				BF3E31F42A451028002C7214 /* CreditScene.swift */,
+			);
+			path = Credits;
+			sourceTree = "<group>";
+		};
+		BF3E32002A453069002C7214 /* GameOver */ = {
+			isa = PBXGroup;
+			children = (
+				BF3E31F22A451028002C7214 /* GameOverScene.sks */,
+				BF3E31ED2A451028002C7214 /* GameOverScene.swift */,
+			);
+			path = GameOver;
+			sourceTree = "<group>";
+		};
+		BF3E32012A453086002C7214 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				F14C59322A373D83000F3D22 /* GameScene.sks */,
+				F14C59362A373D83000F3D22 /* GameScene.swift */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
+		BF3E32022A45309A002C7214 /* MainMenu */ = {
+			isa = PBXGroup;
+			children = (
+				BF3E31F12A451028002C7214 /* MainMenu.sks */,
+				BF3E31F32A451028002C7214 /* MainMenuScene.swift */,
+			);
+			path = MainMenu;
 			sourceTree = "<group>";
 		};
 		BF85CA112A38234900AC95E8 /* ViewController */ = {
@@ -131,16 +194,6 @@
 				F14C59302A373D83000F3D22 /* AppDelegate.swift */,
 			);
 			path = Setup;
-			sourceTree = "<group>";
-		};
-		BF85CA142A38239F00AC95E8 /* GameScene */ = {
-			isa = PBXGroup;
-			children = (
-				BF91DCE22A447598004DC17F /* Scene.swift */,
-				F14C59322A373D83000F3D22 /* GameScene.sks */,
-				F14C59362A373D83000F3D22 /* GameScene.swift */,
-			);
-			path = GameScene;
 			sourceTree = "<group>";
 		};
 		BF91DCE02A4474BC004DC17F /* Enemy */ = {
@@ -209,7 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				BF85CA122A38237400AC95E8 /* Setup */,
-				BF85CA142A38239F00AC95E8 /* GameScene */,
+				BF3E31FD2A453001002C7214 /* Scenes */,
 				BFCA4F182A3F28910013DA14 /* Nodes */,
 				BF08BA5E2A3BBE1800C4DCC5 /* Managers */,
 				BF9500582A3BA71400E2B780 /* Utils */,
@@ -324,7 +377,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF3E31FA2A451028002C7214 /* GameOverScene.sks in Resources */,
 				F14C59332A373D83000F3D22 /* GameScene.sks in Resources */,
+				BF3E31F82A451028002C7214 /* CreditScene.sks in Resources */,
+				BF3E31F92A451028002C7214 /* MainMenu.sks in Resources */,
 				F14C593B2A373D84000F3D22 /* Assets.xcassets in Resources */,
 				F14C593E2A373D84000F3D22 /* Main.storyboard in Resources */,
 			);
@@ -353,20 +409,24 @@
 			files = (
 				BFCA4F262A428F3E0013DA14 /* Ingredient.swift in Sources */,
 				BF85CA102A3822AB00AC95E8 /* Player.swift in Sources */,
+				BF3E31F52A451028002C7214 /* GameOverScene.swift in Sources */,
 				BFFA89432A4382CF00A2207B /* EnemyBullet.swift in Sources */,
 				BFFA89472A4399E600A2207B /* SKNodeExtension.swift in Sources */,
 				BFFA89452A438D8300A2207B /* Processable.swift in Sources */,
 				BF12034A2A4368EC00A54351 /* ShootingEnemy.swift in Sources */,
+				BF3E31FB2A451028002C7214 /* MainMenuScene.swift in Sources */,
 				F14C59392A373D83000F3D22 /* GameViewController.swift in Sources */,
 				BFCA4F172A3F25B00013DA14 /* ContactManager.swift in Sources */,
 				BFCA4F282A428F3E0013DA14 /* WalkingEnemy.swift in Sources */,
 				BF9500532A392A6800E2B780 /* InputManager.swift in Sources */,
 				BF9500552A3983F700E2B780 /* Weapon.swift in Sources */,
 				F14C59372A373D83000F3D22 /* GameScene.swift in Sources */,
+				BF3E31FC2A451028002C7214 /* CreditScene.swift in Sources */,
 				BF91DCE32A447598004DC17F /* Scene.swift in Sources */,
 				BF85CA162A38285700AC95E8 /* CGPointExtension.swift in Sources */,
 				BFCA4F152A3D77570013DA14 /* CGFloatExtension.swift in Sources */,
 				BF91DCDF2A446BF2004DC17F /* Obstacle.swift in Sources */,
+				BF3E31F62A451028002C7214 /* ScoreManager.swift in Sources */,
 				BF12034C2A436A5800A54351 /* Enemy.swift in Sources */,
 				F14C59312A373D83000F3D22 /* AppDelegate.swift in Sources */,
 				BF9500572A3AABAD00E2B780 /* Bullet.swift in Sources */,

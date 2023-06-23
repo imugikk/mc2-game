@@ -16,9 +16,6 @@ struct CBitMask {
 }
 
 class ContactManager: NSObject, SKPhysicsContactDelegate {
-    static let shared = ContactManager()
-    override private init() { }
-    
     func didBegin(_ contact: SKPhysicsContact) {
         let bit1 = contact.bodyA.categoryBitMask
         let bit2 = contact.bodyB.categoryBitMask

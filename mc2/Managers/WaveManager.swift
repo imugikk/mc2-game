@@ -8,7 +8,7 @@
 import SpriteKit
 
 class WaveManager {
-    private let disableWave = true
+    private let disableWave = false
     
     private var gameScene: GameScene
     private var waveText: SKLabelNode!
@@ -94,6 +94,7 @@ class WaveManager {
     
     private func enemyKilledAction() {
         enemiesKilled += 1
+        ScoreManager.shared.increaseScore(amount: 1)
         if enemiesKilled >= maxEnemyCount {
             gameScene.run(SKAction.wait(forDuration: wavePause)) {
                 self.startNextWave()

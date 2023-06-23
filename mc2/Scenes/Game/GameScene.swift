@@ -12,9 +12,12 @@ class GameScene: Scene {
     var player: Player!
     var player2: Player!
     var obstacle: Obstacle!
+    var scoreLabel: SKLabelNode!
+    
+    var contactManager: ContactManager!
     var waveManager: WaveManager!
     
-    let restartDelay = 2.0
+    let restartDelay = 1.0
     
     override func sceneDidLoad() {
         InputManager.shared.ObserveForGameControllers()
@@ -29,17 +32,22 @@ class GameScene: Scene {
     }
     
     override func didMove(to view: SKView) {
-        physicsWorld.contactDelegate = ContactManager.shared
-        Player.killedAction.subscribe(node: self, closure: restartScene)
-                
+        contactManager = ContactManager()
+        physicsWorld.contactDelegate = contactManager
+        Player.killedAction.subscribe(node: self, closure: gameOver)
+        
         player = childNode(withName: "player") as? Player
         player.setup(inputIndex: 0)
         
-        player2 = childNode(withName: "player2") as? Player
-        player2.setup(inputIndex: 1)
+//        player2 = childNode(withName: "player2") as? Player
+//        player2.setup(inputIndex: 1)
         
         obstacle = childNode(withName: "obstacle") as? Obstacle
         obstacle.setup()
+        
+        scoreLabel = childNode(withName: "scoreText") as? SKLabelNode
+        ScoreManager.shared.setup(scoreLabel: scoreLabel)
+        ScoreManager.shared.resetScore()
         
         waveManager = WaveManager(gameScene: self)
         waveManager?.start()
@@ -50,9 +58,10 @@ class GameScene: Scene {
         Player.killedAction.unsubscribe(node: self)
     }
 
-    private func restartScene() {
+    private func gameOver() {
+        ScoreManager.shared.saveScore()
         self.run (SKAction.wait (forDuration: restartDelay)) {
-            GameViewController.changeScene(to: "GameScene", in: self.view!)
+            GameViewController.changeScene(to: "GameOverScene", in: self.view!)
         }
     }
 }
