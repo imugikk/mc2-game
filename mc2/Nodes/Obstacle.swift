@@ -14,9 +14,5 @@ class Obstacle: SKSpriteNode, PreSpawned {
         self.physicsBody?.categoryBitMask = PsxBitmask.obstacle
         self.physicsBody?.collisionBitMask = PsxBitmask.player
         self.physicsBody?.contactTestBitMask = PsxBitmask.bullet
-        
-        self.globalZRotationInDegrees = 90.0
-        print(self.zRotationInDegrees)
-        print(self.globalZRotationInDegrees)
     }
 }
