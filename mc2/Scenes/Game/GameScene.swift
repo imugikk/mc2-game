@@ -9,17 +9,15 @@ import SpriteKit
 import GameController
 
 class GameScene: Scene {
-    var player: Player!
-    var player2: Player!
-    var obstacle: Obstacle!
-    var scoreLabel: SKLabelNode!
-    
     var contactManager: ContactManager!
     var waveManager: WaveManager!
     
-    let restartDelay = 1.0
+    let gameOverTransitionDelay = 1.0
     
+    //Observe for Controllers
     override func sceneDidLoad() {
+        super.sceneDidLoad()
+        
         InputManager.shared.ObserveForGameControllers()
         NotificationCenter.default.addObserver(self, selector: #selector(controllerConnected), name: NSNotification.Name.GCControllerDidConnect, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(controllerDisconnected), name: NSNotification.Name.GCControllerDidDisconnect, object: nil)
@@ -31,21 +29,16 @@ class GameScene: Scene {
         self.isPaused = true
     }
     
+    //Scene Setup
     override func didMove(to view: SKView) {
-        contactManager = ContactManager()
-        physicsWorld.contactDelegate = contactManager
+        super.didMove(to: view)
+        
         Player.killedAction.subscribe(node: self, closure: gameOver)
         
-        player = childNode(withName: "player") as? Player
-        player.setup(inputIndex: 0)
+        contactManager = ContactManager()
+        physicsWorld.contactDelegate = contactManager
         
-//        player2 = childNode(withName: "player2") as? Player
-//        player2.setup(inputIndex: 1)
-        
-        obstacle = childNode(withName: "obstacle") as? Obstacle
-        obstacle.setup()
-        
-        scoreLabel = childNode(withName: "scoreText") as? SKLabelNode
+        let scoreLabel = childNode(withName: "scoreText") as? SKLabelNode
         ScoreManager.shared.setup(scoreLabel: scoreLabel)
         ScoreManager.shared.resetScore()
         
@@ -53,14 +46,18 @@ class GameScene: Scene {
         waveManager?.start()
     }
     
+    //Scene Clean Up
     override func willMove(from view: SKView) {
+        super.willMove(from: view)
+        
         waveManager?.stop()
         Player.killedAction.unsubscribe(node: self)
     }
 
+    //Move to Game Over Scene
     private func gameOver() {
         ScoreManager.shared.saveScore()
-        self.run (SKAction.wait (forDuration: restartDelay)) {
+        self.run (SKAction.wait (forDuration: gameOverTransitionDelay)) {
             GameViewController.changeScene(to: "GameOverScene", in: self.view!)
         }
     }

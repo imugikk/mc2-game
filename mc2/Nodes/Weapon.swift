@@ -8,12 +8,12 @@
 import Foundation
 import SpriteKit
 
-class Weapon: SKSpriteNode, Processable {
+class Weapon: SKSpriteNode, Processable, PreSpawned {
     var inputIndex = 0
     let minJoystickInputForRotation = 0.5
     
-    func setup(inputIndex: Int) {
-        self.inputIndex = inputIndex
+    func setup() {
+        self.inputIndex = getUserData(key: "inputIndex")
     }
     
     func update(deltaTime: TimeInterval) {
@@ -31,10 +31,11 @@ class Weapon: SKSpriteNode, Processable {
     }
     
     func handleZPosBasedOnRotation() {
-        let minRotation = (1.0).toRadians()
-        let maxRotation = (179.0).toRadians()
+        let minRotation = 1.0
+        let maxRotation = 179.0
         
-        if self.zRotation >= minRotation && self.zRotation <= maxRotation {
+        if self.zRotationInDegrees >= minRotation &&
+            self.zRotationInDegrees <= maxRotation {
             self.zPosition = -1
         } else {
             self.zPosition = 1

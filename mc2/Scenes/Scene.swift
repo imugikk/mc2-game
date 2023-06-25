@@ -10,6 +10,14 @@ import SpriteKit
 class Scene: SKScene {
     private var timeOnLastFrame: TimeInterval = 0
     
+    override func didMove(to view: SKView) {
+        self.traverseNodes { node in
+            if let preSpawnedObjects = node as? PreSpawned {
+                preSpawnedObjects.setup()
+            }
+        }
+    }
+    
     override func update(_ currentTime: TimeInterval) {
         let deltaTime = calculateDeltaTime(from: currentTime)
         
@@ -22,9 +30,7 @@ class Scene: SKScene {
         }
     }
     
-    func update(deltaTime: TimeInterval) {
-        
-    }
+    func update(deltaTime: TimeInterval) {}
 
     private func calculateDeltaTime(from currentTime: TimeInterval) -> TimeInterval {
         if timeOnLastFrame.isZero { timeOnLastFrame = currentTime }

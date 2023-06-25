@@ -7,20 +7,21 @@
 
 import SpriteKit
 
-class GameOverScene: SKScene {
-    var scoreLabel: SKLabelNode!
-    var highScoreLabel: SKLabelNode!
-        
+class GameOverScene: Scene {
     override func didMove(to view: SKView) {
+        super.didMove(to: view)
+        
         InputManager.buttonAPressed.subscribe(node: self, closure: restart)
         InputManager.buttonBPressed.subscribe(node: self, closure: moveToMainMenu)
         InputManager.buttonYPressed.subscribe(node: self, closure: moveToCredits)
         
-        scoreLabel = childNode(withName: "scoreText") as? SKLabelNode
-        highScoreLabel = childNode(withName: "highScoreText") as? SKLabelNode
+        let scoreLabel = childNode(withName: "scoreText") as? SKLabelNode
+        let highScoreLabel = childNode(withName: "highScoreText") as? SKLabelNode
         ScoreManager.shared.setup(scoreLabel: scoreLabel, highScoreLabel: highScoreLabel)
     }
     override func willMove(from view: SKView) {
+        super.willMove(from: view)
+        
         InputManager.buttonAPressed.unsubscribe(node: self)
         InputManager.buttonBPressed.unsubscribe(node: self)
         InputManager.buttonYPressed.unsubscribe(node: self)

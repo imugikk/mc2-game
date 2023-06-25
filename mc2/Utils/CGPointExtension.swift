@@ -20,7 +20,6 @@ extension CGPoint {
     static func * (point: CGPoint, scalar: CGFloat) -> CGPoint {
         return CGPoint(x: point.x * scalar, y: point.y * scalar)
     }
-
     static func * (scalar: CGFloat, point: CGPoint) -> CGPoint {
         return point * scalar
     }

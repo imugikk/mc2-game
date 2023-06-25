@@ -7,11 +7,13 @@
 
 import SpriteKit
 
-class CreditScene: SKScene {
+class CreditScene: Scene {
     override func didMove(to view: SKView) {
+        super.didMove(to: view)
         InputManager.buttonBPressed.subscribe(node: self, closure: goBackToGameOver)
     }
     override func willMove(from view: SKView) {
+        super.willMove(from: view)
         InputManager.buttonBPressed.unsubscribe(node: self)
     }
     func goBackToGameOver() {

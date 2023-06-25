@@ -8,45 +8,43 @@
 import SpriteKit
 
 class Enemy: SKSpriteNode, Processable {
-    var enemyName = "enemy"
-    var spriteSize = (width: 50.0, height: 50.0)
     var moveSpeed = 100.0
     var health: Int = 3
-    let playerNode: Player?
+    var playerNode: Player? = nil
     static let killedAction = Event()
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(imageName: String, in scene: SKScene, playerNode: Player) {
-        self.playerNode = playerNode
+    init() {
+        let texture = SKTexture(imageNamed: "Capsule")
+        let color: NSColor = .brown
+        let size = CGSize(width: 50.0, height: 50.0)
         
-        let texture = SKTexture(imageNamed: imageName)
-        super.init(texture: texture, color: .brown, size: texture.size())
-        scene.addChild(self)
+        super.init(texture: texture, color: color, size: size)
     }
     
-    func spawn() {
-        self.name = enemyName
-        self.size = CGSize(width: spriteSize.width, height: spriteSize.height)
+    func spawn(in scene: SKScene) {
+        scene.addChild(self)
+        self.playerNode = scene.childNode(withName: "player") as? Player
+        
+        self.name = "enemy"
         self.colorBlendFactor = 1
         self.zPosition = -3
-        self.zRotation = (90.0).toRadians()
+        self.zRotationInDegrees = 90.0
         
         self.physicsBody = SKPhysicsBody(texture: texture!, alphaThreshold: 0.1, size: size)
         self.physicsBody?.isDynamic = true
         self.physicsBody?.allowsRotation = false
-        self.physicsBody?.categoryBitMask = CBitMask.enemy
-        self.physicsBody?.collisionBitMask = CBitMask.obstacle | CBitMask.enemy
-        self.physicsBody?.contactTestBitMask = CBitMask.bullet | CBitMask.player
+        self.physicsBody?.categoryBitMask = PsxBitmask.enemy
+        self.physicsBody?.collisionBitMask = PsxBitmask.obstacle | PsxBitmask.enemy
+        self.physicsBody?.contactTestBitMask = PsxBitmask.bullet | PsxBitmask.player
         
         randomizePosition()
     }
     
-    func update(deltaTime: TimeInterval) {
-        
-    }
+    func update(deltaTime: TimeInterval) {}
     
     private func randomizePosition() {
         let playableRect = frame.insetBy(dx: -screenWidth/2, dy: -screenHeight/2)

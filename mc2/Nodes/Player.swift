@@ -7,7 +7,7 @@
 
 import SpriteKit
 
-class Player: SKSpriteNode, Processable {
+class Player: SKSpriteNode, Processable, PreSpawned {
     private var inputIndex = 0
     private let moveSpeed = 425.0
     
@@ -26,19 +26,19 @@ class Player: SKSpriteNode, Processable {
     private var iFrameActive = false
     static var killedAction = Event()
     
-    func setup(inputIndex: Int) {
-        self.inputIndex = inputIndex
+    func setup() {
+        self.inputIndex = getUserData(key: "inputIndex")
         
         self.physicsBody = SKPhysicsBody(texture: texture!, alphaThreshold: 0.1, size: size)
         self.physicsBody?.isDynamic = true
         self.physicsBody?.allowsRotation = false
-        self.physicsBody?.categoryBitMask = CBitMask.player
-        self.physicsBody?.collisionBitMask = CBitMask.obstacle
-        self.physicsBody?.contactTestBitMask = CBitMask.enemy
+        self.physicsBody?.categoryBitMask = PsxBitmask.player
+        self.physicsBody?.collisionBitMask = PsxBitmask.obstacle
+        self.physicsBody?.contactTestBitMask = PsxBitmask.enemy
         
         healthText = scene?.childNode(withName: "healthText") as? SKLabelNode
-        weapon = self.childNode(withName: "weaponPivot") as? Weapon
-        weapon.setup(inputIndex: inputIndex)
+        weapon = self.childNode(withName: "weapon") as? Weapon
+        weapon.setup()
         bulletSpawnPos = weapon.childNode(withName: "bulletSpawnPos")
         health = 3
     }
@@ -75,7 +75,7 @@ class Player: SKSpriteNode, Processable {
         
         let bullet = Bullet()
         bullet.position = bulletSpawnPos.globalPosition
-        bullet.zRotation = bulletSpawnPos.globalZRotation
+        bullet.zRotationInDegrees = bulletSpawnPos.globalZRotationInDegrees
         bullet.zPosition = bulletSpawnPos.zPosition
         bullet.spawn(in: scene!)
         

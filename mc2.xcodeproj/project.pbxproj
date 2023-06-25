@@ -25,10 +25,12 @@
 		BF9500552A3983F700E2B780 /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9500542A3983F700E2B780 /* Weapon.swift */; };
 		BF9500572A3AABAD00E2B780 /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9500562A3AABAD00E2B780 /* Bullet.swift */; };
 		BF95005A2A3BA77300E2B780 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9500592A3BA77300E2B780 /* Event.swift */; };
-		BFCA4F152A3D77570013DA14 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCA4F142A3D77570013DA14 /* DoubleExtension.swift */; };
+		BFCA4F152A3D77570013DA14 /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCA4F142A3D77570013DA14 /* CGFloatExtension.swift */; };
 		BFCA4F172A3F25B00013DA14 /* ContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCA4F162A3F25B00013DA14 /* ContactManager.swift */; };
 		BFCA4F262A428F3E0013DA14 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCA4F222A428F3E0013DA14 /* Ingredient.swift */; };
 		BFCA4F282A428F3E0013DA14 /* WalkingEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCA4F242A428F3E0013DA14 /* WalkingEnemy.swift */; };
+		BFD57D842A47FCD3004CFB45 /* PreSpawned.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD57D832A47FCD3004CFB45 /* PreSpawned.swift */; };
+		BFD57D862A48D82C004CFB45 /* Projectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD57D852A48D82C004CFB45 /* Projectile.swift */; };
 		BFFA89432A4382CF00A2207B /* EnemyBullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA89422A4382CF00A2207B /* EnemyBullet.swift */; };
 		BFFA89452A438D8300A2207B /* Processable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA89442A438D8300A2207B /* Processable.swift */; };
 		BFFA89472A4399E600A2207B /* SKNodeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA89462A4399E600A2207B /* SKNodeExtension.swift */; };
@@ -76,10 +78,12 @@
 		BF9500542A3983F700E2B780 /* Weapon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
 		BF9500562A3AABAD00E2B780 /* Bullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
 		BF9500592A3BA77300E2B780 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		BFCA4F142A3D77570013DA14 /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
+		BFCA4F142A3D77570013DA14 /* CGFloatExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatExtension.swift; sourceTree = "<group>"; };
 		BFCA4F162A3F25B00013DA14 /* ContactManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactManager.swift; sourceTree = "<group>"; };
 		BFCA4F222A428F3E0013DA14 /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		BFCA4F242A428F3E0013DA14 /* WalkingEnemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkingEnemy.swift; sourceTree = "<group>"; };
+		BFD57D832A47FCD3004CFB45 /* PreSpawned.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreSpawned.swift; sourceTree = "<group>"; };
+		BFD57D852A48D82C004CFB45 /* Projectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Projectile.swift; sourceTree = "<group>"; };
 		BFFA89422A4382CF00A2207B /* EnemyBullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyBullet.swift; sourceTree = "<group>"; };
 		BFFA89442A438D8300A2207B /* Processable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Processable.swift; sourceTree = "<group>"; };
 		BFFA89462A4399E600A2207B /* SKNodeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKNodeExtension.swift; sourceTree = "<group>"; };
@@ -209,6 +213,7 @@
 		BF91DCE12A4474C7004DC17F /* Projectile */ = {
 			isa = PBXGroup;
 			children = (
+				BFD57D852A48D82C004CFB45 /* Projectile.swift */,
 				BF9500562A3AABAD00E2B780 /* Bullet.swift */,
 				BFFA89422A4382CF00A2207B /* EnemyBullet.swift */,
 			);
@@ -218,7 +223,7 @@
 		BF9500582A3BA71400E2B780 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				BFCA4F142A3D77570013DA14 /* DoubleExtension.swift */,
+				BFCA4F142A3D77570013DA14 /* CGFloatExtension.swift */,
 				BF85CA152A38285700AC95E8 /* CGPointExtension.swift */,
 				BFFA89462A4399E600A2207B /* SKNodeExtension.swift */,
 				BF9500592A3BA77300E2B780 /* Event.swift */,
@@ -229,15 +234,24 @@
 		BFCA4F182A3F28910013DA14 /* Nodes */ = {
 			isa = PBXGroup;
 			children = (
+				BFD57D822A47FC9F004CFB45 /* Protocols */,
 				BF91DCE12A4474C7004DC17F /* Projectile */,
 				BF91DCE02A4474BC004DC17F /* Enemy */,
 				BF85CA0F2A3822AB00AC95E8 /* Player.swift */,
 				BF9500542A3983F700E2B780 /* Weapon.swift */,
 				BF91DCDE2A446BF2004DC17F /* Obstacle.swift */,
 				BFCA4F222A428F3E0013DA14 /* Ingredient.swift */,
-				BFFA89442A438D8300A2207B /* Processable.swift */,
 			);
 			path = Nodes;
+			sourceTree = "<group>";
+		};
+		BFD57D822A47FC9F004CFB45 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				BFFA89442A438D8300A2207B /* Processable.swift */,
+				BFD57D832A47FCD3004CFB45 /* PreSpawned.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		F14C59242A373D83000F3D22 = {
@@ -413,6 +427,7 @@
 				BFFA89432A4382CF00A2207B /* EnemyBullet.swift in Sources */,
 				BFFA89472A4399E600A2207B /* SKNodeExtension.swift in Sources */,
 				BFFA89452A438D8300A2207B /* Processable.swift in Sources */,
+				BFD57D862A48D82C004CFB45 /* Projectile.swift in Sources */,
 				BF12034A2A4368EC00A54351 /* ShootingEnemy.swift in Sources */,
 				BF3E31FB2A451028002C7214 /* MainMenuScene.swift in Sources */,
 				F14C59392A373D83000F3D22 /* GameViewController.swift in Sources */,
@@ -423,8 +438,9 @@
 				F14C59372A373D83000F3D22 /* GameScene.swift in Sources */,
 				BF3E31FC2A451028002C7214 /* CreditScene.swift in Sources */,
 				BF91DCE32A447598004DC17F /* Scene.swift in Sources */,
+				BFD57D842A47FCD3004CFB45 /* PreSpawned.swift in Sources */,
 				BF85CA162A38285700AC95E8 /* CGPointExtension.swift in Sources */,
-				BFCA4F152A3D77570013DA14 /* DoubleExtension.swift in Sources */,
+				BFCA4F152A3D77570013DA14 /* CGFloatExtension.swift in Sources */,
 				BF91DCDF2A446BF2004DC17F /* Obstacle.swift in Sources */,
 				BF3E31F62A451028002C7214 /* ScoreManager.swift in Sources */,
 				BF12034C2A436A5800A54351 /* Enemy.swift in Sources */,

@@ -7,7 +7,7 @@
 
 import SpriteKit
 
-struct CBitMask {
+struct PsxBitmask {
     static let player: UInt32 = 1
     static let bullet: UInt32 = 2
     static let obstacle: UInt32 = 4
@@ -20,9 +20,9 @@ class ContactManager: NSObject, SKPhysicsContactDelegate {
         let bit1 = contact.bodyA.categoryBitMask
         let bit2 = contact.bodyB.categoryBitMask
         
-        if (bit1 == CBitMask.bullet && bit2 == CBitMask.obstacle) ||
-            (bit1 == CBitMask.obstacle && bit2 == CBitMask.bullet) {
-            let (bulletCollider, obstacleCollider) = (bit1 == CBitMask.bullet) ?
+        if (bit1 == PsxBitmask.bullet && bit2 == PsxBitmask.obstacle) ||
+            (bit1 == PsxBitmask.obstacle && bit2 == PsxBitmask.bullet) {
+            let (bulletCollider, obstacleCollider) = (bit1 == PsxBitmask.bullet) ?
                 (contact.bodyA, contact.bodyB) : (contact.bodyB, contact.bodyA)
 
             if let bulletNode = bulletCollider.node as? Bullet,
@@ -31,9 +31,9 @@ class ContactManager: NSObject, SKPhysicsContactDelegate {
             }
         }
         
-        if (bit1 == CBitMask.bullet && bit2 == CBitMask.enemy) ||
-            (bit1 == CBitMask.enemy && bit2 == CBitMask.bullet) {
-            let (bulletCollider, enemyCollider) = (bit1 == CBitMask.bullet) ?
+        if (bit1 == PsxBitmask.bullet && bit2 == PsxBitmask.enemy) ||
+            (bit1 == PsxBitmask.enemy && bit2 == PsxBitmask.bullet) {
+            let (bulletCollider, enemyCollider) = (bit1 == PsxBitmask.bullet) ?
                 (contact.bodyA, contact.bodyB) : (contact.bodyB, contact.bodyA)
 
             if let bulletNode = bulletCollider.node as? Bullet,
@@ -42,9 +42,9 @@ class ContactManager: NSObject, SKPhysicsContactDelegate {
             }
         }
         
-        if (bit1 == CBitMask.player && bit2 == CBitMask.enemy) ||
-            (bit1 == CBitMask.enemy && bit2 == CBitMask.player) {
-            let (playerCollider, enemyCollider) = (bit1 == CBitMask.player) ?
+        if (bit1 == PsxBitmask.player && bit2 == PsxBitmask.enemy) ||
+            (bit1 == PsxBitmask.enemy && bit2 == PsxBitmask.player) {
+            let (playerCollider, enemyCollider) = (bit1 == PsxBitmask.player) ?
                 (contact.bodyA, contact.bodyB) : (contact.bodyB, contact.bodyA)
 
             if let playerNode = playerCollider.node as? Player,
@@ -53,9 +53,9 @@ class ContactManager: NSObject, SKPhysicsContactDelegate {
             }
         }
         
-        if (bit1 == CBitMask.player && bit2 == CBitMask.enemyBullet) ||
-            (bit1 == CBitMask.enemyBullet && bit2 == CBitMask.player) {
-            let (playerCollider, enemyBulletCollider) = (bit1 == CBitMask.player) ?
+        if (bit1 == PsxBitmask.player && bit2 == PsxBitmask.enemyBullet) ||
+            (bit1 == PsxBitmask.enemyBullet && bit2 == PsxBitmask.player) {
+            let (playerCollider, enemyBulletCollider) = (bit1 == PsxBitmask.player) ?
                 (contact.bodyA, contact.bodyB) : (contact.bodyB, contact.bodyA)
 
             if let playerNode = playerCollider.node as? Player,
