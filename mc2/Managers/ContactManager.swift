@@ -17,66 +17,10 @@ struct PsxBitmask {
 
 class ContactManager: NSObject, SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
-        let bit1 = contact.bodyA.categoryBitMask
-        let bit2 = contact.bodyB.categoryBitMask
+        let nodeA = contact.bodyA.node as? HandleContactEnter
+        let nodeB = contact.bodyB.node as? HandleContactEnter
         
-        if (bit1 == PsxBitmask.bullet && bit2 == PsxBitmask.obstacle) ||
-            (bit1 == PsxBitmask.obstacle && bit2 == PsxBitmask.bullet) {
-            let (bulletCollider, obstacleCollider) = (bit1 == PsxBitmask.bullet) ?
-                (contact.bodyA, contact.bodyB) : (contact.bodyB, contact.bodyA)
-
-            if let bulletNode = bulletCollider.node as? Bullet,
-               let obstacleNode = obstacleCollider.node as? SKSpriteNode {
-                bulletTouchesObstacle(bullet: bulletNode, obstacle: obstacleNode)
-            }
-        }
-        
-        if (bit1 == PsxBitmask.bullet && bit2 == PsxBitmask.enemy) ||
-            (bit1 == PsxBitmask.enemy && bit2 == PsxBitmask.bullet) {
-            let (bulletCollider, enemyCollider) = (bit1 == PsxBitmask.bullet) ?
-                (contact.bodyA, contact.bodyB) : (contact.bodyB, contact.bodyA)
-
-            if let bulletNode = bulletCollider.node as? Bullet,
-               let enemyNode = enemyCollider.node as? Enemy {
-                bulletTouchesEnemy(bullet: bulletNode, enemy: enemyNode)
-            }
-        }
-        
-        if (bit1 == PsxBitmask.player && bit2 == PsxBitmask.enemy) ||
-            (bit1 == PsxBitmask.enemy && bit2 == PsxBitmask.player) {
-            let (playerCollider, enemyCollider) = (bit1 == PsxBitmask.player) ?
-                (contact.bodyA, contact.bodyB) : (contact.bodyB, contact.bodyA)
-
-            if let playerNode = playerCollider.node as? Player,
-               let enemyNode = enemyCollider.node as? Enemy {
-                playerTouchesEnemy(player: playerNode, enemy: enemyNode)
-            }
-        }
-        
-        if (bit1 == PsxBitmask.player && bit2 == PsxBitmask.enemyBullet) ||
-            (bit1 == PsxBitmask.enemyBullet && bit2 == PsxBitmask.player) {
-            let (playerCollider, enemyBulletCollider) = (bit1 == PsxBitmask.player) ?
-                (contact.bodyA, contact.bodyB) : (contact.bodyB, contact.bodyA)
-
-            if let playerNode = playerCollider.node as? Player,
-               let enemyBulletNode = enemyBulletCollider.node as? EnemyBullet {
-                playerTouchesBullet(player: playerNode, enemyBullet: enemyBulletNode)
-            }
-        }
-    }
-
-    func bulletTouchesObstacle(bullet: Bullet, obstacle: SKSpriteNode) {
-        bullet.destroy()
-    }
-    func bulletTouchesEnemy(bullet: Bullet, enemy: Enemy) {
-        bullet.destroy()
-        enemy.decreaseHealth(amount: bullet.damage)
-    }
-    func playerTouchesEnemy(player: Player, enemy: Enemy) {
-        player.decreaseHealth(amount: 1)
-    }
-    func playerTouchesBullet(player: Player, enemyBullet: EnemyBullet) {
-        enemyBullet.destroy()
-        player.decreaseHealth(amount: 1)
+        nodeA?.onContactEnter(other: contact.bodyB.node)
+        nodeB?.onContactEnter(other: contact.bodyA.node)
     }
 }

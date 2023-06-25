@@ -7,7 +7,7 @@
 
 import SpriteKit
 
-class Player: SKSpriteNode, Processable, PreSpawned {
+class Player: SKSpriteNode, Processable, PreSpawned, HandleContactEnter {
     private var inputIndex = 0
     private let moveSpeed = 425.0
     
@@ -107,5 +107,22 @@ class Player: SKSpriteNode, Processable, PreSpawned {
     func destroy() {
         Player.killedAction.invoke()
         self.removeFromParent()
+    }
+    
+    func onContactEnter(other: SKNode?) {
+        if other is Enemy {
+            playerTouchesEnemy()
+        } else if other is EnemyBullet {
+            let enemyBullet = other as! EnemyBullet
+            playerTouchesBullet(enemyBullet: enemyBullet)
+        }
+    }
+    
+    func playerTouchesEnemy() {
+        self.decreaseHealth(amount: 1)
+    }
+    func playerTouchesBullet(enemyBullet: EnemyBullet) {
+        enemyBullet.destroy()
+        self.decreaseHealth(amount: 1)
     }
 }

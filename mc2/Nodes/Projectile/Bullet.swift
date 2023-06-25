@@ -7,7 +7,7 @@
 
 import SpriteKit
 
-class Bullet: Projectile {
+class Bullet: Projectile, HandleContactEnter {
     
     override var moveDirection: CGPoint {
         CGPoint(x: cos(zRotation), y: sin(zRotation))
@@ -21,5 +21,21 @@ class Bullet: Projectile {
         
         self.physicsBody?.categoryBitMask = PsxBitmask.bullet
         self.physicsBody?.contactTestBitMask = PsxBitmask.obstacle | PsxBitmask.enemy
+    }
+    
+    func onContactEnter(other: SKNode?) {
+        if other is Obstacle {
+            bulletTouchesObstacle()
+        } else if other is Enemy {
+            let enemy = other as! Enemy
+            bulletTouchesEnemy(enemy: enemy)
+        }
+    }
+    func bulletTouchesObstacle() {
+        self.destroy()
+    }
+    func bulletTouchesEnemy(enemy: Enemy) {
+        self.destroy()
+        enemy.decreaseHealth(amount: self.damage)
     }
 }

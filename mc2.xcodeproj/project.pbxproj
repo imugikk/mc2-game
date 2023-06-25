@@ -31,6 +31,7 @@
 		BFCA4F282A428F3E0013DA14 /* WalkingEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCA4F242A428F3E0013DA14 /* WalkingEnemy.swift */; };
 		BFD57D842A47FCD3004CFB45 /* PreSpawned.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD57D832A47FCD3004CFB45 /* PreSpawned.swift */; };
 		BFD57D862A48D82C004CFB45 /* Projectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD57D852A48D82C004CFB45 /* Projectile.swift */; };
+		BFD57D8A2A48FF06004CFB45 /* HandleContactEnter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD57D892A48FF06004CFB45 /* HandleContactEnter.swift */; };
 		BFFA89432A4382CF00A2207B /* EnemyBullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA89422A4382CF00A2207B /* EnemyBullet.swift */; };
 		BFFA89452A438D8300A2207B /* Processable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA89442A438D8300A2207B /* Processable.swift */; };
 		BFFA89472A4399E600A2207B /* SKNodeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA89462A4399E600A2207B /* SKNodeExtension.swift */; };
@@ -84,6 +85,7 @@
 		BFCA4F242A428F3E0013DA14 /* WalkingEnemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkingEnemy.swift; sourceTree = "<group>"; };
 		BFD57D832A47FCD3004CFB45 /* PreSpawned.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreSpawned.swift; sourceTree = "<group>"; };
 		BFD57D852A48D82C004CFB45 /* Projectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Projectile.swift; sourceTree = "<group>"; };
+		BFD57D892A48FF06004CFB45 /* HandleContactEnter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandleContactEnter.swift; sourceTree = "<group>"; };
 		BFFA89422A4382CF00A2207B /* EnemyBullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyBullet.swift; sourceTree = "<group>"; };
 		BFFA89442A438D8300A2207B /* Processable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Processable.swift; sourceTree = "<group>"; };
 		BFFA89462A4399E600A2207B /* SKNodeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKNodeExtension.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 			children = (
 				BFFA89442A438D8300A2207B /* Processable.swift */,
 				BFD57D832A47FCD3004CFB45 /* PreSpawned.swift */,
+				BFD57D892A48FF06004CFB45 /* HandleContactEnter.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFCA4F262A428F3E0013DA14 /* Ingredient.swift in Sources */,
+				BFD57D8A2A48FF06004CFB45 /* HandleContactEnter.swift in Sources */,
 				BF85CA102A3822AB00AC95E8 /* Player.swift in Sources */,
 				BF3E31F52A451028002C7214 /* GameOverScene.swift in Sources */,
 				BFFA89432A4382CF00A2207B /* EnemyBullet.swift in Sources */,
