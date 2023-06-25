@@ -46,14 +46,12 @@ class InputManager {
         NotificationCenter.default.addObserver(self, selector: #selector(controllerConnected), name: NSNotification.Name.GCControllerDidConnect, object: nil)
     }
     
-    // This Function is called when a controller is connected to the Apple TV
     @objc private func controllerConnected() {        
-        //Used to register the Nimbus Controllers to a specific Player Number
         var indexNumber = 0
-        // Run through each controller currently connected to the system
         for controller in GCController.controllers() {
             //Check to see whether it is an extended Game Controller (Such as a Nimbus)
             if controller.extendedGamepad != nil {
+                //Register the Nimbus Controller's player index to a specific index number
                 controller.playerIndex = GCControllerPlayerIndex.init(rawValue: indexNumber)!
                 indexNumber += 1
                 leftJoystickInput.append(CGPoint.zero)
@@ -65,10 +63,8 @@ class InputManager {
     }
     
     private func setupControllerControls(controller: GCController) {
-    //Function that check the controller when anything is moved or pressed on it
         controller.extendedGamepad?.valueChangedHandler = {
             (gamepad: GCExtendedGamepad, element: GCControllerElement) in
-            // Add movement in here for sprites of the controllers
             self.controllerInputDetected(gamepad: gamepad, element: element, index: controller.playerIndex.rawValue)
         }
     }
@@ -90,17 +86,17 @@ class InputManager {
         //Triggers/Bumpers
         else if (element == gamepad.leftShoulder) {
             if(gamepad.leftShoulder.value != 0) {
-                print("Controller: \(index) : L1")
+//                print("Controller: \(index) : L1")
             }
         }
         else if (element == gamepad.rightShoulder) {
             if(gamepad.rightShoulder.value != 0) {
-                print("Controller: \(index) : R1")
+//                print("Controller: \(index) : R1")
             }
         }
         else if (element == gamepad.leftTrigger) {
             if(gamepad.leftTrigger.value != 0) {
-                print("Controller: \(index) : L2")
+//                print("Controller: \(index) : L2")
             }
         }
         else if (element == gamepad.rightTrigger) {
@@ -111,18 +107,18 @@ class InputManager {
         else if (gamepad.dpad == element) {
             if (gamepad.dpad.xAxis.value != 0) {
                 if(gamepad.dpad.xAxis.value >= 0) {
-                    print("Controller: \(index), D-PadXAxis: kanan")
+//                    print("Controller: \(index), D-PadXAxis: kanan")
                 }
                 else if(gamepad.dpad.xAxis.value <= 0) {
-                    print("Controller: \(index), D-PadXAxis: kiri")
+//                    print("Controller: \(index), D-PadXAxis: kiri")
                 }
             }
             else if (gamepad.dpad.yAxis.value != 0) {
                 if(gamepad.dpad.yAxis.value >= 0) {
-                    print("Controller: \(index), D-PadYAxis: atas")
+//                    print("Controller: \(index), D-PadYAxis: atas")
                 }
                 else if(gamepad.dpad.yAxis.value <= 0) {
-                    print("Controller: \(index), D-PadYAxis: bawah")
+//                    print("Controller: \(index), D-PadYAxis: bawah")
                 }
             }
         }
@@ -130,28 +126,24 @@ class InputManager {
         // A-Button
         else if (gamepad.buttonA == element) {
             if (gamepad.buttonA.value != 0) {
-                print("Controller: \(index), A-Button Pressed!")
                 InputManager.buttonAPressed.invoke()
             }
         }
         // B-Button
         else if (gamepad.buttonB == element) {
             if (gamepad.buttonB.value != 0) {
-                print("Controller: \(index), B-Button Pressed!")
                 InputManager.buttonBPressed.invoke()
             }
         }
         // X-Button
         else if (gamepad.buttonX == element) {
             if (gamepad.buttonX.value != 0) {
-                print("Controller: \(index), X-Button Pressed!")
                 InputManager.buttonXPressed.invoke()
             }
         }
         // Y-Button
         else if (gamepad.buttonY == element) {
             if (gamepad.buttonY.value != 0) {
-                print("Controller: \(index), Y-Button Pressed!")
                 InputManager.buttonYPressed.invoke()
             }
         }
@@ -159,7 +151,7 @@ class InputManager {
         // Menu-Button
         else if (element == gamepad.buttonMenu) {
             if(gamepad.buttonMenu.value != 0) {
-                print("Controller: \(index): menu button")
+//                print("Controller: \(index): menu button")
             }
         }
     }

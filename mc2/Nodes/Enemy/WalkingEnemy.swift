@@ -23,7 +23,6 @@ class WalkingEnemy: Enemy {
     }
     
     override func update(deltaTime: TimeInterval) {
-        if destroyed { return }
         guard let playerNode, !playerNode.destroyed else { return }
         
         let direction = (playerNode.position - self.position).normalized()

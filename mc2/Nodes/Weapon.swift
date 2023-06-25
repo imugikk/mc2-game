@@ -31,8 +31,8 @@ class Weapon: SKSpriteNode, Processable {
     }
     
     func handleZPosBasedOnRotation() {
-        let minRotation = CGFloat(1.0).toRadians()
-        let maxRotation = CGFloat(179.0).toRadians()
+        let minRotation = (1.0).toRadians()
+        let maxRotation = (179.0).toRadians()
         
         if self.zRotation >= minRotation && self.zRotation <= maxRotation {
             self.zPosition = -1

@@ -8,5 +8,6 @@
 import SpriteKit
 
 protocol Processable {
+    var destroyed: Bool { get }
     func update(deltaTime: TimeInterval)
 }

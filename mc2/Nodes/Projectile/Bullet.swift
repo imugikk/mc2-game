@@ -7,17 +7,13 @@
 
 import SpriteKit
 
-class Bullet: SKSpriteNode, Processable {
-    var screenHeight: Double { scene!.frame.size.height }
-    var screenWidth: Double { scene!.frame.size.width }
-    
+class Bullet: SKSpriteNode, Processable {    
     let bulletName = "bullet"
     let bulletSize = (width: 25, height: 25)
     let spriteScale = 1.25
     let moveSpeed = 1800.0
     var damage = 1
     let bulletColor = NSColor.systemPink
-    var destroyed = false
     
     init() {
         let texture = SKTexture(imageNamed: "Circle")
@@ -49,8 +45,6 @@ class Bullet: SKSpriteNode, Processable {
     }
     
     func update(deltaTime: TimeInterval) {
-        if destroyed { return }
-        
         if abs(self.position.y) >= screenHeight/2 + self.size.height ||
             abs(self.position.x) >= screenWidth/2 + self.size.width {
             destroy()
@@ -58,7 +52,6 @@ class Bullet: SKSpriteNode, Processable {
     }
     
     func destroy() {
-        destroyed = true
         self.removeFromParent()
     }
 }

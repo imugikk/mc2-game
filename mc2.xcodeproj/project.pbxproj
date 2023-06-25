@@ -25,7 +25,7 @@
 		BF9500552A3983F700E2B780 /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9500542A3983F700E2B780 /* Weapon.swift */; };
 		BF9500572A3AABAD00E2B780 /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9500562A3AABAD00E2B780 /* Bullet.swift */; };
 		BF95005A2A3BA77300E2B780 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9500592A3BA77300E2B780 /* Event.swift */; };
-		BFCA4F152A3D77570013DA14 /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCA4F142A3D77570013DA14 /* CGFloatExtension.swift */; };
+		BFCA4F152A3D77570013DA14 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCA4F142A3D77570013DA14 /* DoubleExtension.swift */; };
 		BFCA4F172A3F25B00013DA14 /* ContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCA4F162A3F25B00013DA14 /* ContactManager.swift */; };
 		BFCA4F262A428F3E0013DA14 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCA4F222A428F3E0013DA14 /* Ingredient.swift */; };
 		BFCA4F282A428F3E0013DA14 /* WalkingEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCA4F242A428F3E0013DA14 /* WalkingEnemy.swift */; };
@@ -76,7 +76,7 @@
 		BF9500542A3983F700E2B780 /* Weapon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
 		BF9500562A3AABAD00E2B780 /* Bullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
 		BF9500592A3BA77300E2B780 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		BFCA4F142A3D77570013DA14 /* CGFloatExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatExtension.swift; sourceTree = "<group>"; };
+		BFCA4F142A3D77570013DA14 /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		BFCA4F162A3F25B00013DA14 /* ContactManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactManager.swift; sourceTree = "<group>"; };
 		BFCA4F222A428F3E0013DA14 /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		BFCA4F242A428F3E0013DA14 /* WalkingEnemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkingEnemy.swift; sourceTree = "<group>"; };
@@ -218,8 +218,8 @@
 		BF9500582A3BA71400E2B780 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				BFCA4F142A3D77570013DA14 /* DoubleExtension.swift */,
 				BF85CA152A38285700AC95E8 /* CGPointExtension.swift */,
-				BFCA4F142A3D77570013DA14 /* CGFloatExtension.swift */,
 				BFFA89462A4399E600A2207B /* SKNodeExtension.swift */,
 				BF9500592A3BA77300E2B780 /* Event.swift */,
 			);
@@ -424,7 +424,7 @@
 				BF3E31FC2A451028002C7214 /* CreditScene.swift in Sources */,
 				BF91DCE32A447598004DC17F /* Scene.swift in Sources */,
 				BF85CA162A38285700AC95E8 /* CGPointExtension.swift in Sources */,
-				BFCA4F152A3D77570013DA14 /* CGFloatExtension.swift in Sources */,
+				BFCA4F152A3D77570013DA14 /* DoubleExtension.swift in Sources */,
 				BF91DCDF2A446BF2004DC17F /* Obstacle.swift in Sources */,
 				BF3E31F62A451028002C7214 /* ScoreManager.swift in Sources */,
 				BF12034C2A436A5800A54351 /* Enemy.swift in Sources */,

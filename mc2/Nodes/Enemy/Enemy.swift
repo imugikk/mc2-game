@@ -8,15 +8,11 @@
 import SpriteKit
 
 class Enemy: SKSpriteNode, Processable {
-    var screenHeight: Double { scene!.frame.size.height }
-    var screenWidth: Double { scene!.frame.size.width }
-    
     var enemyName = "enemy"
     var spriteSize = (width: 50.0, height: 50.0)
     var moveSpeed = 100.0
     var health: Int = 3
     let playerNode: Player?
-    var destroyed = false
     static let killedAction = Event()
     
     required init?(coder: NSCoder) {
@@ -36,7 +32,7 @@ class Enemy: SKSpriteNode, Processable {
         self.size = CGSize(width: spriteSize.width, height: spriteSize.height)
         self.colorBlendFactor = 1
         self.zPosition = -3
-        self.zRotation = CGFloat(90).toRadians()
+        self.zRotation = (90.0).toRadians()
         
         self.physicsBody = SKPhysicsBody(texture: texture!, alphaThreshold: 0.1, size: size)
         self.physicsBody?.isDynamic = true
@@ -84,7 +80,7 @@ class Enemy: SKSpriteNode, Processable {
         health -= amount
         if health <= 0 {
             dropItem()
-            destroyEnemy()
+            destroy()
         }
     }
 
@@ -94,9 +90,8 @@ class Enemy: SKSpriteNode, Processable {
         itemNode.spawn(in: self.scene!)
     }
     
-    func destroyEnemy() {
+    func destroy() {
         Enemy.killedAction.invoke()
-        destroyed = true
         self.removeFromParent()
     }
 }

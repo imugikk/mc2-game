@@ -26,7 +26,6 @@ class ShootingEnemy: Enemy {
     }
     
     override func update(deltaTime: TimeInterval) {
-        guard !self.destroyed else { return }
         guard let playerNode, !playerNode.destroyed else { return }
         
         let offset = playerNode.position - self.position

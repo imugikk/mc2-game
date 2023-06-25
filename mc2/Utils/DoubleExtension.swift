@@ -7,8 +7,8 @@
 
 import Foundation
 
-extension CGFloat {
-    func toRadians() -> CGFloat {
+extension Double {
+    func toRadians() -> Double {
         return self * .pi / 180.0
     }
 }

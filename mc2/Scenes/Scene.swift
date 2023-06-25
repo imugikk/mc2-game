@@ -16,7 +16,7 @@ class Scene: SKScene {
         self.update(deltaTime: deltaTime)
         
         self.traverseNodes { node in
-            if let process = node as? Processable {
+            if let process = node as? Processable, !process.destroyed {
                 process.update(deltaTime: deltaTime)
             }
         }

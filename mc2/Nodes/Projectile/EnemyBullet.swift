@@ -7,15 +7,11 @@
 
 import SpriteKit
 
-class EnemyBullet: SKSpriteNode, Processable {
-    var screenHeight: Double { scene!.frame.size.height }
-    var screenWidth: Double { scene!.frame.size.width }
-    
+class EnemyBullet: SKSpriteNode, Processable {    
     let bulletName = "enemyBullet"
     let bulletSize = (width: 15, height: 15)
     let moveSpeed = 600.0
     let bulletColor = NSColor.purple
-    var destroyed = false
     let playerNode: Player?
     
     init(playerNode: Player) {
@@ -52,8 +48,6 @@ class EnemyBullet: SKSpriteNode, Processable {
     }
     
     func update(deltaTime: TimeInterval) {
-        if destroyed { return }
-
         if abs(self.position.y) >= screenHeight/2 + self.size.height ||
             abs(self.position.x) >= screenWidth/2 + self.size.width {
             destroy()
@@ -61,7 +55,6 @@ class EnemyBullet: SKSpriteNode, Processable {
     }
     
     func destroy() {
-        destroyed = true
         self.removeFromParent()
     }
 }

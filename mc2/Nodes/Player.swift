@@ -8,9 +8,6 @@
 import SpriteKit
 
 class Player: SKSpriteNode, Processable {
-    var screenHeight: Double { scene!.frame.size.height }
-    var screenWidth: Double { scene!.frame.size.width }
-    
     private var inputIndex = 0
     private let moveSpeed = 425.0
     
@@ -28,7 +25,6 @@ class Player: SKSpriteNode, Processable {
     private let iFrameDuration = 1.0
     private var iFrameActive = false
     static var killedAction = Event()
-    var destroyed = false
     
     func setup(inputIndex: Int) {
         self.inputIndex = inputIndex
@@ -48,8 +44,6 @@ class Player: SKSpriteNode, Processable {
     }
     
     func update(deltaTime: TimeInterval) {
-        if destroyed { return }
-        
         let input = InputManager.shared.getLeftJoystickInput(controllerIndex: inputIndex)
         let direction = CGPoint(x: input.x, y: input.y).normalized()
         let movement = moveSpeed * deltaTime * direction
@@ -80,10 +74,8 @@ class Player: SKSpriteNode, Processable {
         if shootDelay { return }
         
         let bullet = Bullet()
-        let spawnPos = bulletSpawnPos.parent!.convert(bulletSpawnPos.position, to: scene!)
-        let spawnRot = globalZRotation(for: bulletSpawnPos)
-        bullet.position = spawnPos
-        bullet.zRotation = spawnRot
+        bullet.position = bulletSpawnPos.globalPosition
+        bullet.zRotation = bulletSpawnPos.globalZRotation
         bullet.zPosition = bulletSpawnPos.zPosition
         bullet.spawn(in: scene!)
         
@@ -91,18 +83,6 @@ class Player: SKSpriteNode, Processable {
         self.run(SKAction.wait(forDuration: shootDelayDuration)) {
             self.shootDelay = false
         }
-    }
-    
-    func globalZRotation(for node: SKNode) -> CGFloat {
-        var rotation: CGFloat = node.zRotation
-        var currentNode = node
-        
-        while let parentNode = currentNode.parent {
-            currentNode = parentNode
-            rotation += currentNode.zRotation
-        }
-        
-        return rotation
     }
     
     func decreaseHealth(amount: Int) {
@@ -125,7 +105,6 @@ class Player: SKSpriteNode, Processable {
     }
     
     func destroy() {
-        destroyed = true
         Player.killedAction.invoke()
         self.removeFromParent()
     }
