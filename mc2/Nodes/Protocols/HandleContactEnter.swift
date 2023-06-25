@@ -8,5 +8,5 @@
 import SpriteKit
 
 protocol HandleContactEnter {
-    func onContactEnter(other: SKNode?)
+    func onContactEnter(with other: SKNode?)
 }

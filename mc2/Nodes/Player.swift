@@ -109,7 +109,7 @@ class Player: SKSpriteNode, Processable, PreSpawned, HandleContactEnter {
         self.removeFromParent()
     }
     
-    func onContactEnter(other: SKNode?) {
+    func onContactEnter(with other: SKNode?) {
         if other is Enemy {
             playerTouchesEnemy()
         } else if other is EnemyBullet {

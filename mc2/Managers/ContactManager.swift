@@ -20,7 +20,7 @@ class ContactManager: NSObject, SKPhysicsContactDelegate {
         let nodeA = contact.bodyA.node as? HandleContactEnter
         let nodeB = contact.bodyB.node as? HandleContactEnter
         
-        nodeA?.onContactEnter(other: contact.bodyB.node)
-        nodeB?.onContactEnter(other: contact.bodyA.node)
+        nodeA?.onContactEnter(with: contact.bodyB.node)
+        nodeB?.onContactEnter(with: contact.bodyA.node)
     }
 }

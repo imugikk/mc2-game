@@ -23,7 +23,7 @@ class Bullet: Projectile, HandleContactEnter {
         self.physicsBody?.contactTestBitMask = PsxBitmask.obstacle | PsxBitmask.enemy
     }
     
-    func onContactEnter(other: SKNode?) {
+    func onContactEnter(with other: SKNode?) {
         if other is Obstacle {
             bulletTouchesObstacle()
         } else if other is Enemy {
