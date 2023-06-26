@@ -68,9 +68,15 @@ class GameScene: SKScene {
         }
         //f
         if event.keyCode == 3 {
-            let shake = SKAction.shake(initialPosition: (cameraNode?.position)!, duration: 0.1, amplitudeX: 16, amplitudeY: 16)
+            let shake = SKAction.shake(initialPosition: (cameraNode?.position)!, duration: 0.1, amplitudeX: 10, amplitudeY: 5)
             cameraNode.run(shake)
         }
+        //r
+        if event.keyCode == 15 {
+            let shake = SKAction.shake(initialPosition: (cameraNode?.position)!, duration: 0.1, amplitudeX: 50, amplitudeY: 70)
+            cameraNode.run(shake)
+        }
+        
     }
 
     private func restartScene() {
