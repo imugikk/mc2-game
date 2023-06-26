@@ -20,11 +20,18 @@ class Player: SKSpriteNode {
     var heldIngredient: SKSpriteNode?
     var pickIngredient: SKSpriteNode?
     
+    var kitchen1: SKSpriteNode?
+    var kitchen2: SKSpriteNode?
+    var kitchen3: SKSpriteNode?
+    var isPut1: Bool = false
+    var isPut2: Bool = false
+    var isPut3: Bool = false
+    
     func movement(hInput: Double, vInput: Double, deltaTime: Double) {
         let direction = CGPoint(x: hInput, y: vInput).normalized()
         let movement = moveSpeed * deltaTime * direction
         self.position += movement
-        
+    
         ingredientImageHold?.position = CGPoint(x: self.position.x, y: self.position.y + 50)
     }
     
@@ -41,7 +48,9 @@ class Player: SKSpriteNode {
         popupLabel.position = CGPoint(x: ingredientPositionInScene?.x ?? 0, y: (ingredientPositionInScene?.y ?? 0) + ingredientNode1!.size.height/2 + offset)
         popupLabel.fontSize = 24
         popupLabel.fontColor = SKColor.white
-        self.scene?.addChild(popupLabel)
+        if !(isPut1 || isPut2 || isPut3) {
+            self.scene?.addChild(popupLabel)
+        }
         
         heldIngredient = ingredientNode1
     }
@@ -59,18 +68,23 @@ class Player: SKSpriteNode {
             // Remove ingredient image from the scene
             ingredientImage.removeFromParent()
             ingredientImageHold?.removeFromParent()
+            
             self.ingredientImage = nil
 
             // Respawn ingredient at player's position
-            if pickIngredient == ingredientNode {
-                ingredientNode?.position = self.position
-                self.scene?.addChild(ingredientNode!)
-            } else if pickIngredient == ingredientNode2 {
-                ingredientNode2?.position = self.position
-                self.scene?.addChild(ingredientNode2!)
-            } else if pickIngredient == ingredientNode3 {
-                ingredientNode3?.position = self.position
-                self.scene?.addChild(ingredientNode3!)
+            if let pickIngredient = pickIngredient {
+                var newPosition = self.position
+                
+                if isPut1 {
+                    newPosition = kitchen1!.position
+                } else if isPut2 {
+                    newPosition = kitchen2!.position
+                } else if isPut3 {
+                    newPosition = kitchen3!.position
+                }
+                
+                pickIngredient.position = newPosition
+                self.scene?.addChild(pickIngredient)
             }
         }
         
@@ -110,6 +124,10 @@ class Player: SKSpriteNode {
                 self.scene?.addChild(ingredientImageHold!)
 
             }
+        }
+        
+        if (kitchen1?.color == .blue && kitchen2?.color == .red && kitchen3?.color == .green) {
+            print()
         }
     }
 }

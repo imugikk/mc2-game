@@ -105,6 +105,7 @@ extension GameScene {
             {
                 player?.handlePickupAction()
                 print("Controller: \(index), A-Button Pressed!")
+            
             }
         }
         // B-Button
