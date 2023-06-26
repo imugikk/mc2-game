@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8BDA8A662A452E7B002DB68F /* ShakeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDA8A652A452E7B002DB68F /* ShakeScreen.swift */; };
 		BF85CA102A3822AB00AC95E8 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF85CA0F2A3822AB00AC95E8 /* Player.swift */; };
 		BF85CA162A38285700AC95E8 /* CGPointExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF85CA152A38285700AC95E8 /* CGPointExtension.swift */; };
 		BF9500532A392A6800E2B780 /* InputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9500512A392A6800E2B780 /* InputManager.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8BDA8A652A452E7B002DB68F /* ShakeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeScreen.swift; sourceTree = "<group>"; };
 		BF85CA0F2A3822AB00AC95E8 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		BF85CA152A38285700AC95E8 /* CGPointExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPointExtension.swift; sourceTree = "<group>"; };
 		BF9500512A392A6800E2B780 /* InputManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputManager.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				BF9500512A392A6800E2B780 /* InputManager.swift */,
+				8BDA8A652A452E7B002DB68F /* ShakeScreen.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				F14C59372A373D83000F3D22 /* GameScene.swift in Sources */,
 				BF85CA162A38285700AC95E8 /* CGPointExtension.swift in Sources */,
 				BFCA4F152A3D77570013DA14 /* CGFloatExtension.swift in Sources */,
+				8BDA8A662A452E7B002DB68F /* ShakeScreen.swift in Sources */,
 				F14C59312A373D83000F3D22 /* AppDelegate.swift in Sources */,
 				BF9500572A3AABAD00E2B780 /* Bullet.swift in Sources */,
 				BF95005A2A3BA77300E2B780 /* Event.swift in Sources */,
@@ -483,7 +487,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8J4K7VDVNJ;
+				DEVELOPMENT_TEAM = 5ZU9K8SF89;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";

@@ -19,6 +19,8 @@ class GameScene: SKScene {
     
     private var player: Player!
     private var weapon: Weapon!
+    
+    var cameraNode: SKNode!
 
     override func sceneDidLoad() {
         physicsWorld.contactDelegate = self
@@ -30,6 +32,7 @@ class GameScene: SKScene {
         player.setup(killedAction: restartScene)
         
         weapon = player.childNode(withName: "weaponPivot") as? Weapon
+        cameraNode = childNode(withName: "CameraNode")
     }
     
     @objc func controllerConnected() {
@@ -62,6 +65,11 @@ class GameScene: SKScene {
         //Spacebar
         if event.keyCode == 49 {
             player.decreaseHealth(damage: 1)
+        }
+        //f
+        if event.keyCode == 3 {
+            let shake = SKAction.shake(initialPosition: (cameraNode?.position)!, duration: 0.1, amplitudeX: 16, amplitudeY: 16)
+            cameraNode.run(shake)
         }
     }
 
