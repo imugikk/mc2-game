@@ -6,6 +6,7 @@
 //
 
 import SpriteKit
+import SwiftUI
 
 class Player: SKSpriteNode {
     
@@ -26,6 +27,10 @@ class Player: SKSpriteNode {
     var isPut1: Bool = false
     var isPut2: Bool = false
     var isPut3: Bool = false
+    var colorIngredient: [Color] = [.white, .white, .white]
+//    var isPlace1: Bool = false
+//    var isPlace2: Bool = false
+//    var isPlace3: Bool = false
     
     func movement(hInput: Double, vInput: Double, deltaTime: Double) {
         let direction = CGPoint(x: hInput, y: vInput).normalized()
@@ -77,10 +82,16 @@ class Player: SKSpriteNode {
                 
                 if isPut1 {
                     newPosition = kitchen1!.position
+                    colorIngredient[0] = Color(pickIngredient.color)
+                    print("test: \(colorIngredient[0])")
                 } else if isPut2 {
                     newPosition = kitchen2!.position
+                    colorIngredient[1] = Color(pickIngredient.color)
+                    print("test: \(colorIngredient[1])")
                 } else if isPut3 {
                     newPosition = kitchen3!.position
+                    colorIngredient[2] = Color(pickIngredient.color)
+                    print("test: \(colorIngredient[2])")
                 }
                 
                 pickIngredient.position = newPosition
@@ -126,8 +137,9 @@ class Player: SKSpriteNode {
             }
         }
         
-        if (kitchen1?.color == .blue && kitchen2?.color == .red && kitchen3?.color == .green) {
-            print()
+        print("test gih \(colorIngredient[0])_\(colorIngredient[1])_\(colorIngredient[2])")
+        if (colorIngredient[0] == .yellow) && (colorIngredient[1] == .blue) && ( colorIngredient[2] == .green) {
+            print("test gih")
         }
     }
 }

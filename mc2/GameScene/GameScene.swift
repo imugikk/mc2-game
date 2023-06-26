@@ -69,8 +69,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Assign the ingredient node to the Player instance
         player.ingredientNode = ingredientNode
+        player.ingredientNode?.color = .yellow
         player.ingredientNode2 = ingredientNode2
+        player.ingredientNode2?.color = .blue
         player.ingredientNode3 = ingredientNode3
+        player.ingredientNode3?.color = .green
         player.kitchen1 = square_1
         player.kitchen2 = square_2
         player.kitchen3 = square_3
