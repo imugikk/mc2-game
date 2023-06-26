@@ -22,6 +22,11 @@ class GameScene: SKScene {
     private var enemySpawnRate: TimeInterval = 2.0
     private var maxEnemySpawnRate: TimeInterval = 0.3
     private var wavePause: TimeInterval = 3.0
+    var durationBuff = 10.0
+    static var slowDownPowerupsActivated = false
+    
+    static let slowDownStartedEvent = Event()
+    static let slowDownStoppedEvent = Event()
     
     private var waveNumber: Int = 0  {
         didSet {
@@ -58,6 +63,7 @@ class GameScene: SKScene {
         obstacle.physicsBody?.contactTestBitMask = CBitMask.bullet
         
         WalkingEnemy.killedAction.subscribe(node: self, closure: enemyKilledAction)
+        InputManager.bButtonPressedEvent.subscribe(node: self, closure: startSlowDownEnemyPowerups)
         
         self.run(SKAction.wait(forDuration: wavePause)) {
             self.startNextWave()
@@ -65,6 +71,15 @@ class GameScene: SKScene {
     }
     override func willMove(from view: SKView) {
         WalkingEnemy.killedAction.unsubscribe(node: self)
+    }
+    
+    func startSlowDownEnemyPowerups(){
+        GameScene.slowDownPowerupsActivated = true
+        GameScene.slowDownStartedEvent.invoke()
+        self.run(SKAction.wait(forDuration: durationBuff)) {
+            GameScene.slowDownPowerupsActivated = false
+            GameScene.slowDownStoppedEvent.invoke()
+        }
     }
 
     override func update(_ currentTime: TimeInterval) {

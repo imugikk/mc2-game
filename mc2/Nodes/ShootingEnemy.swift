@@ -42,7 +42,7 @@ class ShootingEnemy: Enemy {
     
     func chasePlayer(_ offset: CGPoint, _ deltaTime: TimeInterval) {
         let direction = offset.normalized()
-        let movement = moveSpeed * deltaTime * direction
+        let movement = moveSpeed * moveSpeedMultiplier * deltaTime * direction
         self.position += movement
     }
     

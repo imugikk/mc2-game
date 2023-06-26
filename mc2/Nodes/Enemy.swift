@@ -14,6 +14,7 @@ class Enemy: SKSpriteNode, Processable {
     var enemyName = "enemy"
     var spriteSize = (width: 50.0, height: 50.0)
     var moveSpeed = 100.0
+    var moveSpeedMultiplier = 1.0
     var health: Int = 3
     let playerNode: Player?
     var destroyed = false
@@ -38,6 +39,10 @@ class Enemy: SKSpriteNode, Processable {
         self.zPosition = -3
         self.zRotation = CGFloat(90).toRadians()
         
+        if GameScene.slowDownPowerupsActivated {
+            moveSpeedMultiplier = 0.5
+        }
+        
         self.physicsBody = SKPhysicsBody(texture: texture!, alphaThreshold: 0.1, size: size)
         self.physicsBody?.isDynamic = true
         self.physicsBody?.allowsRotation = false
@@ -46,6 +51,17 @@ class Enemy: SKSpriteNode, Processable {
         self.physicsBody?.contactTestBitMask = CBitMask.bullet | CBitMask.player
         
         randomizePosition()
+        
+        GameScene.slowDownStartedEvent.subscribe(node: self, closure: slowDownMoveSpeed)
+        GameScene.slowDownStoppedEvent.subscribe(node: self, closure: normalizeMoveSpeed)
+    }
+    
+    func slowDownMoveSpeed(){
+        self.moveSpeedMultiplier = 0.5
+    }
+    
+    func normalizeMoveSpeed(){
+        self.moveSpeedMultiplier = 1.0
     }
     
     func update(deltaTime: TimeInterval) {
@@ -95,6 +111,10 @@ class Enemy: SKSpriteNode, Processable {
     
     func destroyEnemy() {
         WalkingEnemy.killedAction.invoke()
+        
+        GameScene.slowDownStartedEvent.unsubscribe(node: self)
+        GameScene.slowDownStoppedEvent.unsubscribe(node: self)
+        
         destroyed = true
         self.removeFromParent()
     }

@@ -13,10 +13,13 @@ class EnemyBullet: SKSpriteNode, Processable {
     
     let bulletName = "enemyBullet"
     let bulletSize = (width: 15, height: 15)
-    let moveSpeed = 300.0
+    var moveSpeed = 300.0
+    var moveSpeedMultiplier = 1.0
+    var durationBuff = 10.0
     let bulletColor = NSColor.purple
     var destroyed = false
     let playerNode: Player?
+    var startingDirection: CGPoint = CGPoint.zero
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("error")
@@ -42,12 +45,34 @@ class EnemyBullet: SKSpriteNode, Processable {
     }
     
     func setup() {
+        
+        GameScene.slowDownStartedEvent.subscribe(node: self, closure: slowDownMoveSpeed)
+        GameScene.slowDownStoppedEvent.subscribe(node: self, closure: normalizeMoveSpeed)
+        
         if let playerNode {
             let direction = (playerNode.position - self.position).normalized()
-            let velocity = direction * moveSpeed
+            startingDirection = direction
             
-            self.physicsBody?.velocity = CGVector(dx: velocity.x, dy: velocity.y)
+            if GameScene.slowDownPowerupsActivated {
+                moveSpeedMultiplier = 0.25
+            } 
+            updateVelocity()
         }
+    }
+    
+    func slowDownMoveSpeed(){
+        moveSpeedMultiplier = 0.25
+        updateVelocity()
+    }
+    
+    func normalizeMoveSpeed(){
+        moveSpeedMultiplier = 1.0
+        updateVelocity()
+    }
+    
+    func updateVelocity() {
+        let velocity = startingDirection * moveSpeed * moveSpeedMultiplier
+        self.physicsBody?.velocity = CGVector(dx: velocity.x, dy: velocity.y)
     }
     
     func update(deltaTime: Double) {
@@ -60,6 +85,10 @@ class EnemyBullet: SKSpriteNode, Processable {
     }
     
     func destroy() {
+        
+        GameScene.slowDownStartedEvent.unsubscribe(node: self)
+        GameScene.slowDownStoppedEvent.unsubscribe(node: self)
+        
         destroyed = true
         self.removeFromParent()
     }

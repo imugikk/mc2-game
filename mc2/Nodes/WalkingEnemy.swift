@@ -27,7 +27,7 @@ class WalkingEnemy: Enemy {
         guard let playerNode, !playerNode.destroyed else { return }
         
         let direction = (playerNode.position - self.position).normalized()
-        let movement = moveSpeed * deltaTime * direction
+        let movement = moveSpeed * moveSpeedMultiplier * deltaTime * direction
         self.position += movement
     }
 }

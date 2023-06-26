@@ -27,7 +27,9 @@ class Player: SKSpriteNode, Processable {
     private var iFrameActive = false
     private var killedAction: (() -> Void)!
     var destroyed = false
-    
+    var extraDamage = false
+    var durationBuff = 10.0
+
     private var bullets = [Bullet]()
     
     func setup(killedAction: @escaping () -> Void) {
@@ -42,6 +44,8 @@ class Player: SKSpriteNode, Processable {
         bulletSpawnPos = childNode(withName: "weaponPivot")?.childNode(withName: "bulletSpawnPos")
         health = 3
         self.killedAction = killedAction
+        InputManager.xButtonPressedEvent.subscribe(node: self, closure: increaseHealth)
+        InputManager.yButtonPressedEvent.subscribe(node: self, closure: extraDamageToggle)
     }
     
     func update(deltaTime: Double) {
@@ -81,6 +85,13 @@ class Player: SKSpriteNode, Processable {
         return CGPoint(x: constrainedX, y: constrainedY)
     }
     
+    func extraDamageToggle(){
+        extraDamage = true
+        self.run(SKAction.wait(forDuration: durationBuff)) {
+            self.extraDamage = false
+        }
+    }
+    
     func shootBullet() {
         if shootDelay { return }
         
@@ -96,6 +107,10 @@ class Player: SKSpriteNode, Processable {
         shootDelay = true
         self.run(SKAction.wait(forDuration: shootDelayDuration)) {
             self.shootDelay = false
+        }
+        
+        if extraDamage {
+            bullet.damage = 3
         }
     }
     
@@ -123,6 +138,10 @@ class Player: SKSpriteNode, Processable {
         }
     }
     
+    func increaseHealth(){
+        health += 1
+    }
+    
     func enableIFrame() {
         iFrameActive = true
         self.run(SKAction.wait(forDuration: iFrameDuration)) {
@@ -133,6 +152,7 @@ class Player: SKSpriteNode, Processable {
     func destroy() {
         destroyed = true
         killedAction()
+        InputManager.xButtonPressedEvent.unsubscribe(node: self)
         self.removeFromParent()
     }
 }
