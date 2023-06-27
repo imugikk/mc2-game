@@ -17,6 +17,7 @@ class Bullet: Projectile, HandleContactEnter {
         super.spawn(in: scene)
         
         self.name = "bullet"
+        self.texture = SKTexture(imageNamed: "Weapon")
         self.setScale(1.25)
         
         self.physicsBody?.categoryBitMask = PsxBitmask.bullet

@@ -41,6 +41,7 @@
 		F14C59392A373D83000F3D22 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14C59382A373D83000F3D22 /* GameViewController.swift */; };
 		F14C593B2A373D84000F3D22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F14C593A2A373D84000F3D22 /* Assets.xcassets */; };
 		F14C593E2A373D84000F3D22 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F14C593C2A373D84000F3D22 /* Main.storyboard */; };
+		F19F21AF2A4AA00E0069A4AD /* ControllerScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F19F21AE2A4AA00E0069A4AD /* ControllerScene.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,7 @@
 		F14C593F2A373D84000F3D22 /* mc2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = mc2.entitlements; sourceTree = "<group>"; };
 		F14C59442A373D84000F3D22 /* mc2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mc2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F14C594E2A373D84000F3D22 /* mc2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mc2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F19F21AE2A4AA00E0069A4AD /* ControllerScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ControllerScene.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 		BF3E31FD2A453001002C7214 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				F19F21AD2A4A9FEA0069A4AD /* Controller */,
 				BF3E32012A453086002C7214 /* Game */,
 				BF3E32002A453069002C7214 /* GameOver */,
 				BF3E31FF2A453050002C7214 /* Credits */,
@@ -290,6 +293,14 @@
 			path = mc2;
 			sourceTree = "<group>";
 		};
+		F19F21AD2A4A9FEA0069A4AD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F19F21AE2A4AA00E0069A4AD /* ControllerScene.sks */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -398,6 +409,7 @@
 				F14C59332A373D83000F3D22 /* GameScene.sks in Resources */,
 				BF3E31F82A451028002C7214 /* CreditScene.sks in Resources */,
 				BF3E31F92A451028002C7214 /* MainMenu.sks in Resources */,
+				F19F21AF2A4AA00E0069A4AD /* ControllerScene.sks in Resources */,
 				F14C593B2A373D84000F3D22 /* Assets.xcassets in Resources */,
 				F14C593E2A373D84000F3D22 /* Main.storyboard in Resources */,
 			);
@@ -619,7 +631,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8J4K7VDVNJ;
+				DEVELOPMENT_TEAM = 92RA72FW2S;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -647,7 +659,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8J4K7VDVNJ;
+				DEVELOPMENT_TEAM = 92RA72FW2S;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";

@@ -15,16 +15,17 @@ class Player: SKSpriteNode, Processable, PreSpawned, HandleContactEnter {
     private var shootDelay = false
     private var weapon: Weapon!
     private var bulletSpawnPos: SKNode!
+    private var playerSprite: SKNode!
     
-    private var health = 3 {
-        didSet {
-            healthText.text = "HP: \(health)"
-        }
-    }
-    private var healthText: SKLabelNode!
+    private var health = 3
     private let iFrameDuration = 1.0
     private var iFrameActive = false
     static var killedAction = Event()
+    
+    var lastJoystickDirection: CGPoint = .zero
+    var isRunning: Bool = false
+    
+    private var healthBar: [SKNode?]!
     
     func setup() {
         self.inputIndex = getUserData(key: "inputIndex")
@@ -35,12 +36,16 @@ class Player: SKSpriteNode, Processable, PreSpawned, HandleContactEnter {
         self.physicsBody?.categoryBitMask = PsxBitmask.player
         self.physicsBody?.collisionBitMask = PsxBitmask.obstacle
         self.physicsBody?.contactTestBitMask = PsxBitmask.enemy
-        
-        healthText = scene?.childNode(withName: "healthText") as? SKLabelNode
+
         weapon = self.childNode(withName: "weapon") as? Weapon
         weapon.setup()
         bulletSpawnPos = weapon.childNode(withName: "bulletSpawnPos")
         health = 3
+        
+        healthBar = [scene?.childNode(withName: "heart_fill_1"), scene?.childNode(withName: "heart_fill_2"), scene?.childNode(withName: "heart_fill_3")]
+        
+        // Start idle animation by default
+        runIdleAnimation()
     }
     
     func update(deltaTime: TimeInterval) {
@@ -53,6 +58,8 @@ class Player: SKSpriteNode, Processable, PreSpawned, HandleContactEnter {
         if InputManager.shared.isrightTriggerHeld(controllerIndex: inputIndex) {
             shootBullet()
         }
+        
+        playerAnimation(inputController: input)
     }
     
     func constrainedPosition() -> CGPoint {
@@ -92,9 +99,17 @@ class Player: SKSpriteNode, Processable, PreSpawned, HandleContactEnter {
         health = max(0, health)
         enableIFrame()
         
+        if let lastNode = healthBar.last {
+            if let unwrappedNode = lastNode {
+                unwrappedNode.removeFromParent()
+            }
+            healthBar.removeLast()
+        }
+        
         if health == 0 {
             destroy()
         }
+        
     }
     
     func enableIFrame() {
@@ -121,8 +136,79 @@ class Player: SKSpriteNode, Processable, PreSpawned, HandleContactEnter {
     func playerTouchesEnemy() {
         self.decreaseHealth(amount: 1)
     }
+    
     func playerTouchesBullet(enemyBullet: EnemyBullet) {
         enemyBullet.destroy()
         self.decreaseHealth(amount: 1)
+    }
+     
+    func playerAnimation(inputController: CGPoint){
+        let joystickPosition = CGPoint(x: inputController.x, y: inputController.y)
+        let joystickActive = joystickPosition != .zero
+
+        //animation cycle
+        if joystickActive != isRunning {
+            isRunning = joystickActive
+            
+            if isRunning {
+                runningAnimation()
+            } else {
+                runIdleAnimation()
+            }
+        }
+        
+        //flip
+        playerSprite.xScale = joystickPosition.x < 0 ? -5 : 5
+        
+        if joystickPosition != .zero {
+            lastJoystickDirection = joystickPosition
+        } else {
+            playerSprite.xScale = lastJoystickDirection.x < 0 ? -abs(playerSprite.xScale) : abs(playerSprite.xScale)
+        }
+    }
+    
+    func runIdleAnimation() {
+        let idleTextures = [
+            SKTexture(imageNamed: "Porter_Idle_1"),
+            SKTexture(imageNamed: "Porter_Idle_2"),
+            SKTexture(imageNamed: "Porter_Idle_3"),
+            SKTexture(imageNamed: "Porter_Idle_4")
+        ]
+        
+        let idleAnimation = SKAction.animate(with: idleTextures, timePerFrame: 0.2)
+        let idleAction = SKAction.repeatForever(idleAnimation)
+        
+        playerSprite = childNode(withName: "playerSprite")!
+        
+        playerSprite.run(idleAction, withKey: "idleAnimation")
+    }
+    
+    func runningAnimation() {
+        let runTextures = [
+            SKTexture(imageNamed: "Porter_Run_4"),
+            SKTexture(imageNamed: "Porter_Run_5"),
+            SKTexture(imageNamed: "Porter_Run_6"),
+            SKTexture(imageNamed: "Porter_Run_7"),
+            SKTexture(imageNamed: "Porter_Run_8"),
+            SKTexture(imageNamed: "Porter_Run_9"),
+            SKTexture(imageNamed: "Porter_Run_10"),
+            SKTexture(imageNamed: "Porter_Run_11"),
+            SKTexture(imageNamed: "Porter_Run_12"),
+            SKTexture(imageNamed: "Porter_Run_13"),
+            SKTexture(imageNamed: "Porter_Run_14"),
+            SKTexture(imageNamed: "Porter_Run_15"),
+            SKTexture(imageNamed: "Porter_Run_16"),
+            SKTexture(imageNamed: "Porter_Run_17"),
+            SKTexture(imageNamed: "Porter_Run_18"),
+            SKTexture(imageNamed: "Porter_Run_1"),
+            SKTexture(imageNamed: "Porter_Run_2"),
+            SKTexture(imageNamed: "Porter_Run_3")
+        ]
+        
+        let runAnimation = SKAction.animate(with: runTextures, timePerFrame: 0.1)
+        let runAction = SKAction.repeatForever(runAnimation)
+        playerSprite = childNode(withName: "playerSprite")!
+        
+        playerSprite.run(runAction, withKey: "runAnimation")
     }
 }
