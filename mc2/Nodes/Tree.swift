@@ -1,15 +1,15 @@
 //
-//  Obstacle.swift
+//  Tree.swift
 //  mc2
 //
-//  Created by Ardli Fadhillah on 22/06/23.
+//  Created by Tiffany Angela Indryani on 27/06/23.
 //
 
 import SpriteKit
 
-class Obstacle: SKSpriteNode, PreSpawned {
+class Tree: SKSpriteNode, PreSpawned {
     func setup() {
-        self.physicsBody?.categoryBitMask = PsxBitmask.obstacle
+        self.physicsBody?.categoryBitMask = PsxBitmask.tree
         self.physicsBody?.collisionBitMask = PsxBitmask.player
         self.physicsBody?.contactTestBitMask = PsxBitmask.bullet
     }

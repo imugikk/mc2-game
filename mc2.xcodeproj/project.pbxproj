@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F31B5132A4AA18100C54F16 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F31B5122A4AA18100C54F16 /* Tree.swift */; };
 		BF12034A2A4368EC00A54351 /* ShootingEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1203492A4368EC00A54351 /* ShootingEnemy.swift */; };
 		BF12034C2A436A5800A54351 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF12034B2A436A5800A54351 /* Enemy.swift */; };
 		BF3E31EC2A4495D1002C7214 /* WaveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3E31EB2A4495D1002C7214 /* WaveManager.swift */; };
@@ -61,6 +62,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9F31B5122A4AA18100C54F16 /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 		BF1203492A4368EC00A54351 /* ShootingEnemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShootingEnemy.swift; sourceTree = "<group>"; };
 		BF12034B2A436A5800A54351 /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		BF3E31EB2A4495D1002C7214 /* WaveManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveManager.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				BF91DCE12A4474C7004DC17F /* Projectile */,
 				BF91DCE02A4474BC004DC17F /* Enemy */,
 				BF85CA0F2A3822AB00AC95E8 /* Player.swift */,
+				9F31B5122A4AA18100C54F16 /* Tree.swift */,
 				BF9500542A3983F700E2B780 /* Weapon.swift */,
 				BF91DCDE2A446BF2004DC17F /* Obstacle.swift */,
 				BFCA4F222A428F3E0013DA14 /* Ingredient.swift */,
@@ -429,6 +432,7 @@
 				BF85CA102A3822AB00AC95E8 /* Player.swift in Sources */,
 				BF3E31F52A451028002C7214 /* GameOverScene.swift in Sources */,
 				BFFA89432A4382CF00A2207B /* EnemyBullet.swift in Sources */,
+				9F31B5132A4AA18100C54F16 /* Tree.swift in Sources */,
 				BFFA89472A4399E600A2207B /* SKNodeExtension.swift in Sources */,
 				BFFA89452A438D8300A2207B /* Processable.swift in Sources */,
 				BFD57D862A48D82C004CFB45 /* Projectile.swift in Sources */,
@@ -619,7 +623,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8J4K7VDVNJ;
+				DEVELOPMENT_TEAM = PVB7U9FX9T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -647,7 +651,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8J4K7VDVNJ;
+				DEVELOPMENT_TEAM = PVB7U9FX9T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";

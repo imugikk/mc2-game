@@ -26,4 +26,6 @@ class WalkingEnemy: Enemy {
         let movement = moveSpeed * deltaTime * direction
         self.position += movement
     }
+    
+    
 }

@@ -83,9 +83,20 @@ class Enemy: SKSpriteNode, Processable {
     }
 
     func dropItem() {
-        let itemNode = Ingredient()
-        itemNode.position = position
-        itemNode.spawn(in: self.scene!)
+        let dropProbability: CGFloat = 2.5
+        let random = CGFloat.random(in: 0...5)
+
+        if random <= dropProbability {
+            var customTexture = SKTexture(imageNamed: "POTIONY")
+            if self.name == "walkingEnemy" {
+                customTexture = SKTexture(imageNamed: "POTIONG")
+            } else if self.name == "shootingEnemy" {
+                customTexture = SKTexture(imageNamed: "POTIONR")
+            }
+            let itemNode = Ingredient(texture: customTexture)
+            itemNode.position = position
+            itemNode.spawn(in: self.scene!)
+        }
     }
     
     func destroy() {

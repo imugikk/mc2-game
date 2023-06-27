@@ -13,6 +13,7 @@ struct PsxBitmask {
     static let obstacle: UInt32 = 4
     static let enemy: UInt32 = 8
     static let enemyBullet: UInt32 = 16
+    static let tree: UInt32 = 32
 }
 
 class ContactManager: NSObject, SKPhysicsContactDelegate {

@@ -33,7 +33,7 @@ class Player: SKSpriteNode, Processable, PreSpawned, HandleContactEnter {
         self.physicsBody?.isDynamic = true
         self.physicsBody?.allowsRotation = false
         self.physicsBody?.categoryBitMask = PsxBitmask.player
-        self.physicsBody?.collisionBitMask = PsxBitmask.obstacle
+        self.physicsBody?.collisionBitMask = PsxBitmask.obstacle | PsxBitmask.tree
         self.physicsBody?.contactTestBitMask = PsxBitmask.enemy
         
         healthText = scene?.childNode(withName: "healthText") as? SKLabelNode
