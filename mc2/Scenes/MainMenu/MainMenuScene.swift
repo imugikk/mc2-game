@@ -8,6 +8,21 @@
 import SpriteKit
 
 class MainMenuScene: Scene {
+    //Observe for Controllers
+    override func sceneDidLoad() {
+        super.sceneDidLoad()
+        
+        InputManager.shared.ObserveForGameControllers()
+        NotificationCenter.default.addObserver(self, selector: #selector(controllerConnected), name: NSNotification.Name.GCControllerDidConnect, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(controllerDisconnected), name: NSNotification.Name.GCControllerDidDisconnect, object: nil)
+    }
+    @objc func controllerConnected() {
+        self.isPaused = false
+    }
+    @objc func controllerDisconnected() {
+        self.isPaused = true
+    }
+    
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         
@@ -24,7 +39,7 @@ class MainMenuScene: Scene {
         InputManager.buttonBPressed.unsubscribe(node: self)
     }
     func startGame() {
-        GameViewController.changeScene(to: "GameScene", in: self.view!)
+        GameViewController.changeScene(to: "TutorialScene", in: self.view!)
     }
     func exitGame() {
         exit(0)
