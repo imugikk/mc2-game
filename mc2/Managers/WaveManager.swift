@@ -59,17 +59,22 @@ class WaveManager {
             enemySpawnRate -= enemySpawnRateDecrement
             enemySpawnRate = max(enemySpawnRate, maxEnemySpawnRate)
             maxEnemyCount += maxEnemyCountIncrement
+            
+            //if lagu awal udah kelar
+            //ganti bgm, play yang transisi
         }
         
         enemiesSpawned = 0
         enemiesKilled = 0
         
         let fadeInAction = SKAction.fadeIn(withDuration: 1)
-        let waitDuration = SKAction.wait(forDuration: 0.5)
-        let fadeOutAction = SKAction.fadeOut(withDuration: 0.5)
+        let waitDuration = SKAction.wait(forDuration: 1)
+        let fadeOutAction = SKAction.fadeOut(withDuration: 1)
         let sequenceAction = SKAction.sequence([fadeInAction, waitDuration, fadeOutAction])
         waveText.run(sequenceAction, completion: {
             self.startSpawningEnemy()
+            //if lagu awal udah kelar,
+            //play lagu in game
         })
     }
     

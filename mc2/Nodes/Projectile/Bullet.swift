@@ -16,6 +16,9 @@ class Bullet: Projectile, HandleContactEnter {
     override func spawn(in scene: SKScene) {
         super.spawn(in: scene)
         
+        //play sfx keris
+        SoundManager.shared.playSoundEffect(audioFileName: "Keris.wav", volume: 1.0, randomizePitch: true)
+        
         self.name = "bullet"
         self.setScale(1.25)
         
