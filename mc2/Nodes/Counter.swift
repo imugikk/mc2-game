@@ -7,12 +7,12 @@
 
 import SpriteKit
 
-class Obstacle: SKSpriteNode, PreSpawned {
+class Counter: SKSpriteNode, PreSpawned {
     func setup() {
         self.physicsBody = SKPhysicsBody(rectangleOf: self.size)
         self.physicsBody?.isDynamic = false
         self.physicsBody?.categoryBitMask = PsxBitmask.obstacle
-        self.physicsBody?.collisionBitMask = PsxBitmask.player
-        self.physicsBody?.contactTestBitMask = PsxBitmask.bullet
+        self.physicsBody?.collisionBitMask = PsxBitmask.player | PsxBitmask.enemy
+        self.physicsBody?.contactTestBitMask = PsxBitmask.bullet | PsxBitmask.enemyBullet
     }
 }

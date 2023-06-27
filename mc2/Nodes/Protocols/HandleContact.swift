@@ -10,3 +10,7 @@ import SpriteKit
 protocol HandleContactEnter {
     func onContactEnter(with other: SKNode?)
 }
+
+protocol HandleContactExit {
+    func onContactExit(with other: SKNode?)
+}

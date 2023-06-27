@@ -16,6 +16,7 @@ class WalkingEnemy: Enemy {
         self.size = CGSize(width: 56.1, height: 25.8)
         self.moveSpeed = 100.0
         self.health = 3
+        self.ingredientColor = .red
     }
     
     override func update(deltaTime: TimeInterval) {

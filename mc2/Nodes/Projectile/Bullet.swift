@@ -24,17 +24,17 @@ class Bullet: Projectile, HandleContactEnter {
     }
     
     func onContactEnter(with other: SKNode?) {
-        if other is Obstacle {
-            bulletTouchesObstacle()
+        if other is Counter {
+            touchingObstacle()
         } else if other is Enemy {
-            let enemy = other as! Enemy
-            bulletTouchesEnemy(enemy: enemy)
+            touchingEnemy(enemy: other as! Enemy)
         }
     }
-    func bulletTouchesObstacle() {
+    
+    func touchingObstacle() {
         self.destroy()
     }
-    func bulletTouchesEnemy(enemy: Enemy) {
+    func touchingEnemy(enemy: Enemy) {
         self.destroy()
         enemy.decreaseHealth(amount: self.damage)
     }

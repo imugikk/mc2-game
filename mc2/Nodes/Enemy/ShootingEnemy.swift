@@ -19,6 +19,7 @@ class ShootingEnemy: Enemy {
         self.size = CGSize(width: 56.1, height: 25.8)
         self.moveSpeed = 150.0
         self.health = 2
+        self.ingredientColor = .blue
     }
     
     override func update(deltaTime: TimeInterval) {

@@ -7,9 +7,11 @@
 
 import SpriteKit
 
-class Enemy: SKSpriteNode, Processable {
+class Enemy: SKSpriteNode, Processable, HandleContactEnter {
     var moveSpeed = 100.0
     var health: Int = 3
+    var damage = 1
+    var ingredientColor: NSColor = .green
     var playerNode: Player? = nil
     static let killedAction = Event()
     
@@ -27,7 +29,7 @@ class Enemy: SKSpriteNode, Processable {
     
     func spawn(in scene: SKScene) {
         scene.addChild(self)
-        self.playerNode = scene.childNode(withName: "player") as? Player
+        self.playerNode = scene.childNode(withName: "hunter") as? Player
         
         self.name = "enemy"
         self.colorBlendFactor = 1
@@ -85,11 +87,21 @@ class Enemy: SKSpriteNode, Processable {
     func dropItem() {
         let itemNode = Ingredient()
         itemNode.position = position
-        itemNode.spawn(in: self.scene!)
+        itemNode.spawn(in: self.scene!, color: ingredientColor)
     }
     
     func destroy() {
         Enemy.killedAction.invoke()
         self.removeFromParent()
+    }
+    
+    func onContactEnter(with other: SKNode?) {
+        if other is Player {
+            touchingPlayer(player: other as! Player)
+        }
+    }
+    
+    func touchingPlayer(player: Player) {
+        player.decreaseHealth(amount: self.damage)
     }
 }

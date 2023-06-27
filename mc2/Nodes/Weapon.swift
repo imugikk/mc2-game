@@ -14,6 +14,10 @@ class Weapon: SKSpriteNode, Processable, PreSpawned {
     
     func setup() {
         self.inputIndex = getUserData(key: "inputIndex")
+        
+        InputManager.buttonXPressed.subscribe(node: self, closure: {
+            self.inputIndex = 1 - self.inputIndex
+        })
     }
     
     func update(deltaTime: TimeInterval) {

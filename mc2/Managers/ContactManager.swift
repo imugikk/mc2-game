@@ -13,6 +13,7 @@ struct PsxBitmask {
     static let obstacle: UInt32 = 4
     static let enemy: UInt32 = 8
     static let enemyBullet: UInt32 = 16
+    static let ingredient: UInt32 = 32
 }
 
 class ContactManager: NSObject, SKPhysicsContactDelegate {
@@ -22,5 +23,12 @@ class ContactManager: NSObject, SKPhysicsContactDelegate {
         
         nodeA?.onContactEnter(with: contact.bodyB.node)
         nodeB?.onContactEnter(with: contact.bodyA.node)
+    }
+    func didEnd(_ contact: SKPhysicsContact) {
+        let nodeA = contact.bodyA.node as? HandleContactExit
+        let nodeB = contact.bodyB.node as? HandleContactExit
+        
+        nodeA?.onContactExit(with: contact.bodyB.node)
+        nodeB?.onContactExit(with: contact.bodyA.node)
     }
 }
