@@ -17,7 +17,7 @@ class Bullet: Projectile, HandleContactEnter {
         super.spawn(in: scene)
         
         //play sfx keris
-        SoundManager.shared.playSoundEffect(audioFileName: "Keris.wav", volume: 1.0, randomizePitch: true)
+        SoundManager.shared.playSoundEffect(in: scene, audioFileName: "Keris.wav", volume: 1.0)
         
         self.name = "bullet"
         self.setScale(1.25)

@@ -10,127 +10,59 @@ import AVFoundation
 
 class SoundManager {
     static let shared = SoundManager()
-    private var audioEngine = AVAudioEngine()
-    private var bgmPlayer: AVAudioPlayer?
+    private var bgmAudioNode: SKAudioNode!
     
     private init() {}
     
-    func playSoundEffect(audioFileName: String, volume: Float = 1.0, randomizePitch: Bool = false) {
+    func playSoundEffect(in scene: SKScene, audioFileName: String, volume: Float = 1.0, randomizePitch: Bool = true) {
+        
         guard let soundURL = Bundle.main.url(forResource: audioFileName, withExtension: nil) else {
             print("Sound file '\(audioFileName)' not found.")
             return
         }
         
-        let audioPlayerNode = AVAudioPlayerNode()
-        audioEngine.attach(audioPlayerNode)
-        
-        if randomizePitch {
-            let pitchEffect = AVAudioUnitTimePitch()
-            pitchEffect.pitch = Float.random(in: -50.0...50.0)
-            print(pitchEffect.pitch)
-            audioEngine.attach(pitchEffect)
+        do{
+            let audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
             
-            audioEngine.connect(audioPlayerNode, to: pitchEffect, format: nil)
-            audioEngine.connect(pitchEffect, to: audioEngine.mainMixerNode, format: nil)
-        } else {
-            audioEngine.connect(audioPlayerNode, to: audioEngine.mainMixerNode, format: nil)
-        }
-        
-        do {
-            let audioFile = try AVAudioFile(forReading: soundURL)
-            audioPlayerNode.scheduleFile(audioFile, at: nil)
-            audioEngine.prepare()
-            try audioEngine.start()
+            let soundEffect = SKAudioNode(fileNamed: audioFileName)
             
-            audioPlayerNode.volume = volume
-            audioPlayerNode.play()
+            soundEffect.autoplayLooped = false
+            soundEffect.isPositional = false
+            soundEffect.run(SKAction.changeVolume(to: volume, duration: 0))
+            
+            if randomizePitch {
+                let randomPitch = Float.random(in: 0.8...1.2)
+                let pitchAction = SKAction.changePlaybackRate(to: randomPitch, duration: 0)
+                soundEffect.run(pitchAction)
+            }
+            
+            scene.addChild(soundEffect)
+            let duration = audioPlayer.duration
+            
+            soundEffect.run(SKAction.sequence([
+                SKAction.wait(forDuration: duration),
+                SKAction.removeFromParent()
+            ]))
+            
+            soundEffect.run(SKAction.play())
         } catch {
-            print("Failed to play sound effect: \(error)")
+            print("Failed to create audio player: \(error)")
         }
     }
     
-    func playBGM(audioFileName: String, volume: Float = 1.0) {
-        guard let soundURL = Bundle.main.url(forResource: audioFileName, withExtension: nil) else {
-            print("Sound file '\(audioFileName)' not found.")
-            return
+    func playBGM(in scene: SKScene, audioFileName: String, volume: Float = 1.0) {
+        if bgmAudioNode != nil{
+            bgmAudioNode.removeFromParent()
+            bgmAudioNode = nil
         }
+        let bgm = SKAudioNode(fileNamed: audioFileName)
+        bgmAudioNode = bgm
         
-        do {
-            bgmPlayer = try AVAudioPlayer(contentsOf: soundURL)
-            bgmPlayer?.volume = volume
-            bgmPlayer?.numberOfLoops = -1 // Infinite loop for background music
-            bgmPlayer?.prepareToPlay()
-            bgmPlayer?.play()
-        } catch {
-            print("Failed to play background music: \(error)")
-        }
-    }
-    
-    func pauseBGM() {
-        bgmPlayer?.pause()
-    }
-    
-    func resumeBGM() {
-        bgmPlayer?.play()
+        bgmAudioNode.autoplayLooped = true
+        bgmAudioNode.isPositional = false
+        bgmAudioNode.run(SKAction.changeVolume(to: volume, duration: 0))
+        
+        scene.addChild(bgmAudioNode)
     }
 }
 
-
-
-
-
-//import AVFoundation
-
-//class SoundManager{
-//    static let shared = SoundManager()
-//    private var audioPlayer: AVAudioPlayer?
-//    private init() { }
-//
-//    func playSoundEffect(audioFileName: String, volume: Float = 1.0, randomizePitch: Bool = false) {
-//        guard let soundURL = Bundle.main.url(forResource: audioFileName, withExtension: nil) else {
-//            print("Sound file '\(audioFileName)' not found.")
-//            return
-//        }
-//
-//        do {
-//            audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
-//            audioPlayer?.volume = volume
-//
-//            if randomizePitch {
-//                let randomPitch = Float.random(in: 0.8...1.2)
-//                audioPlayer?.enableRate = true
-//                audioPlayer?.rate = randomPitch
-//            }
-//
-//            audioPlayer?.prepareToPlay()
-//            audioPlayer?.play()
-//        } catch {
-//            print("Failed to play sound effect: \(error)")
-//        }
-//    }
-//
-//    func playBGM(audioFileName: String, volume: Float = 1.0) {
-//        guard let soundURL = Bundle.main.url(forResource: audioFileName, withExtension: nil) else {
-//            print("Sound file '\(audioFileName)' not found.")
-//            return
-//        }
-//
-//        do {
-//            audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
-//            audioPlayer?.volume = volume
-//            audioPlayer?.numberOfLoops = -1 // Infinite loop for background music
-//            audioPlayer?.prepareToPlay()
-//            audioPlayer?.play()
-//        } catch {
-//            print("Failed to play background music: \(error)")
-//        }
-//    }
-//
-//    func pauseBGM() {
-//        audioPlayer?.pause()
-//    }
-//
-//    func resumeBGM() {
-//        audioPlayer?.play()
-//    }
-//}

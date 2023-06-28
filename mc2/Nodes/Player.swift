@@ -89,7 +89,7 @@ class Player: SKSpriteNode, Processable, PreSpawned, HandleContactEnter {
         guard health > 0, !iFrameActive else { return }
         
         // play sfx character hit
-        SoundManager.shared.playSoundEffect(audioFileName: "Character Hit.wav", volume: 3.0, randomizePitch: true)
+        SoundManager.shared.playSoundEffect(in: scene!, audioFileName: "Character Hit.wav", volume: 3.0, randomizePitch: true)
         
         health -= amount
         health = max(0, health)

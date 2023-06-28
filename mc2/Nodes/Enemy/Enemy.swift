@@ -80,7 +80,7 @@ class Enemy: SKSpriteNode, Processable {
         //if hp > 0
         //play sfx enemy hit
         if health > 0{
-            SoundManager.shared.playSoundEffect(audioFileName: "Enemy Hit.wav", volume: 1.0, randomizePitch: true)
+            SoundManager.shared.playSoundEffect(in: scene!, audioFileName: "Enemy Hit.wav", volume: 1.0, randomizePitch: true)
         }
         
         if health <= 0 {
@@ -97,7 +97,7 @@ class Enemy: SKSpriteNode, Processable {
     
     func destroy() {
          // play sfx enemy die
-        SoundManager.shared.playSoundEffect(audioFileName: "Enemy Die.wav", volume: 3.0, randomizePitch: true)
+        SoundManager.shared.playSoundEffect(in: scene!, audioFileName: "Enemy Die.wav", volume: 3.0, randomizePitch: true)
         
         Enemy.killedAction.invoke()
         self.removeFromParent()

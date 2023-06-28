@@ -22,7 +22,7 @@ class EnemyBullet: Projectile {
     override func spawn(in scene: SKScene) {
         
         //play sfx enemy projectile
-        SoundManager.shared.playSoundEffect(audioFileName: "Enemy Projectile.wav", volume: 3.0, randomizePitch: true)
+        SoundManager.shared.playSoundEffect(in: scene, audioFileName: "Enemy Projectile.wav", volume: 3.0)
         
         self.playerNode = scene.childNode(withName: "player") as? Player
         self.moveSpeed = 600.0
