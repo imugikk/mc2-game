@@ -26,6 +26,9 @@ class MainMenuScene: Scene {
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         
+        //play bgm buat main menu
+        SoundManager.shared.playBGM(in: self, audioFileName: "MainMenu.wav")
+        
         InputManager.buttonAPressed.subscribe(node: self, closure: startGame)
         InputManager.buttonBPressed.subscribe(node: self, closure: exitGame)
         

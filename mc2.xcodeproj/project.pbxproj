@@ -9,6 +9,17 @@
 /* Begin PBXBuildFile section */
 		8BDA8A9B2A4AA158002DB68F /* TutorialScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8BDA8A9A2A4AA158002DB68F /* TutorialScene.sks */; };
 		8BDA8A9D2A4AA5A2002DB68F /* TutorialScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDA8A9C2A4AA5A2002DB68F /* TutorialScene.swift */; };
+		9F31B5192A4BF76800C54F16 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F31B5182A4BF76800C54F16 /* SoundManager.swift */; };
+		9F31B5242A4BFAD200C54F16 /* Enemy Die.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9F31B51B2A4BFAD100C54F16 /* Enemy Die.wav */; };
+		9F31B5252A4BFAD200C54F16 /* Character Hit.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9F31B51C2A4BFAD100C54F16 /* Character Hit.wav */; };
+		9F31B5262A4BFAD200C54F16 /* Wave 1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9F31B51D2A4BFAD100C54F16 /* Wave 1.wav */; };
+		9F31B5272A4BFAD200C54F16 /* Enemy Projectile.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9F31B51E2A4BFAD100C54F16 /* Enemy Projectile.wav */; };
+		9F31B5282A4BFAD200C54F16 /* In Game.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9F31B51F2A4BFAD100C54F16 /* In Game.wav */; };
+		9F31B5292A4BFAD200C54F16 /* MainMenu.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9F31B5202A4BFAD200C54F16 /* MainMenu.wav */; };
+		9F31B52A2A4BFAD200C54F16 /* Game Over.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9F31B5212A4BFAD200C54F16 /* Game Over.wav */; };
+		9F31B52B2A4BFAD200C54F16 /* Enemy Hit.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9F31B5222A4BFAD200C54F16 /* Enemy Hit.wav */; };
+		9F31B52C2A4BFAD200C54F16 /* Keris.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9F31B5232A4BFAD200C54F16 /* Keris.wav */; };
+		9F31B52E2A4BFC4200C54F16 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F31B52D2A4BFC4200C54F16 /* Tree.swift */; };
 		BF12034A2A4368EC00A54351 /* ShootingEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1203492A4368EC00A54351 /* ShootingEnemy.swift */; };
 		BF12034C2A436A5800A54351 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF12034B2A436A5800A54351 /* Enemy.swift */; };
 		BF3E31EC2A4495D1002C7214 /* WaveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3E31EB2A4495D1002C7214 /* WaveManager.swift */; };
@@ -66,6 +77,17 @@
 /* Begin PBXFileReference section */
 		8BDA8A9A2A4AA158002DB68F /* TutorialScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TutorialScene.sks; sourceTree = "<group>"; };
 		8BDA8A9C2A4AA5A2002DB68F /* TutorialScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialScene.swift; sourceTree = "<group>"; };
+		9F31B5182A4BF76800C54F16 /* SoundManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		9F31B51B2A4BFAD100C54F16 /* Enemy Die.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Enemy Die.wav"; sourceTree = "<group>"; };
+		9F31B51C2A4BFAD100C54F16 /* Character Hit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Character Hit.wav"; sourceTree = "<group>"; };
+		9F31B51D2A4BFAD100C54F16 /* Wave 1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Wave 1.wav"; sourceTree = "<group>"; };
+		9F31B51E2A4BFAD100C54F16 /* Enemy Projectile.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Enemy Projectile.wav"; sourceTree = "<group>"; };
+		9F31B51F2A4BFAD100C54F16 /* In Game.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "In Game.wav"; sourceTree = "<group>"; };
+		9F31B5202A4BFAD200C54F16 /* MainMenu.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = MainMenu.wav; sourceTree = "<group>"; };
+		9F31B5212A4BFAD200C54F16 /* Game Over.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Game Over.wav"; sourceTree = "<group>"; };
+		9F31B5222A4BFAD200C54F16 /* Enemy Hit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Enemy Hit.wav"; sourceTree = "<group>"; };
+		9F31B5232A4BFAD200C54F16 /* Keris.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Keris.wav; sourceTree = "<group>"; };
+		9F31B52D2A4BFC4200C54F16 /* Tree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 		BF1203492A4368EC00A54351 /* ShootingEnemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShootingEnemy.swift; sourceTree = "<group>"; };
 		BF12034B2A436A5800A54351 /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		BF3E31EB2A4495D1002C7214 /* WaveManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveManager.swift; sourceTree = "<group>"; };
@@ -141,6 +163,22 @@
 			path = Tutorial;
 			sourceTree = "<group>";
 		};
+		9F31B51A2A4BFABC00C54F16 /* Sound Files */ = {
+			isa = PBXGroup;
+			children = (
+				9F31B51C2A4BFAD100C54F16 /* Character Hit.wav */,
+				9F31B51B2A4BFAD100C54F16 /* Enemy Die.wav */,
+				9F31B5222A4BFAD200C54F16 /* Enemy Hit.wav */,
+				9F31B51E2A4BFAD100C54F16 /* Enemy Projectile.wav */,
+				9F31B5212A4BFAD200C54F16 /* Game Over.wav */,
+				9F31B51F2A4BFAD100C54F16 /* In Game.wav */,
+				9F31B5232A4BFAD200C54F16 /* Keris.wav */,
+				9F31B5202A4BFAD200C54F16 /* MainMenu.wav */,
+				9F31B51D2A4BFAD100C54F16 /* Wave 1.wav */,
+			);
+			path = "Sound Files";
+			sourceTree = "<group>";
+		};
 		BF08BA5E2A3BBE1800C4DCC5 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +186,7 @@
 				BFCA4F162A3F25B00013DA14 /* ContactManager.swift */,
 				BF3E31EB2A4495D1002C7214 /* WaveManager.swift */,
 				BF3E31EE2A451028002C7214 /* ScoreManager.swift */,
+				9F31B5182A4BF76800C54F16 /* SoundManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -257,6 +296,7 @@
 				BF91DCE12A4474C7004DC17F /* Projectile */,
 				BF91DCE02A4474BC004DC17F /* Enemy */,
 				BF85CA0F2A3822AB00AC95E8 /* Player.swift */,
+				9F31B52D2A4BFC4200C54F16 /* Tree.swift */,
 				BF9500542A3983F700E2B780 /* Weapon.swift */,
 				BF91DCDE2A446BF2004DC17F /* Obstacle.swift */,
 				BFCA4F222A428F3E0013DA14 /* Ingredient.swift */,
@@ -295,6 +335,7 @@
 		F14C592F2A373D83000F3D22 /* mc2 */ = {
 			isa = PBXGroup;
 			children = (
+				9F31B51A2A4BFABC00C54F16 /* Sound Files */,
 				BF85CA122A38237400AC95E8 /* Setup */,
 				BF3E31FD2A453001002C7214 /* Scenes */,
 				BFCA4F182A3F28910013DA14 /* Nodes */,
@@ -421,12 +462,21 @@
 			files = (
 				BF3E31FA2A451028002C7214 /* GameOverScene.sks in Resources */,
 				F14C59332A373D83000F3D22 /* GameScene.sks in Resources */,
+				9F31B52C2A4BFAD200C54F16 /* Keris.wav in Resources */,
+				9F31B5242A4BFAD200C54F16 /* Enemy Die.wav in Resources */,
+				9F31B5262A4BFAD200C54F16 /* Wave 1.wav in Resources */,
 				BF3E31F82A451028002C7214 /* CreditScene.sks in Resources */,
 				BF3E31F92A451028002C7214 /* MainMenu.sks in Resources */,
+				9F31B5292A4BFAD200C54F16 /* MainMenu.wav in Resources */,
 				F19F21AF2A4AA00E0069A4AD /* ControllerScene.sks in Resources */,
 				F14C593B2A373D84000F3D22 /* Assets.xcassets in Resources */,
+				9F31B5252A4BFAD200C54F16 /* Character Hit.wav in Resources */,
 				8BDA8A9B2A4AA158002DB68F /* TutorialScene.sks in Resources */,
 				F14C593E2A373D84000F3D22 /* Main.storyboard in Resources */,
+				9F31B52B2A4BFAD200C54F16 /* Enemy Hit.wav in Resources */,
+				9F31B52A2A4BFAD200C54F16 /* Game Over.wav in Resources */,
+				9F31B5272A4BFAD200C54F16 /* Enemy Projectile.wav in Resources */,
+				9F31B5282A4BFAD200C54F16 /* In Game.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,10 +526,12 @@
 				BF91DCDF2A446BF2004DC17F /* Obstacle.swift in Sources */,
 				BF3E31F62A451028002C7214 /* ScoreManager.swift in Sources */,
 				BF12034C2A436A5800A54351 /* Enemy.swift in Sources */,
+				9F31B52E2A4BFC4200C54F16 /* Tree.swift in Sources */,
 				F14C59312A373D83000F3D22 /* AppDelegate.swift in Sources */,
 				BF9500572A3AABAD00E2B780 /* Bullet.swift in Sources */,
 				BF95005A2A3BA77300E2B780 /* Event.swift in Sources */,
 				BF3E31EC2A4495D1002C7214 /* WaveManager.swift in Sources */,
+				9F31B5192A4BF76800C54F16 /* SoundManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,7 +699,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5ZU9K8SF89;
+				DEVELOPMENT_TEAM = PVB7U9FX9T;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";

@@ -76,6 +76,13 @@ class Enemy: SKSpriteNode, Processable {
         guard health > 0 else { return }
 
         health -= amount
+        
+        //if hp > 0
+        //play sfx enemy hit
+        if health > 0{
+            SoundManager.shared.playSoundEffect(in: scene!, audioFileName: "Enemy Hit.wav", volume: 1.0, randomizePitch: true)
+        }
+        
         if health <= 0 {
             dropItem()
             destroy()
@@ -83,12 +90,33 @@ class Enemy: SKSpriteNode, Processable {
     }
 
     func dropItem() {
-        let itemNode = Ingredient()
-        itemNode.position = position
-        itemNode.spawn(in: self.scene!)
+        let dropProbability: CGFloat = 2.5
+        let random = CGFloat.random(in: 0...5)
+//        let randomIndex = CGFloat.random(in: 0...5)
+
+        if random <= dropProbability {
+            var customTexture = SKTexture(imageNamed: "POTIONY")
+            if self.name == "walkingEnemy" {
+                var imageName: String
+                if random <= 1.25 {
+                    imageName = "POTIONG"
+                } else {
+                    imageName = "POTIONY"
+                }
+                customTexture = SKTexture(imageNamed: imageName)
+            } else if self.name == "shootingEnemy" {
+                customTexture = SKTexture(imageNamed: "POTIONR")
+            }
+            let itemNode = Ingredient(texture: customTexture)
+            itemNode.position = position
+            itemNode.spawn(in: self.scene!)
+        }
     }
     
     func destroy() {
+         // play sfx enemy die
+        SoundManager.shared.playSoundEffect(in: scene!, audioFileName: "Enemy Die.wav", volume: 3.0, randomizePitch: true)
+        
         Enemy.killedAction.invoke()
         self.removeFromParent()
     }

@@ -12,10 +12,9 @@ class Ingredient: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init() {
-        let texture = SKTexture(imageNamed: "Star")
-        let color: NSColor = .green
-        let size = CGSize(width: 30.0, height: 30.0)
+    init(texture: SKTexture) {
+        let color: NSColor = .labelColor
+        let size = CGSize(width: 50.0, height: 50.0)
         
         super.init(texture: texture, color: color, size: size)
     }

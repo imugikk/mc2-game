@@ -14,7 +14,8 @@ class GameOverScene: Scene {
         InputManager.buttonAPressed.subscribe(node: self, closure: restart)
         InputManager.buttonBPressed.subscribe(node: self, closure: moveToMainMenu)
         InputManager.buttonYPressed.subscribe(node: self, closure: moveToCredits)
-        
+        SoundManager.shared.playBGM(in: self, audioFileName: "MainMenu.wav")
+
         let scoreLabel = childNode(withName: "scoreText") as? SKLabelNode
         let highScoreLabel = childNode(withName: "highScoreText") as? SKLabelNode
         ScoreManager.shared.setup(scoreLabel: scoreLabel, highScoreLabel: highScoreLabel)
