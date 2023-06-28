@@ -13,10 +13,9 @@ class WalkingEnemy: Enemy {
         super.spawn(in: scene)
         
         self.name = "walkingEnemy"
-        self.size = CGSize(width: 56.1, height: 25.8)
         self.moveSpeed = 100.0
         self.health = 3
-        self.ingredientColor = .red
+        self.ingredientType = .red
     }
     
     override func update(deltaTime: TimeInterval) {
@@ -24,7 +23,7 @@ class WalkingEnemy: Enemy {
         guard let playerNode, !playerNode.destroyed else { return }
         
         let direction = (playerNode.position - self.position).normalized()
-        let movement = moveSpeed * deltaTime * direction
+        let movement = moveSpeed * deltaTime * direction * moveSpeedMultiplier
         self.position += movement
     }
 }

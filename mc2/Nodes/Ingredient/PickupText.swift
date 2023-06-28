@@ -7,7 +7,7 @@
 
 import SpriteKit
 
-class PopupText: SKNode, PreSpawned {
+class PickupText: SKNode, PreSpawned {
     private var pickupText: SKLabelNode!
     
     func setup() {

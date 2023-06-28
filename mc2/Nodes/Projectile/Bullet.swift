@@ -20,11 +20,15 @@ class Bullet: Projectile, HandleContactEnter {
         self.setScale(1.25)
         
         self.physicsBody?.categoryBitMask = PsxBitmask.bullet
-        self.physicsBody?.contactTestBitMask = PsxBitmask.obstacle | PsxBitmask.enemy
+        self.physicsBody?.contactTestBitMask |= PsxBitmask.enemy
+        
+        if PowerupManager.shared.damagePowerupActive {
+            self.damage = 3
+        }
     }
     
     func onContactEnter(with other: SKNode?) {
-        if other is Counter {
+        if other is Obstacle {
             touchingObstacle()
         } else if other is Enemy {
             touchingEnemy(enemy: other as! Enemy)

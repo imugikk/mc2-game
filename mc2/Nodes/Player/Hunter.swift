@@ -16,10 +16,6 @@ class Hunter: Player {
     override func setup() {
         super.setup()
         
-        self.physicsBody?.categoryBitMask = PsxBitmask.player
-        self.physicsBody?.collisionBitMask = PsxBitmask.obstacle | PsxBitmask.player
-        self.physicsBody?.contactTestBitMask = PsxBitmask.enemy | PsxBitmask.enemyBullet
-        
         weapon = self.childNode(withName: "weapon") as? Weapon
         weapon.setup()
         bulletSpawnPos = weapon.childNode(withName: "bulletSpawnPos")

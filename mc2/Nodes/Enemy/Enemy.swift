@@ -9,9 +9,10 @@ import SpriteKit
 
 class Enemy: SKSpriteNode, Processable, HandleContactEnter {
     var moveSpeed = 100.0
+    var moveSpeedMultiplier = 1.0
     var health: Int = 3
     var damage = 1
-    var ingredientColor: NSColor = .green
+    var ingredientType = IngredientType.blue
     var playerNode: Player? = nil
     static let killedAction = Event()
     
@@ -22,8 +23,7 @@ class Enemy: SKSpriteNode, Processable, HandleContactEnter {
     init() {
         let texture = SKTexture(imageNamed: "Capsule")
         let color: NSColor = .brown
-        let size = CGSize(width: 50.0, height: 50.0)
-        
+        let size = texture.size()
         super.init(texture: texture, color: color, size: size)
     }
     
@@ -32,9 +32,15 @@ class Enemy: SKSpriteNode, Processable, HandleContactEnter {
         self.playerNode = scene.childNode(withName: "hunter") as? Player
         
         self.name = "enemy"
+        self.xScale = 0.1
+        self.yScale = 0.1
         self.colorBlendFactor = 1
         self.zPosition = -3
         self.zRotationInDegrees = 90.0
+        
+        if PowerupManager.shared.slowMoPowerupActive {
+            moveSpeedMultiplier = 0.5
+        }
         
         self.physicsBody = SKPhysicsBody(texture: texture!, alphaThreshold: 0.1, size: size)
         self.physicsBody?.isDynamic = true
@@ -44,6 +50,17 @@ class Enemy: SKSpriteNode, Processable, HandleContactEnter {
         self.physicsBody?.contactTestBitMask = PsxBitmask.bullet | PsxBitmask.player
         
         randomizePosition()
+        
+        PowerupManager.shared.slowMoPowerupStarted.subscribe(node: self, closure: slowDownMoveSpeed)
+        PowerupManager.shared.slowMoPowerupStopped.subscribe(node: self, closure: normalizeMoveSpeed)
+    }
+    
+    func slowDownMoveSpeed(){
+        self.moveSpeedMultiplier = 0.5
+    }
+    
+    func normalizeMoveSpeed(){
+        self.moveSpeedMultiplier = 1.0
     }
     
     func update(deltaTime: TimeInterval) {}
@@ -87,11 +104,15 @@ class Enemy: SKSpriteNode, Processable, HandleContactEnter {
     func dropItem() {
         let itemNode = Ingredient()
         itemNode.position = position
-        itemNode.spawn(in: self.scene!, color: ingredientColor)
+        itemNode.spawn(in: self.scene!, type: self.ingredientType)
     }
     
     func destroy() {
         Enemy.killedAction.invoke()
+        
+        PowerupManager.shared.slowMoPowerupStarted.unsubscribe(node: self)
+        PowerupManager.shared.slowMoPowerupStopped.unsubscribe(node: self)
+        
         self.removeFromParent()
     }
     

@@ -16,10 +16,9 @@ class ShootingEnemy: Enemy {
         super.spawn(in: scene)
         
         self.name = "shootingEnemy"
-        self.size = CGSize(width: 56.1, height: 25.8)
         self.moveSpeed = 150.0
         self.health = 2
-        self.ingredientColor = .blue
+        self.ingredientType = .blue
     }
     
     override func update(deltaTime: TimeInterval) {
@@ -38,7 +37,7 @@ class ShootingEnemy: Enemy {
     
     func chasePlayer(_ offset: CGPoint, _ deltaTime: TimeInterval) {
         let direction = offset.normalized()
-        let movement = moveSpeed * deltaTime * direction
+        let movement = moveSpeed * deltaTime * direction * moveSpeedMultiplier
         self.position += movement
     }
     

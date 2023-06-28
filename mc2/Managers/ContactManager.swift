@@ -10,10 +10,11 @@ import SpriteKit
 struct PsxBitmask {
     static let player: UInt32 = 1
     static let bullet: UInt32 = 2
-    static let obstacle: UInt32 = 4
-    static let enemy: UInt32 = 8
-    static let enemyBullet: UInt32 = 16
-    static let ingredient: UInt32 = 32
+    static let enemy: UInt32 = 4
+    static let enemyBullet: UInt32 = 8
+    static let ingredient: UInt32 = 16
+    static let obstacle: UInt32 = 32
+    static let circleCast: UInt32 = 64
 }
 
 class ContactManager: NSObject, SKPhysicsContactDelegate {

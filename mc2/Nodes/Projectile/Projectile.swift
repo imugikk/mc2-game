@@ -9,7 +9,9 @@ import SpriteKit
 
 class Projectile: SKSpriteNode, Processable {
     var moveSpeed = 1800.0
+    var moveSpeedMultiplier = 1.0
     var damage = 1
+    var startingDirection: CGPoint = CGPoint.zero
     
     var moveDirection: CGPoint {
         CGPoint.zero
@@ -36,8 +38,14 @@ class Projectile: SKSpriteNode, Processable {
         self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width/2)
         self.physicsBody?.isDynamic = true
         self.physicsBody?.collisionBitMask = 0
+        self.physicsBody?.contactTestBitMask = PsxBitmask.obstacle
         
-        let velocity = moveDirection * moveSpeed
+        startingDirection = moveDirection
+        updateVelocity()
+    }
+    
+    func updateVelocity() {
+        let velocity = startingDirection * moveSpeed * moveSpeedMultiplier
         self.physicsBody?.velocity = CGVector(dx: velocity.x, dy: velocity.y)
     }
     

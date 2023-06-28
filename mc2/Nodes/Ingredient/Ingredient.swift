@@ -5,10 +5,17 @@
 //  Created by Tiffany Angela Indryani on 14/06/23.
 //
 
-import GameplayKit
+import SpriteKit
+
+enum IngredientType {
+    case red
+    case blue
+}
 
 class Ingredient: SKSpriteNode, HandleContactEnter, HandleContactExit {
-    var pickUpText: PopupText!
+    var pickUpText: PickupText!
+    var type: IngredientType!
+    var stringRepresentation = ""
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -22,12 +29,12 @@ class Ingredient: SKSpriteNode, HandleContactEnter, HandleContactExit {
         super.init(texture: texture, color: color, size: size)
     }
     
-    func spawn(in scene: SKScene, color: NSColor) {
+    func spawn(in scene: SKScene, type: IngredientType) {
         scene.addChild(self)
         
-        self.name = "\(color)Ingredient"
+        setupType(type: type)
+        self.name = "\(color.accessibilityName)Ingredient"
         self.colorBlendFactor = 1
-        self.color = color
         self.zPosition = -5
         
         self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width/2.0 + 5.0)
@@ -37,7 +44,29 @@ class Ingredient: SKSpriteNode, HandleContactEnter, HandleContactExit {
         self.physicsBody?.collisionBitMask = 0
         self.physicsBody?.contactTestBitMask = PsxBitmask.player
         
-        pickUpText = scene.childNode(withName: "pickupTextParent") as? PopupText
+        pickUpText = scene.childNode(withName: "pickupTextParent") as? PickupText
+    }
+    
+    func spawn(in node: SKNode, type: IngredientType) {
+        node.addChild(self)
+        
+        setupType(type: type)
+        self.name = "\(color.accessibilityName)Ingredient"
+        self.colorBlendFactor = 1
+        self.zPosition = 10
+        self.position = CGPoint.zero
+    }
+    
+    func setupType(type: IngredientType){
+        self.type = type
+        switch type {
+        case .red:
+            self.color = .red
+            stringRepresentation = "R"
+        case .blue:
+            self.color = .blue
+            stringRepresentation = "B"
+        }
     }
     
     func onContactEnter(with other: SKNode?) {
@@ -52,13 +81,18 @@ class Ingredient: SKSpriteNode, HandleContactEnter, HandleContactExit {
     }
     
     func touchesPlayerBegin(chef: Chef) {
+        if chef.isHoldingIngredient { return }
+        
         pickUpText.show(pos: self.position)
         chef.contactedIngredient = self
     }
     
     func touchesPlayerEnd(chef: Chef) {
+        if chef.isHoldingIngredient { return }
+        
         pickUpText.hide()
         chef.contactedIngredient = nil
+        chef.checkCollisionWIthIngredient()
     }
     
     func destroy() {

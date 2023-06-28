@@ -9,38 +9,76 @@ import SpriteKit
 
 class Chef: Player {
     var contactedIngredient: Ingredient? = nil
-    var ingredientSprite: SKSpriteNode!
+    var heldIngredient: Ingredient? = nil
+    var ingredientHolder: SKNode!
+    
+    var isHoldingIngredient: Bool {
+        heldIngredient != nil
+    }
+    var isTouchingTable = false
     
     override func setup() {
         super.setup()
         
         self.moveSpeed = 212.5
-        self.ingredientSprite = self.childNode(withName: "ingredientSprite") as? SKSpriteNode
-        self.ingredientSprite.alpha = 1.0
-        self.ingredientSprite.isHidden = true
+        self.ingredientHolder = self.childNode(withName: "ingredientHolder")
         
-        self.physicsBody?.categoryBitMask = PsxBitmask.player
-        self.physicsBody?.collisionBitMask = PsxBitmask.obstacle | PsxBitmask.player
-        self.physicsBody?.contactTestBitMask = PsxBitmask.enemy | PsxBitmask.enemyBullet
+        self.physicsBody?.contactTestBitMask |= PsxBitmask.ingredient
         
         InputManager.buttonAPressed.subscribe(node: self, closure: pickupOrDropIngredient)
     }
-    
-    func pickupOrDropIngredient() {
-        if !ingredientSprite.isHidden {
-            ingredientSprite.isHidden = true
-            
-            let ingredient = Ingredient()
-            ingredient.position = self.position
-            ingredient.spawn(in: self.scene!, color: ingredientSprite.color)
-        }
         
-        if let contactedIngredient {
-            ingredientSprite.texture = contactedIngredient.texture
-            ingredientSprite.color = contactedIngredient.color
-            ingredientSprite.isHidden = false
-            contactedIngredient.onContactExit(with: self)
-            contactedIngredient.destroy()
+    func pickupOrDropIngredient() {
+        if let contactedIngredient, !isHoldingIngredient {
+            pickupIngredient(contactedIngredient)
+        }
+        else if let heldIngredient, !isTouchingTable {
+            dropIngredient(heldIngredient)
+        }
+        else if let heldIngredient, isTouchingTable {
+            placeIngredient(heldIngredient)
+        }
+    }
+    
+    func pickupIngredient(_ contactedIngredient: Ingredient) {
+        let heldIngredient = Ingredient()
+        heldIngredient.spawn(in: ingredientHolder, type: contactedIngredient.type)
+        heldIngredient.globalPosition = ingredientHolder.globalPosition
+        self.heldIngredient = heldIngredient
+
+        contactedIngredient.pickUpText.hide()
+        contactedIngredient.destroy()
+        self.contactedIngredient = nil
+    }
+    
+    func dropIngredient(_ heldIngredient: Ingredient) {
+        heldIngredient.destroy()
+        self.heldIngredient = nil
+        
+        let ingredient = Ingredient()
+        ingredient.position = self.position
+        ingredient.spawn(in: self.scene!, type: heldIngredient.type)
+    }
+    
+    func placeIngredient(_ heldIngredient: Ingredient) {
+        heldIngredient.destroy()
+        self.heldIngredient = nil
+        
+        let table = scene!.childNode(withName: "table") as! Table
+        table.insertIngredient(type: heldIngredient.type)
+        
+        table.toggleHighlight(enabled: false)
+        isTouchingTable = false
+        checkCollisionWIthIngredient()
+    }
+    
+    func checkCollisionWIthIngredient() {
+        if let chefBody = self.physicsBody {
+            let contactedIngredients = chefBody.allContactedBodies().filter({ $0.node is Ingredient })
+            if contactedIngredients.count > 0 {
+                let ingredient = contactedIngredients.last!.node as! Ingredient
+                ingredient.touchesPlayerBegin(chef: self)
+            }
         }
     }
     

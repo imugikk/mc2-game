@@ -7,7 +7,7 @@
 
 import SpriteKit
 
-class Counter: SKSpriteNode, PreSpawned {
+class Obstacle: SKSpriteNode, PreSpawned {
     func setup() {
         self.physicsBody = SKPhysicsBody(rectangleOf: self.size)
         self.physicsBody?.isDynamic = false

@@ -29,6 +29,9 @@ class Player: SKSpriteNode, Processable, PreSpawned {
         self.physicsBody = SKPhysicsBody(texture: texture!, alphaThreshold: 0.1, size: size)
         self.physicsBody?.isDynamic = true
         self.physicsBody?.allowsRotation = false
+        self.physicsBody?.categoryBitMask = PsxBitmask.player
+        self.physicsBody?.collisionBitMask = PsxBitmask.obstacle | PsxBitmask.player
+        self.physicsBody?.contactTestBitMask = PsxBitmask.enemy | PsxBitmask.enemyBullet
         
         Player.healthText = scene?.childNode(withName: "healthText") as? SKLabelNode
         Player.health = Player.maxHealth
@@ -66,10 +69,14 @@ class Player: SKSpriteNode, Processable, PreSpawned {
         return CGPoint(x: constrainedX, y: constrainedY)
     }
     
+    static func increaseHealth() {
+        health += 1
+    }
+    
     func decreaseHealth(amount: Int) {
         guard Player.health > 0, !iFrameActive else { return }
         
-        Player.health -= amount
+//        Player.health -= amount
         Player.health = max(0, Player.health)
         enableIFrame()
         
