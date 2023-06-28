@@ -76,7 +76,7 @@ class Player: SKSpriteNode, Processable, PreSpawned {
     func decreaseHealth(amount: Int) {
         guard Player.health > 0, !iFrameActive else { return }
         
-//        Player.health -= amount
+        Player.health -= amount
         Player.health = max(0, Player.health)
         enableIFrame()
         

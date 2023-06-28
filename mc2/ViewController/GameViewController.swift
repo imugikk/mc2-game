@@ -24,7 +24,7 @@ class GameViewController: NSViewController {
             scene.scaleMode = .aspectFit
             let transition = SKTransition.fade(withDuration: 0.25)
             view.presentScene(scene, transition: transition)
-            view.showsPhysics = true
+//            view.showsPhysics = true
         }
     }
 }
