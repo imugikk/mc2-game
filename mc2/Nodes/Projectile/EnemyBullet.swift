@@ -26,8 +26,8 @@ class EnemyBullet: Projectile {
         super.spawn(in: scene)
         
         self.name = "enemyBullet"
-        self.size = CGSize(width: 15, height: 15)
-        self.color = .purple        
+        self.size = CGSize(width: 20, height: 20)
+        self.color = .red
         
         self.physicsBody?.categoryBitMask = PsxBitmask.enemyBullet
         self.physicsBody?.contactTestBitMask = PsxBitmask.player

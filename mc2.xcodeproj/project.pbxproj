@@ -43,6 +43,7 @@
 		F14C593E2A373D84000F3D22 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F14C593C2A373D84000F3D22 /* Main.storyboard */; };
 		F19F21AF2A4AA00E0069A4AD /* ControllerScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F19F21AE2A4AA00E0069A4AD /* ControllerScene.sks */; };
 		F19F21B12A4AA48D0069A4AD /* ControllerScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19F21B02A4AA48D0069A4AD /* ControllerScene.swift */; };
+		F19F21B32A4BF28E0069A4AD /* BigWalkingEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19F21B22A4BF28E0069A4AD /* BigWalkingEnemy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 		F14C594E2A373D84000F3D22 /* mc2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mc2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F19F21AE2A4AA00E0069A4AD /* ControllerScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ControllerScene.sks; sourceTree = "<group>"; };
 		F19F21B02A4AA48D0069A4AD /* ControllerScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerScene.swift; sourceTree = "<group>"; };
+		F19F21B22A4BF28E0069A4AD /* BigWalkingEnemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigWalkingEnemy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +215,7 @@
 				BF12034B2A436A5800A54351 /* Enemy.swift */,
 				BFCA4F242A428F3E0013DA14 /* WalkingEnemy.swift */,
 				BF1203492A4368EC00A54351 /* ShootingEnemy.swift */,
+				F19F21B22A4BF28E0069A4AD /* BigWalkingEnemy.swift */,
 			);
 			path = Enemy;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 				BF3E31FB2A451028002C7214 /* MainMenuScene.swift in Sources */,
 				F14C59392A373D83000F3D22 /* GameViewController.swift in Sources */,
 				BFCA4F172A3F25B00013DA14 /* ContactManager.swift in Sources */,
+				F19F21B32A4BF28E0069A4AD /* BigWalkingEnemy.swift in Sources */,
 				BFCA4F282A428F3E0013DA14 /* WalkingEnemy.swift in Sources */,
 				BF9500532A392A6800E2B780 /* InputManager.swift in Sources */,
 				BF9500552A3983F700E2B780 /* Weapon.swift in Sources */,

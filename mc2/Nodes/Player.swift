@@ -24,6 +24,7 @@ class Player: SKSpriteNode, Processable, PreSpawned, HandleContactEnter {
     
     var lastJoystickDirection: CGPoint = .zero
     var isRunning: Bool = false
+    var twinkleActionKey = "twinkleAction"
     
     private var healthBar: [SKNode?]!
     
@@ -114,21 +115,21 @@ class Player: SKSpriteNode, Processable, PreSpawned, HandleContactEnter {
     
     func enableIFrame() {
         iFrameActive = true
-        twinkleScreen(duration: iFrameDuration)
+        twinkleScreen()
         
         self.run(SKAction.wait(forDuration: iFrameDuration)) {
             self.iFrameActive = false
-            self.removeAllActions()
+            self.removeAction(forKey: "twinkleActionKey")
         }
     }
     
-    func twinkleScreen(duration: Double) {
+    func twinkleScreen() {
         let fadeInAction = SKAction.fadeIn(withDuration: 0.1)
         let fadeOutAction = SKAction.fadeOut(withDuration: 0.1)
         let twinkleSequence = SKAction.sequence([fadeOutAction, fadeInAction])
         let twinkleAction = SKAction.repeatForever(twinkleSequence)
         
-        self.run(twinkleAction)
+        self.run(twinkleAction, withKey: "twinkleActionKey")
     }
     
     func destroy() {

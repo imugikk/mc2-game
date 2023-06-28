@@ -16,7 +16,9 @@ class ShootingEnemy: Enemy {
         super.spawn(in: scene)
         
         self.name = "shootingEnemy"
-        self.size = CGSize(width: 56.1, height: 25.8)
+        self.texture = SKTexture(imageNamed: "Enemy_Skool_1")
+        self.size = CGSize(width: 69, height: 33.5)
+        self.color = .white
         self.moveSpeed = 150.0
         self.health = 2
     }
@@ -27,12 +29,35 @@ class ShootingEnemy: Enemy {
         
         let offset = playerNode.position - self.position
         let length = offset.length()
+        let isInside = insideScreen()
         
-        if length > shootingRange {
+        if length > shootingRange || !isInside{
             chasePlayer(offset, deltaTime)
         } else {
             stopAndShoot()
         }
+        
+        if offset.normalized().x < 0 {
+            self.xScale = -1
+        } else {
+            self.xScale = 1
+        }
+    }
+    
+    func insideScreen() -> Bool {
+        let objectHalfWidth = size.width / 2
+        let objectHalfHeight = size.height / 2
+        
+        let minX = -screenWidth / 2 + objectHalfWidth
+        let maxX = screenWidth / 2 - objectHalfWidth
+        let minY = -screenHeight / 2 + objectHalfHeight
+        let maxY = screenHeight / 2 - objectHalfHeight
+        
+        if position.x > minX && position.x < maxX && position.y > minY && position.y < maxY {
+            return true
+        }
+        
+        return false
     }
     
     func chasePlayer(_ offset: CGPoint, _ deltaTime: TimeInterval) {

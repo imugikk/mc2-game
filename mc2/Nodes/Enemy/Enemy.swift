@@ -32,7 +32,7 @@ class Enemy: SKSpriteNode, Processable {
         self.name = "enemy"
         self.colorBlendFactor = 1
         self.zPosition = -3
-        self.zRotationInDegrees = 90.0
+        self.zRotationInDegrees = 0.0
         
         self.physicsBody = SKPhysicsBody(texture: texture!, alphaThreshold: 0.1, size: size)
         self.physicsBody?.isDynamic = true

@@ -74,13 +74,17 @@ class WaveManager {
     }
     
     private func startSpawningEnemy() {
-        let randomNumber = Int.random(in: 1...2)
+        let randomNumber = Int.random(in: 1...3)
         if randomNumber == 1 {
             let enemyNode = WalkingEnemy()
             enemyNode.spawn(in: gameScene)
         }
         else if randomNumber == 2 {
             let enemyNode = ShootingEnemy()
+            enemyNode.spawn(in: gameScene)
+        }
+        else if randomNumber == 3 {
+            let enemyNode = BigWalkingEnemy()
             enemyNode.spawn(in: gameScene)
         }
         
