@@ -20,6 +20,7 @@ class Bullet: Projectile, HandleContactEnter {
         SoundManager.shared.playSoundEffect(in: scene, audioFileName: "Keris.wav", volume: 1.0)
         
         self.name = "bullet"
+        self.texture = SKTexture(imageNamed: "Weapon")
         self.setScale(1.25)
         
         self.physicsBody?.categoryBitMask = PsxBitmask.bullet

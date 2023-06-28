@@ -21,7 +21,7 @@ class Projectile: SKSpriteNode, Processable {
     
     init() {
         let texture = SKTexture(imageNamed: "Circle")
-        let color: NSColor = .systemPink
+        let color: NSColor = .white
         let size = CGSize(width: 25.0, height: 25.0)
         
         super.init(texture: texture, color: color, size: size)
