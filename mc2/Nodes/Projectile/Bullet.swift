@@ -16,10 +16,13 @@ class Bullet: Projectile, HandleContactEnter {
     override func spawn(in scene: SKScene) {
         super.spawn(in: scene)
         
+        //play sfx keris
+        SoundManager.shared.playSoundEffect(in: scene, audioFileName: "Keris.wav", volume: 1.0)
+        
         self.name = "bullet"
         self.texture = SKTexture(imageNamed: "Weapon")
         self.setScale(1.25)
-        self.size = CGSize(width: 25.0, height: 15.0)
+        self.size = CGSize(width: 35.0, height: 25.0)
         
         self.physicsBody?.categoryBitMask = PsxBitmask.bullet
         self.physicsBody?.contactTestBitMask = PsxBitmask.obstacle | PsxBitmask.enemy

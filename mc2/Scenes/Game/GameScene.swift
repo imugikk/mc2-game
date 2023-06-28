@@ -18,6 +18,14 @@ class GameScene: Scene {
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         
+        //play bgm buat intro, tunggu 13.5 detik pake skaction.wait
+        SoundManager.shared.playBGM(in: self, audioFileName: "Wave 1.wav", volume: 0.5)
+        self.run(SKAction.wait(forDuration: 13.5)) {
+            //ubah boolean jadi true
+            //play lagu in game
+            SoundManager.shared.playBGM(in: self, audioFileName: "In Game.wav", volume: 0.5)
+        }
+        
         Player.killedAction.subscribe(node: self, closure: gameOver)
         
         contactManager = ContactManager()
@@ -41,8 +49,11 @@ class GameScene: Scene {
 
     //Move to Game Over Scene
     private func gameOver() {
+        SoundManager.shared.playBGM(in: self, audioFileName: "Game Over.wav")
+        
         ScoreManager.shared.saveScore()
         self.run (SKAction.wait (forDuration: gameOverTransitionDelay)) {
+            SoundManager.shared.playBGM(in: self, audioFileName: "MainMenu.wav")
             GameViewController.changeScene(to: "GameOverScene", in: self.view!)
         }
     }

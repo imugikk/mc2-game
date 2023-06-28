@@ -35,7 +35,7 @@ class Player: SKSpriteNode, Processable, PreSpawned, HandleContactEnter {
         self.physicsBody?.isDynamic = true
         self.physicsBody?.allowsRotation = false
         self.physicsBody?.categoryBitMask = PsxBitmask.player
-        self.physicsBody?.collisionBitMask = PsxBitmask.obstacle
+        self.physicsBody?.collisionBitMask = PsxBitmask.obstacle | PsxBitmask.tree
         self.physicsBody?.contactTestBitMask = PsxBitmask.enemy
 
         weapon = self.childNode(withName: "weapon") as? Weapon
@@ -95,6 +95,9 @@ class Player: SKSpriteNode, Processable, PreSpawned, HandleContactEnter {
     
     func decreaseHealth(amount: Int) {
         guard health > 0, !iFrameActive else { return }
+        
+        // play sfx character hit
+        SoundManager.shared.playSoundEffect(in: scene!, audioFileName: "Character Hit.wav", volume: 3.0, randomizePitch: true)
         
         health -= amount
         health = max(0, health)

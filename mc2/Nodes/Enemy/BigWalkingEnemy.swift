@@ -16,7 +16,7 @@ class BigWalkingEnemy: Enemy {
         self.texture = SKTexture(imageNamed: "Enemy_G")
         self.color = .white
         self.size = CGSize(width: 56, height: 96.5)
-        self.moveSpeed = 70.0
+        self.moveSpeed = 50.0
         self.health = 5
     }
     

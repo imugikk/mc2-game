@@ -18,6 +18,9 @@ class ControllerScene: Scene {
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         
+        //play bgm buat controller
+        SoundManager.shared.playBGM(in: self, audioFileName: "MainMenu.wav")
+        
         potterLabel = childNode(withName: "potterConnected") as? SKLabelNode
         karenLabel = childNode(withName: "karenConnected") as? SKLabelNode
         
@@ -36,7 +39,7 @@ class ControllerScene: Scene {
     }
     
     func startGame() {
-        GameViewController.changeScene(to: "GameScene", in: self.view!)
+        GameViewController.changeScene(to: "TutorialScene", in: self.view!)
     }
     
     override func update(deltaTime: TimeInterval) {

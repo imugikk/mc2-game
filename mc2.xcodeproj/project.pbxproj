@@ -35,6 +35,22 @@
 		BFFA89432A4382CF00A2207B /* EnemyBullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA89422A4382CF00A2207B /* EnemyBullet.swift */; };
 		BFFA89452A438D8300A2207B /* Processable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA89442A438D8300A2207B /* Processable.swift */; };
 		BFFA89472A4399E600A2207B /* SKNodeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA89462A4399E600A2207B /* SKNodeExtension.swift */; };
+		F14341B72A4C7B2800681890 /* TutorialScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14341B52A4C7B2800681890 /* TutorialScene.swift */; };
+		F14341B82A4C7B2800681890 /* TutorialScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F14341B62A4C7B2800681890 /* TutorialScene.sks */; };
+		F14341C32A4C7B5A00681890 /* In Game.wav in Resources */ = {isa = PBXBuildFile; fileRef = F14341BA2A4C7B5A00681890 /* In Game.wav */; };
+		F14341C42A4C7B5A00681890 /* Character Hit.wav in Resources */ = {isa = PBXBuildFile; fileRef = F14341BB2A4C7B5A00681890 /* Character Hit.wav */; };
+		F14341C52A4C7B5A00681890 /* Enemy Die.wav in Resources */ = {isa = PBXBuildFile; fileRef = F14341BC2A4C7B5A00681890 /* Enemy Die.wav */; };
+		F14341C62A4C7B5A00681890 /* Enemy Projectile.wav in Resources */ = {isa = PBXBuildFile; fileRef = F14341BD2A4C7B5A00681890 /* Enemy Projectile.wav */; };
+		F14341C72A4C7B5A00681890 /* MainMenu.wav in Resources */ = {isa = PBXBuildFile; fileRef = F14341BE2A4C7B5A00681890 /* MainMenu.wav */; };
+		F14341C82A4C7B5A00681890 /* Wave 1.wav in Resources */ = {isa = PBXBuildFile; fileRef = F14341BF2A4C7B5A00681890 /* Wave 1.wav */; };
+		F14341C92A4C7B5A00681890 /* Enemy Hit.wav in Resources */ = {isa = PBXBuildFile; fileRef = F14341C02A4C7B5A00681890 /* Enemy Hit.wav */; };
+		F14341CA2A4C7B5A00681890 /* Keris.wav in Resources */ = {isa = PBXBuildFile; fileRef = F14341C12A4C7B5A00681890 /* Keris.wav */; };
+		F14341CB2A4C7B5A00681890 /* Game Over.wav in Resources */ = {isa = PBXBuildFile; fileRef = F14341C22A4C7B5A00681890 /* Game Over.wav */; };
+		F14341CD2A4C7BB700681890 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14341CC2A4C7BB700681890 /* SoundManager.swift */; };
+		F14341D12A4C80A000681890 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14341D02A4C80A000681890 /* Tree.swift */; };
+		F14341D62A4C891700681890 /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = F14341D32A4C891700681890 /* license.txt */; };
+		F14341D72A4C891700681890 /* prstart.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F14341D42A4C891700681890 /* prstart.ttf */; };
+		F14341D82A4C891700681890 /* prstartk.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F14341D52A4C891700681890 /* prstartk.ttf */; };
 		F14C59312A373D83000F3D22 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14C59302A373D83000F3D22 /* AppDelegate.swift */; };
 		F14C59332A373D83000F3D22 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F14C59322A373D83000F3D22 /* GameScene.sks */; };
 		F14C59372A373D83000F3D22 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14C59362A373D83000F3D22 /* GameScene.swift */; };
@@ -92,6 +108,22 @@
 		BFFA89422A4382CF00A2207B /* EnemyBullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyBullet.swift; sourceTree = "<group>"; };
 		BFFA89442A438D8300A2207B /* Processable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Processable.swift; sourceTree = "<group>"; };
 		BFFA89462A4399E600A2207B /* SKNodeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKNodeExtension.swift; sourceTree = "<group>"; };
+		F14341B52A4C7B2800681890 /* TutorialScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialScene.swift; sourceTree = "<group>"; };
+		F14341B62A4C7B2800681890 /* TutorialScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TutorialScene.sks; sourceTree = "<group>"; };
+		F14341BA2A4C7B5A00681890 /* In Game.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "In Game.wav"; sourceTree = "<group>"; };
+		F14341BB2A4C7B5A00681890 /* Character Hit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Character Hit.wav"; sourceTree = "<group>"; };
+		F14341BC2A4C7B5A00681890 /* Enemy Die.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Enemy Die.wav"; sourceTree = "<group>"; };
+		F14341BD2A4C7B5A00681890 /* Enemy Projectile.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Enemy Projectile.wav"; sourceTree = "<group>"; };
+		F14341BE2A4C7B5A00681890 /* MainMenu.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = MainMenu.wav; sourceTree = "<group>"; };
+		F14341BF2A4C7B5A00681890 /* Wave 1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Wave 1.wav"; sourceTree = "<group>"; };
+		F14341C02A4C7B5A00681890 /* Enemy Hit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Enemy Hit.wav"; sourceTree = "<group>"; };
+		F14341C12A4C7B5A00681890 /* Keris.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Keris.wav; sourceTree = "<group>"; };
+		F14341C22A4C7B5A00681890 /* Game Over.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Game Over.wav"; sourceTree = "<group>"; };
+		F14341CC2A4C7BB700681890 /* SoundManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		F14341D02A4C80A000681890 /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
+		F14341D32A4C891700681890 /* license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = license.txt; sourceTree = "<group>"; };
+		F14341D42A4C891700681890 /* prstart.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = prstart.ttf; sourceTree = "<group>"; };
+		F14341D52A4C891700681890 /* prstartk.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = prstartk.ttf; sourceTree = "<group>"; };
 		F14C592D2A373D83000F3D22 /* mc2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mc2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F14C59302A373D83000F3D22 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F14C59322A373D83000F3D22 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -139,6 +171,7 @@
 				BFCA4F162A3F25B00013DA14 /* ContactManager.swift */,
 				BF3E31EB2A4495D1002C7214 /* WaveManager.swift */,
 				BF3E31EE2A451028002C7214 /* ScoreManager.swift */,
+				F14341CC2A4C7BB700681890 /* SoundManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -146,6 +179,7 @@
 		BF3E31FD2A453001002C7214 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				F14341B42A4C7B2800681890 /* Tutorial */,
 				F19F21AD2A4A9FEA0069A4AD /* Controller */,
 				BF3E32012A453086002C7214 /* Game */,
 				BF3E32002A453069002C7214 /* GameOver */,
@@ -251,6 +285,7 @@
 				BF9500542A3983F700E2B780 /* Weapon.swift */,
 				BF91DCDE2A446BF2004DC17F /* Obstacle.swift */,
 				BFCA4F222A428F3E0013DA14 /* Ingredient.swift */,
+				F14341D02A4C80A000681890 /* Tree.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -263,6 +298,41 @@
 				BFD57D892A48FF06004CFB45 /* HandleContactEnter.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		F14341B42A4C7B2800681890 /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				F14341B52A4C7B2800681890 /* TutorialScene.swift */,
+				F14341B62A4C7B2800681890 /* TutorialScene.sks */,
+			);
+			path = Tutorial;
+			sourceTree = "<group>";
+		};
+		F14341B92A4C7B5A00681890 /* Sound Files */ = {
+			isa = PBXGroup;
+			children = (
+				F14341BA2A4C7B5A00681890 /* In Game.wav */,
+				F14341BB2A4C7B5A00681890 /* Character Hit.wav */,
+				F14341BC2A4C7B5A00681890 /* Enemy Die.wav */,
+				F14341BD2A4C7B5A00681890 /* Enemy Projectile.wav */,
+				F14341BE2A4C7B5A00681890 /* MainMenu.wav */,
+				F14341BF2A4C7B5A00681890 /* Wave 1.wav */,
+				F14341C02A4C7B5A00681890 /* Enemy Hit.wav */,
+				F14341C12A4C7B5A00681890 /* Keris.wav */,
+				F14341C22A4C7B5A00681890 /* Game Over.wav */,
+			);
+			path = "Sound Files";
+			sourceTree = "<group>";
+		};
+		F14341D22A4C88B900681890 /* Font Files */ = {
+			isa = PBXGroup;
+			children = (
+				F14341D32A4C891700681890 /* license.txt */,
+				F14341D42A4C891700681890 /* prstart.ttf */,
+				F14341D52A4C891700681890 /* prstartk.ttf */,
+			);
+			path = "Font Files";
 			sourceTree = "<group>";
 		};
 		F14C59242A373D83000F3D22 = {
@@ -292,6 +362,8 @@
 				BF08BA5E2A3BBE1800C4DCC5 /* Managers */,
 				BF9500582A3BA71400E2B780 /* Utils */,
 				BF85CA112A38234900AC95E8 /* ViewController */,
+				F14341B92A4C7B5A00681890 /* Sound Files */,
+				F14341D22A4C88B900681890 /* Font Files */,
 				F14C593A2A373D84000F3D22 /* Assets.xcassets */,
 				F14C593F2A373D84000F3D22 /* mc2.entitlements */,
 			);
@@ -412,12 +484,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF3E31FA2A451028002C7214 /* GameOverScene.sks in Resources */,
+				F14341C52A4C7B5A00681890 /* Enemy Die.wav in Resources */,
 				F14C59332A373D83000F3D22 /* GameScene.sks in Resources */,
+				F14341CA2A4C7B5A00681890 /* Keris.wav in Resources */,
+				F14341C72A4C7B5A00681890 /* MainMenu.wav in Resources */,
+				F14341B82A4C7B2800681890 /* TutorialScene.sks in Resources */,
 				BF3E31F82A451028002C7214 /* CreditScene.sks in Resources */,
+				F14341C32A4C7B5A00681890 /* In Game.wav in Resources */,
 				BF3E31F92A451028002C7214 /* MainMenu.sks in Resources */,
 				F19F21AF2A4AA00E0069A4AD /* ControllerScene.sks in Resources */,
+				F14341CB2A4C7B5A00681890 /* Game Over.wav in Resources */,
+				F14341C42A4C7B5A00681890 /* Character Hit.wav in Resources */,
+				F14341D62A4C891700681890 /* license.txt in Resources */,
+				F14341C82A4C7B5A00681890 /* Wave 1.wav in Resources */,
 				F14C593B2A373D84000F3D22 /* Assets.xcassets in Resources */,
 				F14C593E2A373D84000F3D22 /* Main.storyboard in Resources */,
+				F14341D72A4C891700681890 /* prstart.ttf in Resources */,
+				F14341C62A4C7B5A00681890 /* Enemy Projectile.wav in Resources */,
+				F14341C92A4C7B5A00681890 /* Enemy Hit.wav in Resources */,
+				F14341D82A4C891700681890 /* prstartk.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,6 +527,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F14341D12A4C80A000681890 /* Tree.swift in Sources */,
 				BFCA4F262A428F3E0013DA14 /* Ingredient.swift in Sources */,
 				BFD57D8A2A48FF06004CFB45 /* HandleContactEnter.swift in Sources */,
 				BF85CA102A3822AB00AC95E8 /* Player.swift in Sources */,
@@ -453,11 +539,13 @@
 				BFD57D862A48D82C004CFB45 /* Projectile.swift in Sources */,
 				BF12034A2A4368EC00A54351 /* ShootingEnemy.swift in Sources */,
 				BF3E31FB2A451028002C7214 /* MainMenuScene.swift in Sources */,
+				F14341B72A4C7B2800681890 /* TutorialScene.swift in Sources */,
 				F14C59392A373D83000F3D22 /* GameViewController.swift in Sources */,
 				BFCA4F172A3F25B00013DA14 /* ContactManager.swift in Sources */,
 				F19F21B32A4BF28E0069A4AD /* BigWalkingEnemy.swift in Sources */,
 				BFCA4F282A428F3E0013DA14 /* WalkingEnemy.swift in Sources */,
 				BF9500532A392A6800E2B780 /* InputManager.swift in Sources */,
+				F14341CD2A4C7BB700681890 /* SoundManager.swift in Sources */,
 				BF9500552A3983F700E2B780 /* Weapon.swift in Sources */,
 				F14C59372A373D83000F3D22 /* GameScene.swift in Sources */,
 				BF3E31FC2A451028002C7214 /* CreditScene.swift in Sources */,
@@ -634,6 +722,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = mc2/mc2.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -662,6 +751,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = mc2/mc2.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
