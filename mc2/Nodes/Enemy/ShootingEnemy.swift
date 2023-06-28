@@ -16,7 +16,14 @@ class ShootingEnemy: Enemy {
         super.spawn(in: scene)
         
         self.name = "shootingEnemy"
-        self.texture = SKTexture(imageNamed: "Enemy_Skool_1")
+        let textures = [
+            SKTexture(imageNamed: "Enemy_Skool_1"),
+            SKTexture(imageNamed: "Enemy_Skool_2"),
+            SKTexture(imageNamed: "Enemy_Skool_3")
+        ]
+        self.texture = textures.first
+        self.run(SKAction.repeatForever(SKAction.animate(with: textures, timePerFrame: 0.1)))
+        
         self.size = CGSize(width: 69, height: 33.5)
         self.color = .white
         self.moveSpeed = 150.0

@@ -28,6 +28,8 @@ class Player: SKSpriteNode, Processable, PreSpawned, HandleContactEnter {
     
     private var healthBar: [SKNode?]!
     
+    var cameraNode: SKNode!
+    
     func setup() {
         self.inputIndex = getUserData(key: "inputIndex")
         
@@ -44,6 +46,8 @@ class Player: SKSpriteNode, Processable, PreSpawned, HandleContactEnter {
         health = 3
         
         healthBar = [scene?.childNode(withName: "heart_fill_1"), scene?.childNode(withName: "heart_fill_2"), scene?.childNode(withName: "heart_fill_3")]
+        
+        cameraNode = scene?.childNode(withName: "CameraNode")
         
         // Start idle animation by default
         runIdleAnimation()
@@ -88,6 +92,9 @@ class Player: SKSpriteNode, Processable, PreSpawned, HandleContactEnter {
         bullet.spawn(in: scene!)
         
         shootDelay = true
+        let shake = SKAction.shake(initialPosition: (cameraNode?.position)!, duration: 0.1, amplitudeX: 10, amplitudeY: 5)
+        cameraNode.run(shake)
+        
         self.run(SKAction.wait(forDuration: shootDelayDuration)) {
             self.shootDelay = false
         }
@@ -143,14 +150,21 @@ class Player: SKSpriteNode, Processable, PreSpawned, HandleContactEnter {
     func onContactEnter(with other: SKNode?) {
         if other is Enemy {
             playerTouchesEnemy()
+            shakeScreen()
         } else if other is EnemyBullet {
             let enemyBullet = other as! EnemyBullet
             playerTouchesBullet(enemyBullet: enemyBullet)
+            shakeScreen()
         }
     }
     
     func playerTouchesEnemy() {
         self.decreaseHealth(amount: 1)
+    }
+    
+    func shakeScreen() {
+        let shake = SKAction.shake(initialPosition: cameraNode.position, duration: 0.1, amplitudeX: 50, amplitudeY: 70)
+        cameraNode.run(shake)
     }
     
     func playerTouchesBullet(enemyBullet: EnemyBullet) {

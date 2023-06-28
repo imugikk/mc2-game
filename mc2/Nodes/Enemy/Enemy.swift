@@ -18,11 +18,15 @@ class Enemy: SKSpriteNode, Processable {
     }
     
     init() {
-        let texture = SKTexture(imageNamed: "Capsule")
+//        let texture = SKTexture(imageNamed: "Capsule")
+        let textures = [
+            SKTexture(imageNamed: "Capsule"),
+        ]
         let color: NSColor = .brown
         let size = CGSize(width: 50.0, height: 50.0)
         
-        super.init(texture: texture, color: color, size: size)
+//        super.init(texture: texture, color: color, size: size)
+        super.init(texture: textures.first, color: color, size: size)
     }
     
     func spawn(in scene: SKScene) {

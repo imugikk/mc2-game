@@ -13,6 +13,15 @@ class BigWalkingEnemy: Enemy {
         super.spawn(in: scene)
         
         self.name = "walkingEnemy"
+        let textures = [
+            SKTexture(imageNamed: "Enemy_G"),
+            SKTexture(imageNamed: "Enemy_G1"),
+            SKTexture(imageNamed: "Enemy_G2"),
+            SKTexture(imageNamed: "Enemy_G3")
+        ]
+        self.texture = textures.first
+        self.run(SKAction.repeatForever(SKAction.animate(with: textures, timePerFrame: 0.1)))
+        
         self.texture = SKTexture(imageNamed: "Enemy_G")
         self.color = .white
         self.size = CGSize(width: 56, height: 96.5)

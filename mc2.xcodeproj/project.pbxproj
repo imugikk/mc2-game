@@ -51,6 +51,7 @@
 		F14341D62A4C891700681890 /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = F14341D32A4C891700681890 /* license.txt */; };
 		F14341D72A4C891700681890 /* prstart.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F14341D42A4C891700681890 /* prstart.ttf */; };
 		F14341D82A4C891700681890 /* prstartk.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F14341D52A4C891700681890 /* prstartk.ttf */; };
+		F14341DA2A4CB39200681890 /* ScreenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14341D92A4CB39200681890 /* ScreenManager.swift */; };
 		F14C59312A373D83000F3D22 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14C59302A373D83000F3D22 /* AppDelegate.swift */; };
 		F14C59332A373D83000F3D22 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F14C59322A373D83000F3D22 /* GameScene.sks */; };
 		F14C59372A373D83000F3D22 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14C59362A373D83000F3D22 /* GameScene.swift */; };
@@ -124,6 +125,7 @@
 		F14341D32A4C891700681890 /* license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = license.txt; sourceTree = "<group>"; };
 		F14341D42A4C891700681890 /* prstart.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = prstart.ttf; sourceTree = "<group>"; };
 		F14341D52A4C891700681890 /* prstartk.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = prstartk.ttf; sourceTree = "<group>"; };
+		F14341D92A4CB39200681890 /* ScreenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenManager.swift; sourceTree = "<group>"; };
 		F14C592D2A373D83000F3D22 /* mc2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mc2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F14C59302A373D83000F3D22 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F14C59322A373D83000F3D22 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				BF3E31EB2A4495D1002C7214 /* WaveManager.swift */,
 				BF3E31EE2A451028002C7214 /* ScoreManager.swift */,
 				F14341CC2A4C7BB700681890 /* SoundManager.swift */,
+				F14341D92A4CB39200681890 /* ScreenManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -534,6 +537,7 @@
 				F19F21B12A4AA48D0069A4AD /* ControllerScene.swift in Sources */,
 				BF3E31F52A451028002C7214 /* GameOverScene.swift in Sources */,
 				BFFA89432A4382CF00A2207B /* EnemyBullet.swift in Sources */,
+				F14341DA2A4CB39200681890 /* ScreenManager.swift in Sources */,
 				BFFA89472A4399E600A2207B /* SKNodeExtension.swift in Sources */,
 				BFFA89452A438D8300A2207B /* Processable.swift in Sources */,
 				BFD57D862A48D82C004CFB45 /* Projectile.swift in Sources */,
