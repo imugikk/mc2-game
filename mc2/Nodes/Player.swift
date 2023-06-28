@@ -114,9 +114,21 @@ class Player: SKSpriteNode, Processable, PreSpawned, HandleContactEnter {
     
     func enableIFrame() {
         iFrameActive = true
+        twinkleScreen(duration: iFrameDuration)
+        
         self.run(SKAction.wait(forDuration: iFrameDuration)) {
             self.iFrameActive = false
+            self.removeAllActions()
         }
+    }
+    
+    func twinkleScreen(duration: Double) {
+        let fadeInAction = SKAction.fadeIn(withDuration: 0.1)
+        let fadeOutAction = SKAction.fadeOut(withDuration: 0.1)
+        let twinkleSequence = SKAction.sequence([fadeOutAction, fadeInAction])
+        let twinkleAction = SKAction.repeatForever(twinkleSequence)
+        
+        self.run(twinkleAction)
     }
     
     func destroy() {

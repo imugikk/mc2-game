@@ -41,6 +41,9 @@ class InputManager {
     static let buttonXPressed = Event()
     static let buttonYPressed = Event()
     
+    var controller_1: Bool = false
+    var controller_2: Bool = false
+    
     // Function to run intially to lookout for any MFI or Remote Controllers in the area
     func ObserveForGameControllers() {
         NotificationCenter.default.addObserver(self, selector: #selector(controllerConnected), name: NSNotification.Name.GCControllerDidConnect, object: nil)
@@ -48,9 +51,17 @@ class InputManager {
     
     @objc private func controllerConnected() {        
         var indexNumber = 0
+        var foundController1 = false
+        var foundController2 = false
+        
         for controller in GCController.controllers() {
             //Check to see whether it is an extended Game Controller (Such as a Nimbus)
             if controller.extendedGamepad != nil {
+                if indexNumber == 0 {
+                    foundController1 = true
+                } else if indexNumber == 1 {
+                    foundController2 = true
+                }
                 //Register the Nimbus Controller's player index to a specific index number
                 controller.playerIndex = GCControllerPlayerIndex.init(rawValue: indexNumber)!
                 indexNumber += 1
@@ -58,6 +69,23 @@ class InputManager {
                 rightJoystickInput.append(CGPoint.zero)
                 holdingRightTriggerInput.append(false)
                 setupControllerControls(controller: controller)
+                
+                // Register for disconnection notification
+                NotificationCenter.default.addObserver(self, selector: #selector(controllerDisconnected(_:)), name: NSNotification.Name.GCControllerDidDisconnect, object: controller)
+            }
+            
+            controller_1 = foundController1
+            controller_2 = foundController2
+        }
+    }
+    
+    @objc private func controllerDisconnected(_ notification: Notification) {
+        if let controller = notification.object as? GCController {
+            // Check which controller got disconnected and update the corresponding variable
+            if controller.playerIndex.rawValue == 0 {
+                controller_1 = false
+            } else if controller.playerIndex.rawValue == 1 {
+                controller_2 = false
             }
         }
     }

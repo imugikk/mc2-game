@@ -19,6 +19,7 @@ class Bullet: Projectile, HandleContactEnter {
         self.name = "bullet"
         self.texture = SKTexture(imageNamed: "Weapon")
         self.setScale(1.25)
+        self.size = CGSize(width: 25.0, height: 15.0)
         
         self.physicsBody?.categoryBitMask = PsxBitmask.bullet
         self.physicsBody?.contactTestBitMask = PsxBitmask.obstacle | PsxBitmask.enemy

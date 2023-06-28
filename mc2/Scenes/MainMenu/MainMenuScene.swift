@@ -8,10 +8,17 @@
 import SpriteKit
 
 class MainMenuScene: Scene {
+    //Observe for Controllers
+    override func sceneDidLoad() {
+        super.sceneDidLoad()
+
+        InputManager.shared.ObserveForGameControllers()
+    }
+    
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         
-        InputManager.buttonAPressed.subscribe(node: self, closure: startGame)
+        InputManager.buttonAPressed.subscribe(node: self, closure: connectingPlayer)
         InputManager.buttonBPressed.subscribe(node: self, closure: exitGame)
         
         let highScoreLabel = childNode(withName: "highScoreText") as? SKLabelNode
@@ -23,8 +30,8 @@ class MainMenuScene: Scene {
         InputManager.buttonAPressed.unsubscribe(node: self)
         InputManager.buttonBPressed.unsubscribe(node: self)
     }
-    func startGame() {
-        GameViewController.changeScene(to: "GameScene", in: self.view!)
+    func connectingPlayer() {
+        GameViewController.changeScene(to: "ControllerScene", in: self.view!)
     }
     func exitGame() {
         exit(0)

@@ -42,6 +42,7 @@
 		F14C593B2A373D84000F3D22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F14C593A2A373D84000F3D22 /* Assets.xcassets */; };
 		F14C593E2A373D84000F3D22 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F14C593C2A373D84000F3D22 /* Main.storyboard */; };
 		F19F21AF2A4AA00E0069A4AD /* ControllerScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F19F21AE2A4AA00E0069A4AD /* ControllerScene.sks */; };
+		F19F21B12A4AA48D0069A4AD /* ControllerScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19F21B02A4AA48D0069A4AD /* ControllerScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,7 @@
 		F14C59442A373D84000F3D22 /* mc2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mc2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F14C594E2A373D84000F3D22 /* mc2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mc2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F19F21AE2A4AA00E0069A4AD /* ControllerScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ControllerScene.sks; sourceTree = "<group>"; };
+		F19F21B02A4AA48D0069A4AD /* ControllerScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				F19F21AE2A4AA00E0069A4AD /* ControllerScene.sks */,
+				F19F21B02A4AA48D0069A4AD /* ControllerScene.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				BFCA4F262A428F3E0013DA14 /* Ingredient.swift in Sources */,
 				BFD57D8A2A48FF06004CFB45 /* HandleContactEnter.swift in Sources */,
 				BF85CA102A3822AB00AC95E8 /* Player.swift in Sources */,
+				F19F21B12A4AA48D0069A4AD /* ControllerScene.swift in Sources */,
 				BF3E31F52A451028002C7214 /* GameOverScene.swift in Sources */,
 				BFFA89432A4382CF00A2207B /* EnemyBullet.swift in Sources */,
 				BFFA89472A4399E600A2207B /* SKNodeExtension.swift in Sources */,
