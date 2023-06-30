@@ -28,6 +28,7 @@ class ShootingEnemy: Enemy {
         self.color = .white
         self.moveSpeed = 150.0
         self.health = 2
+        self.ingredientType = .blue
     }
     
     override func update(deltaTime: TimeInterval) {
@@ -69,7 +70,7 @@ class ShootingEnemy: Enemy {
     
     func chasePlayer(_ offset: CGPoint, _ deltaTime: TimeInterval) {
         let direction = offset.normalized()
-        let movement = moveSpeed * deltaTime * direction
+        let movement = moveSpeed * deltaTime * direction * moveSpeedMultiplier
         self.position += movement
     }
     

@@ -14,6 +14,21 @@ class GameScene: Scene {
     
     let gameOverTransitionDelay = 1.0
     
+    //Observe for Controllers
+    override func sceneDidLoad() {
+        super.sceneDidLoad()
+        
+        InputManager.shared.ObserveForGameControllers()
+        NotificationCenter.default.addObserver(self, selector: #selector(controllerConnected), name: NSNotification.Name.GCControllerDidConnect, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(controllerDisconnected), name: NSNotification.Name.GCControllerDidDisconnect, object: nil)
+    }
+    @objc func controllerConnected() {
+        self.isPaused = false
+    }
+    @objc func controllerDisconnected() {
+        self.isPaused = true
+    }
+    
     //Scene Setup
     override func didMove(to view: SKView) {
         super.didMove(to: view)

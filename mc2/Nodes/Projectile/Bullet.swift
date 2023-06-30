@@ -25,21 +25,24 @@ class Bullet: Projectile, HandleContactEnter {
         self.size = CGSize(width: 35.0, height: 25.0)
         
         self.physicsBody?.categoryBitMask = PsxBitmask.bullet
-        self.physicsBody?.contactTestBitMask = PsxBitmask.obstacle | PsxBitmask.enemy
+        self.physicsBody?.contactTestBitMask |= PsxBitmask.enemy
+        
+        if PowerupManager.shared.damagePowerupActive {
+            self.damage = 3
+        }
     }
     
     func onContactEnter(with other: SKNode?) {
         if other is Obstacle {
-            bulletTouchesObstacle()
+            touchingObstacle()
         } else if other is Enemy {
-            let enemy = other as! Enemy
-            bulletTouchesEnemy(enemy: enemy)
+            touchingEnemy(enemy: other as! Enemy)
         }
     }
-    func bulletTouchesObstacle() {
+    func touchingObstacle() {
         self.destroy()
     }
-    func bulletTouchesEnemy(enemy: Enemy) {
+    func touchingEnemy(enemy: Enemy) {
         self.destroy()
         enemy.decreaseHealth(amount: self.damage)
     }

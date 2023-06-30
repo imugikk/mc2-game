@@ -27,6 +27,7 @@ class BigWalkingEnemy: Enemy {
         self.size = CGSize(width: 56, height: 96.5)
         self.moveSpeed = 50.0
         self.health = 5
+        self.ingredientType = .yellow
     }
     
     override func update(deltaTime: TimeInterval) {
@@ -34,7 +35,7 @@ class BigWalkingEnemy: Enemy {
         guard let playerNode, !playerNode.destroyed else { return }
         
         let direction = (playerNode.position - self.position).normalized()
-        let movement = moveSpeed * deltaTime * direction
+        let movement = moveSpeed * deltaTime * direction * moveSpeedMultiplier
         self.position += movement
         
         if direction.x < 0 {

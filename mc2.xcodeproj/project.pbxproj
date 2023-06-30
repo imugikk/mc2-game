@@ -27,14 +27,20 @@
 		BF95005A2A3BA77300E2B780 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9500592A3BA77300E2B780 /* Event.swift */; };
 		BFCA4F152A3D77570013DA14 /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCA4F142A3D77570013DA14 /* CGFloatExtension.swift */; };
 		BFCA4F172A3F25B00013DA14 /* ContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCA4F162A3F25B00013DA14 /* ContactManager.swift */; };
-		BFCA4F262A428F3E0013DA14 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCA4F222A428F3E0013DA14 /* Ingredient.swift */; };
 		BFCA4F282A428F3E0013DA14 /* WalkingEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCA4F242A428F3E0013DA14 /* WalkingEnemy.swift */; };
 		BFD57D842A47FCD3004CFB45 /* PreSpawned.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD57D832A47FCD3004CFB45 /* PreSpawned.swift */; };
 		BFD57D862A48D82C004CFB45 /* Projectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD57D852A48D82C004CFB45 /* Projectile.swift */; };
-		BFD57D8A2A48FF06004CFB45 /* HandleContactEnter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD57D892A48FF06004CFB45 /* HandleContactEnter.swift */; };
 		BFFA89432A4382CF00A2207B /* EnemyBullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA89422A4382CF00A2207B /* EnemyBullet.swift */; };
 		BFFA89452A438D8300A2207B /* Processable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA89442A438D8300A2207B /* Processable.swift */; };
 		BFFA89472A4399E600A2207B /* SKNodeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA89462A4399E600A2207B /* SKNodeExtension.swift */; };
+		F13FEF0A2A4E745200DFCFAE /* Chef.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13FEF082A4E745200DFCFAE /* Chef.swift */; };
+		F13FEF0B2A4E745200DFCFAE /* Hunter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13FEF092A4E745200DFCFAE /* Hunter.swift */; };
+		F13FEF0D2A4E790100DFCFAE /* PowerupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13FEF0C2A4E790100DFCFAE /* PowerupManager.swift */; };
+		F13FEF112A4E7AC100DFCFAE /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13FEF0F2A4E7AC100DFCFAE /* Ingredient.swift */; };
+		F13FEF122A4E7AC100DFCFAE /* PickupText.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13FEF102A4E7AC100DFCFAE /* PickupText.swift */; };
+		F13FEF162A4E7BF900DFCFAE /* CircleCast.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13FEF142A4E7BF900DFCFAE /* CircleCast.swift */; };
+		F13FEF172A4E7BF900DFCFAE /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13FEF152A4E7BF900DFCFAE /* Table.swift */; };
+		F13FEF192A4E7CFD00DFCFAE /* HandleContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13FEF182A4E7CFD00DFCFAE /* HandleContact.swift */; };
 		F14341B72A4C7B2800681890 /* TutorialScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14341B52A4C7B2800681890 /* TutorialScene.swift */; };
 		F14341B82A4C7B2800681890 /* TutorialScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F14341B62A4C7B2800681890 /* TutorialScene.sks */; };
 		F14341C32A4C7B5A00681890 /* In Game.wav in Resources */ = {isa = PBXBuildFile; fileRef = F14341BA2A4C7B5A00681890 /* In Game.wav */; };
@@ -101,14 +107,20 @@
 		BF9500592A3BA77300E2B780 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		BFCA4F142A3D77570013DA14 /* CGFloatExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatExtension.swift; sourceTree = "<group>"; };
 		BFCA4F162A3F25B00013DA14 /* ContactManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactManager.swift; sourceTree = "<group>"; };
-		BFCA4F222A428F3E0013DA14 /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		BFCA4F242A428F3E0013DA14 /* WalkingEnemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkingEnemy.swift; sourceTree = "<group>"; };
 		BFD57D832A47FCD3004CFB45 /* PreSpawned.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreSpawned.swift; sourceTree = "<group>"; };
 		BFD57D852A48D82C004CFB45 /* Projectile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Projectile.swift; sourceTree = "<group>"; };
-		BFD57D892A48FF06004CFB45 /* HandleContactEnter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandleContactEnter.swift; sourceTree = "<group>"; };
 		BFFA89422A4382CF00A2207B /* EnemyBullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyBullet.swift; sourceTree = "<group>"; };
 		BFFA89442A438D8300A2207B /* Processable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Processable.swift; sourceTree = "<group>"; };
 		BFFA89462A4399E600A2207B /* SKNodeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKNodeExtension.swift; sourceTree = "<group>"; };
+		F13FEF082A4E745200DFCFAE /* Chef.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chef.swift; sourceTree = "<group>"; };
+		F13FEF092A4E745200DFCFAE /* Hunter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hunter.swift; sourceTree = "<group>"; };
+		F13FEF0C2A4E790100DFCFAE /* PowerupManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerupManager.swift; sourceTree = "<group>"; };
+		F13FEF0F2A4E7AC100DFCFAE /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
+		F13FEF102A4E7AC100DFCFAE /* PickupText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickupText.swift; sourceTree = "<group>"; };
+		F13FEF142A4E7BF900DFCFAE /* CircleCast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleCast.swift; sourceTree = "<group>"; };
+		F13FEF152A4E7BF900DFCFAE /* Table.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
+		F13FEF182A4E7CFD00DFCFAE /* HandleContact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandleContact.swift; sourceTree = "<group>"; };
 		F14341B52A4C7B2800681890 /* TutorialScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialScene.swift; sourceTree = "<group>"; };
 		F14341B62A4C7B2800681890 /* TutorialScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TutorialScene.sks; sourceTree = "<group>"; };
 		F14341BA2A4C7B5A00681890 /* In Game.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "In Game.wav"; sourceTree = "<group>"; };
@@ -169,6 +181,7 @@
 		BF08BA5E2A3BBE1800C4DCC5 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				F13FEF0C2A4E790100DFCFAE /* PowerupManager.swift */,
 				BF9500512A392A6800E2B780 /* InputManager.swift */,
 				BFCA4F162A3F25B00013DA14 /* ContactManager.swift */,
 				BF3E31EB2A4495D1002C7214 /* WaveManager.swift */,
@@ -281,14 +294,12 @@
 		BFCA4F182A3F28910013DA14 /* Nodes */ = {
 			isa = PBXGroup;
 			children = (
+				F13FEF0E2A4E7AC100DFCFAE /* Ingredient */,
+				F13FEF072A4E744200DFCFAE /* Player */,
 				BFD57D822A47FC9F004CFB45 /* Protocols */,
 				BF91DCE12A4474C7004DC17F /* Projectile */,
 				BF91DCE02A4474BC004DC17F /* Enemy */,
-				BF85CA0F2A3822AB00AC95E8 /* Player.swift */,
-				BF9500542A3983F700E2B780 /* Weapon.swift */,
-				BF91DCDE2A446BF2004DC17F /* Obstacle.swift */,
-				BFCA4F222A428F3E0013DA14 /* Ingredient.swift */,
-				F14341D02A4C80A000681890 /* Tree.swift */,
+				F13FEF132A4E7BCF00DFCFAE /* Obstacle */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -298,9 +309,40 @@
 			children = (
 				BFFA89442A438D8300A2207B /* Processable.swift */,
 				BFD57D832A47FCD3004CFB45 /* PreSpawned.swift */,
-				BFD57D892A48FF06004CFB45 /* HandleContactEnter.swift */,
+				F13FEF182A4E7CFD00DFCFAE /* HandleContact.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		F13FEF072A4E744200DFCFAE /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				BF85CA0F2A3822AB00AC95E8 /* Player.swift */,
+				F13FEF082A4E745200DFCFAE /* Chef.swift */,
+				F13FEF092A4E745200DFCFAE /* Hunter.swift */,
+				BF9500542A3983F700E2B780 /* Weapon.swift */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
+		F13FEF0E2A4E7AC100DFCFAE /* Ingredient */ = {
+			isa = PBXGroup;
+			children = (
+				F13FEF0F2A4E7AC100DFCFAE /* Ingredient.swift */,
+				F13FEF102A4E7AC100DFCFAE /* PickupText.swift */,
+			);
+			path = Ingredient;
+			sourceTree = "<group>";
+		};
+		F13FEF132A4E7BCF00DFCFAE /* Obstacle */ = {
+			isa = PBXGroup;
+			children = (
+				BF91DCDE2A446BF2004DC17F /* Obstacle.swift */,
+				F14341D02A4C80A000681890 /* Tree.swift */,
+				F13FEF142A4E7BF900DFCFAE /* CircleCast.swift */,
+				F13FEF152A4E7BF900DFCFAE /* Table.swift */,
+			);
+			path = Obstacle;
 			sourceTree = "<group>";
 		};
 		F14341B42A4C7B2800681890 /* Tutorial */ = {
@@ -531,11 +573,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F14341D12A4C80A000681890 /* Tree.swift in Sources */,
-				BFCA4F262A428F3E0013DA14 /* Ingredient.swift in Sources */,
-				BFD57D8A2A48FF06004CFB45 /* HandleContactEnter.swift in Sources */,
+				F13FEF0D2A4E790100DFCFAE /* PowerupManager.swift in Sources */,
 				BF85CA102A3822AB00AC95E8 /* Player.swift in Sources */,
 				F19F21B12A4AA48D0069A4AD /* ControllerScene.swift in Sources */,
 				BF3E31F52A451028002C7214 /* GameOverScene.swift in Sources */,
+				F13FEF172A4E7BF900DFCFAE /* Table.swift in Sources */,
 				BFFA89432A4382CF00A2207B /* EnemyBullet.swift in Sources */,
 				F14341DA2A4CB39200681890 /* ScreenManager.swift in Sources */,
 				BFFA89472A4399E600A2207B /* SKNodeExtension.swift in Sources */,
@@ -546,6 +588,7 @@
 				F14341B72A4C7B2800681890 /* TutorialScene.swift in Sources */,
 				F14C59392A373D83000F3D22 /* GameViewController.swift in Sources */,
 				BFCA4F172A3F25B00013DA14 /* ContactManager.swift in Sources */,
+				F13FEF162A4E7BF900DFCFAE /* CircleCast.swift in Sources */,
 				F19F21B32A4BF28E0069A4AD /* BigWalkingEnemy.swift in Sources */,
 				BFCA4F282A428F3E0013DA14 /* WalkingEnemy.swift in Sources */,
 				BF9500532A392A6800E2B780 /* InputManager.swift in Sources */,
@@ -557,12 +600,17 @@
 				BFD57D842A47FCD3004CFB45 /* PreSpawned.swift in Sources */,
 				BF85CA162A38285700AC95E8 /* CGPointExtension.swift in Sources */,
 				BFCA4F152A3D77570013DA14 /* CGFloatExtension.swift in Sources */,
+				F13FEF112A4E7AC100DFCFAE /* Ingredient.swift in Sources */,
 				BF91DCDF2A446BF2004DC17F /* Obstacle.swift in Sources */,
+				F13FEF192A4E7CFD00DFCFAE /* HandleContact.swift in Sources */,
 				BF3E31F62A451028002C7214 /* ScoreManager.swift in Sources */,
+				F13FEF0B2A4E745200DFCFAE /* Hunter.swift in Sources */,
 				BF12034C2A436A5800A54351 /* Enemy.swift in Sources */,
 				F14C59312A373D83000F3D22 /* AppDelegate.swift in Sources */,
 				BF9500572A3AABAD00E2B780 /* Bullet.swift in Sources */,
+				F13FEF122A4E7AC100DFCFAE /* PickupText.swift in Sources */,
 				BF95005A2A3BA77300E2B780 /* Event.swift in Sources */,
+				F13FEF0A2A4E745200DFCFAE /* Chef.swift in Sources */,
 				BF3E31EC2A4495D1002C7214 /* WaveManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

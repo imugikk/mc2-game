@@ -14,6 +14,7 @@ class ControllerScene: Scene {
     var porterSprite : SKSpriteNode!
     var karenSprite : SKSpriteNode!
     var karenLabel : SKLabelNode!
+    var hasMoveScene: Bool = false
     
     override func didMove(to view: SKView) {
         super.didMove(to: view)
@@ -27,9 +28,7 @@ class ControllerScene: Scene {
         runIdleAnimation()
         runIdleAnimationKaren()
         
-        if InputManager.shared.controller_1 == true || InputManager.shared.controller_2 == true {
-            InputManager.buttonAPressed.subscribe(node: self, closure: startGame)
-        }
+        InputManager.buttonAPressed.subscribe(node: self, closure: startGame)
     }
     
     override func willMove(from view: SKView) {
@@ -39,7 +38,10 @@ class ControllerScene: Scene {
     }
     
     func startGame() {
-        GameViewController.changeScene(to: "TutorialScene", in: self.view!)
+        if InputManager.shared.controller_1 == true && InputManager.shared.controller_2 == true && hasMoveScene == false{
+            hasMoveScene = true
+            GameViewController.changeScene(to: "TutorialScene", in: self.view!)
+        }
     }
     
     override func update(deltaTime: TimeInterval) {

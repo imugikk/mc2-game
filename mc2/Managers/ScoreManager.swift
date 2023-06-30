@@ -26,11 +26,11 @@ class ScoreManager {
     }
     
     var waveLabel: SKLabelNode?
-    var waveScore: Int = 0 {
-        didSet {
-            updateWaveScoreLabel()
-        }
-    }
+//    var waveScore: Int = 0 {
+//        didSet {
+//            updateWaveScoreLabel()
+//        }
+//    }
     
     let highScoreKey = "HighScore"
     
@@ -60,7 +60,7 @@ class ScoreManager {
     func updateHighScoreLabel() {
         highScoreLabel?.text = "High Score: \(highScore)"
     }
-    func updateWaveScoreLabel() {
-        highScoreLabel?.text = "Wave: \(waveScore)"
-    }
+//    func updateWaveScoreLabel() {
+//        highScoreLabel?.text = "Wave: \(waveScore)"
+//    }
 }

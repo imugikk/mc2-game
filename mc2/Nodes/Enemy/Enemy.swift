@@ -7,10 +7,13 @@
 
 import SpriteKit
 
-class Enemy: SKSpriteNode, Processable {
+class Enemy: SKSpriteNode, Processable, HandleContactEnter {
     var moveSpeed = 100.0
     var health: Int = 3
-    var playerNode: Player? = nil
+    var moveSpeedMultiplier = 1.0
+    var damage = 1
+    var ingredientType = IngredientType.blue
+    var playerNode: Hunter? = nil
     static let killedAction = Event()
     
     required init?(coder: NSCoder) {
@@ -31,12 +34,15 @@ class Enemy: SKSpriteNode, Processable {
     
     func spawn(in scene: SKScene) {
         scene.addChild(self)
-        self.playerNode = scene.childNode(withName: "player") as? Player
+        self.playerNode = scene.childNode(withName: "hunter") as? Hunter
         
         self.name = "enemy"
         self.colorBlendFactor = 1
         self.zPosition = -3
-        self.zRotationInDegrees = 0.0
+        
+        if PowerupManager.shared.slowMoPowerupActive {
+            moveSpeedMultiplier = 0.5
+        }
         
         self.physicsBody = SKPhysicsBody(texture: texture!, alphaThreshold: 0.1, size: size)
         self.physicsBody?.isDynamic = true
@@ -46,6 +52,17 @@ class Enemy: SKSpriteNode, Processable {
         self.physicsBody?.contactTestBitMask = PsxBitmask.bullet | PsxBitmask.player
         
         randomizePosition()
+        
+        PowerupManager.shared.slowMoPowerupStarted.subscribe(node: self, closure: slowDownMoveSpeed)
+        PowerupManager.shared.slowMoPowerupStopped.subscribe(node: self, closure: normalizeMoveSpeed)
+    }
+    
+    func slowDownMoveSpeed(){
+        self.moveSpeedMultiplier = 0.5
+    }
+    
+    func normalizeMoveSpeed(){
+        self.moveSpeedMultiplier = 1.0
     }
     
     func update(deltaTime: TimeInterval) {}
@@ -112,9 +129,9 @@ class Enemy: SKSpriteNode, Processable {
             } else if self.name == "shootingEnemy" {
                 customTexture = SKTexture(imageNamed: "POTIONR")
             }
-            let itemNode = Ingredient(texture: customTexture)
+            let itemNode = Ingredient()
             itemNode.position = position
-            itemNode.spawn(in: self.scene!)
+            itemNode.spawn(in: self.scene!, type: self.ingredientType)
         }
     }
     
@@ -123,6 +140,20 @@ class Enemy: SKSpriteNode, Processable {
        SoundManager.shared.playSoundEffect(in: scene!, audioFileName: "Enemy Die.wav", volume: 3.0, randomizePitch: true)
         
         Enemy.killedAction.invoke()
+        
+        PowerupManager.shared.slowMoPowerupStarted.unsubscribe(node: self)
+        PowerupManager.shared.slowMoPowerupStopped.unsubscribe(node: self)
+        
         self.removeFromParent()
+    }
+    
+    func onContactEnter(with other: SKNode?) {
+        if other is Player {
+            touchingPlayer(player: other as! Player)
+        }
+    }
+    
+    func touchingPlayer(player: Player) {
+        player.decreaseHealth(amount: self.damage)
     }
 }

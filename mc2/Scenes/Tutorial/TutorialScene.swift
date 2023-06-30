@@ -10,6 +10,8 @@ import SpriteKit
 import GameController
 
 class TutorialScene: Scene {
+    var hasMoveScene: Bool = false
+    
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         
@@ -26,6 +28,9 @@ class TutorialScene: Scene {
     }
     
     func restart() {
-        GameViewController.changeScene(to: "GameScene", in: self.view!)
+        if hasMoveScene == false {
+            hasMoveScene = true
+            GameViewController.changeScene(to: "GameScene", in: self.view!)
+        }
     }
 }

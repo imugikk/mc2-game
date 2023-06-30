@@ -9,6 +9,8 @@ import SpriteKit
 
 class Obstacle: SKSpriteNode, PreSpawned {
     func setup() {
+        self.physicsBody = SKPhysicsBody(rectangleOf: self.size)
+        self.physicsBody?.isDynamic = false
         self.physicsBody?.categoryBitMask = PsxBitmask.obstacle
         self.physicsBody?.collisionBitMask = PsxBitmask.player
         self.physicsBody?.contactTestBitMask = PsxBitmask.bullet
