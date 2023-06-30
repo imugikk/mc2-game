@@ -92,7 +92,7 @@ class Player: SKSpriteNode, Processable, PreSpawned, HandleContactEnter {
         bullet.spawn(in: scene!)
         
         shootDelay = true
-        let shake = SKAction.shake(initialPosition: (cameraNode?.position)!, duration: 0.1, amplitudeX: 10, amplitudeY: 5)
+        let shake = SKAction.shake(initialPosition: (cameraNode?.position)!, duration: 0.1, amplitudeX: 3, amplitudeY: 3)
         cameraNode.run(shake)
         
         self.run(SKAction.wait(forDuration: shootDelayDuration)) {
