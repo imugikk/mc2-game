@@ -16,7 +16,7 @@ class GameViewController: NSViewController {
         super.viewDidLoad()
         
         skView.ignoresSiblingOrder = true
-        GameViewController.changeScene(to: "MainMenu", in: skView)
+        GameViewController.changeScene(to: "GameScene", in: skView)
     }
     
     static func changeScene(to sceneName: String, in view: SKView) {

@@ -64,6 +64,11 @@
 		F14C59392A373D83000F3D22 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14C59382A373D83000F3D22 /* GameViewController.swift */; };
 		F14C593B2A373D84000F3D22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F14C593A2A373D84000F3D22 /* Assets.xcassets */; };
 		F14C593E2A373D84000F3D22 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F14C593C2A373D84000F3D22 /* Main.storyboard */; };
+		F1666DE82A4FD7CD00CB5FC7 /* DamageUp.wav in Resources */ = {isa = PBXBuildFile; fileRef = F1666DE32A4FD7CD00CB5FC7 /* DamageUp.wav */; };
+		F1666DE92A4FD7CD00CB5FC7 /* Failed Brewed.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F1666DE42A4FD7CD00CB5FC7 /* Failed Brewed.mp3 */; };
+		F1666DEA2A4FD7CD00CB5FC7 /* Karen Hit.wav in Resources */ = {isa = PBXBuildFile; fileRef = F1666DE52A4FD7CD00CB5FC7 /* Karen Hit.wav */; };
+		F1666DEB2A4FD7CD00CB5FC7 /* Slowmo.wav in Resources */ = {isa = PBXBuildFile; fileRef = F1666DE62A4FD7CD00CB5FC7 /* Slowmo.wav */; };
+		F1666DEC2A4FD7CD00CB5FC7 /* HealthUp.wav in Resources */ = {isa = PBXBuildFile; fileRef = F1666DE72A4FD7CD00CB5FC7 /* HealthUp.wav */; };
 		F19F21AF2A4AA00E0069A4AD /* ControllerScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F19F21AE2A4AA00E0069A4AD /* ControllerScene.sks */; };
 		F19F21B12A4AA48D0069A4AD /* ControllerScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19F21B02A4AA48D0069A4AD /* ControllerScene.swift */; };
 		F19F21B32A4BF28E0069A4AD /* BigWalkingEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19F21B22A4BF28E0069A4AD /* BigWalkingEnemy.swift */; };
@@ -148,6 +153,11 @@
 		F14C593F2A373D84000F3D22 /* mc2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = mc2.entitlements; sourceTree = "<group>"; };
 		F14C59442A373D84000F3D22 /* mc2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mc2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F14C594E2A373D84000F3D22 /* mc2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mc2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1666DE32A4FD7CD00CB5FC7 /* DamageUp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = DamageUp.wav; sourceTree = "<group>"; };
+		F1666DE42A4FD7CD00CB5FC7 /* Failed Brewed.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Failed Brewed.mp3"; sourceTree = "<group>"; };
+		F1666DE52A4FD7CD00CB5FC7 /* Karen Hit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Karen Hit.wav"; sourceTree = "<group>"; };
+		F1666DE62A4FD7CD00CB5FC7 /* Slowmo.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Slowmo.wav; sourceTree = "<group>"; };
+		F1666DE72A4FD7CD00CB5FC7 /* HealthUp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = HealthUp.wav; sourceTree = "<group>"; };
 		F19F21AE2A4AA00E0069A4AD /* ControllerScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ControllerScene.sks; sourceTree = "<group>"; };
 		F19F21B02A4AA48D0069A4AD /* ControllerScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerScene.swift; sourceTree = "<group>"; };
 		F19F21B22A4BF28E0069A4AD /* BigWalkingEnemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigWalkingEnemy.swift; sourceTree = "<group>"; };
@@ -357,6 +367,11 @@
 		F14341B92A4C7B5A00681890 /* Sound Files */ = {
 			isa = PBXGroup;
 			children = (
+				F1666DE32A4FD7CD00CB5FC7 /* DamageUp.wav */,
+				F1666DE42A4FD7CD00CB5FC7 /* Failed Brewed.mp3 */,
+				F1666DE72A4FD7CD00CB5FC7 /* HealthUp.wav */,
+				F1666DE52A4FD7CD00CB5FC7 /* Karen Hit.wav */,
+				F1666DE62A4FD7CD00CB5FC7 /* Slowmo.wav */,
 				F14341BA2A4C7B5A00681890 /* In Game.wav */,
 				F14341BB2A4C7B5A00681890 /* Character Hit.wav */,
 				F14341BC2A4C7B5A00681890 /* Enemy Die.wav */,
@@ -534,19 +549,24 @@
 				F14341CA2A4C7B5A00681890 /* Keris.wav in Resources */,
 				F14341C72A4C7B5A00681890 /* MainMenu.wav in Resources */,
 				F14341B82A4C7B2800681890 /* TutorialScene.sks in Resources */,
+				F1666DEC2A4FD7CD00CB5FC7 /* HealthUp.wav in Resources */,
 				BF3E31F82A451028002C7214 /* CreditScene.sks in Resources */,
+				F1666DEB2A4FD7CD00CB5FC7 /* Slowmo.wav in Resources */,
 				F14341C32A4C7B5A00681890 /* In Game.wav in Resources */,
 				BF3E31F92A451028002C7214 /* MainMenu.sks in Resources */,
 				F19F21AF2A4AA00E0069A4AD /* ControllerScene.sks in Resources */,
+				F1666DE82A4FD7CD00CB5FC7 /* DamageUp.wav in Resources */,
 				F14341CB2A4C7B5A00681890 /* Game Over.wav in Resources */,
 				F14341C42A4C7B5A00681890 /* Character Hit.wav in Resources */,
 				F14341D62A4C891700681890 /* license.txt in Resources */,
 				F14341C82A4C7B5A00681890 /* Wave 1.wav in Resources */,
+				F1666DE92A4FD7CD00CB5FC7 /* Failed Brewed.mp3 in Resources */,
 				F14C593B2A373D84000F3D22 /* Assets.xcassets in Resources */,
 				F14C593E2A373D84000F3D22 /* Main.storyboard in Resources */,
 				F14341D72A4C891700681890 /* prstart.ttf in Resources */,
 				F14341C62A4C7B5A00681890 /* Enemy Projectile.wav in Resources */,
 				F14341C92A4C7B5A00681890 /* Enemy Hit.wav in Resources */,
+				F1666DEA2A4FD7CD00CB5FC7 /* Karen Hit.wav in Resources */,
 				F14341D82A4C891700681890 /* prstartk.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
