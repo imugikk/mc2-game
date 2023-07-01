@@ -100,6 +100,9 @@ class Player: SKSpriteNode, Processable, PreSpawned {
         if health >= maxHealth {
             return
         }
+
+        Player.healthBar[Player.health].isHidden = false
+        
         health += 1
     }
     
@@ -117,10 +120,7 @@ class Player: SKSpriteNode, Processable, PreSpawned {
         Player.health = max(0, Player.health)
         enableIFrame()
         
-        if let lastNode = Player.healthBar.last {
-            lastNode.removeFromParent()
-            Player.healthBar.removeLast()
-        }
+        Player.healthBar[Player.health].isHidden = true
         
         if Player.health == 0 {
             Player.kill()
