@@ -22,12 +22,12 @@ class Player: SKSpriteNode, Processable, PreSpawned {
     
     var twinkleActionKey = "twinkleAction"
     
-    let textureFill = SKTexture(imageNamed: "HealthFill")
-    let texturePlaceholder = SKTexture(imageNamed: "HealthPlaceholder")
-    let scaleHealth: CGFloat = 0.06
-    let zPositionFill: CGFloat = 11
-    let zPositionPlaceholder: CGFloat = 12
-    let gap: CGFloat = 10 // Adjust the gap size as needed
+    static var textureFill = SKTexture(imageNamed: "HealthFill")
+    static var texturePlaceholder = SKTexture(imageNamed: "HealthPlaceholder")
+    static var scaleHealth: CGFloat = 0.06
+    static var zPositionFill: CGFloat = 11
+    static var zPositionPlaceholder: CGFloat = 12
+    static var gap: CGFloat = 10 // Adjust the gap size as needed
     static var healthBar: [SKSpriteNode] = []
     
     var cameraNode: SKNode!
@@ -46,27 +46,27 @@ class Player: SKSpriteNode, Processable, PreSpawned {
         Player.health = Player.maxHealth
         Player.killed = false
         
-        if Player.healthBar.count <= Player.health/2 {
-            for i in 1...Player.health {
-                let heartFill = SKSpriteNode(texture: textureFill)
-                heartFill.setScale(scaleHealth)
-                heartFill.zPosition = zPositionFill
-                let fillXPosition = heartFill.size.width * CGFloat(i) + (CGFloat(i) - 1) * gap
-                heartFill.position = CGPoint(x: fillXPosition - scene!.size.width/2 + 100, y: scene!.size.height / 2 - 80)
-                scene?.addChild(heartFill)
-                Player.healthBar.append(heartFill)
-
-                let heartPlaceholder = SKSpriteNode(texture: texturePlaceholder)
-                heartPlaceholder.setScale(scaleHealth)
-                heartPlaceholder.zPosition = zPositionPlaceholder
-                let placeholderXPosition = heartFill.size.width * CGFloat(i) + (CGFloat(i) - 1) * gap
-                heartPlaceholder.position = CGPoint(x: placeholderXPosition - scene!.size.width/2 + 100, y: scene!.size.height / 2 - 80)
-                scene?.addChild(heartPlaceholder)
-            }
-        }
-        
         cameraNode = scene?.childNode(withName: "CameraNode")
     
+    }
+    
+    static func setupHealth(in scene: GameScene) {
+        for i in 1...Player.health {
+            let heartFill = SKSpriteNode(texture: textureFill)
+            heartFill.setScale(scaleHealth)
+            heartFill.zPosition = zPositionFill
+            let fillXPosition = heartFill.size.width * CGFloat(i) + (CGFloat(i) - 1) * gap
+            heartFill.position = CGPoint(x: fillXPosition - scene.size.width/2 + 100, y: scene.size.height / 2 - 80)
+            scene.addChild(heartFill)
+            Player.healthBar.append(heartFill)
+
+            let heartPlaceholder = SKSpriteNode(texture: texturePlaceholder)
+            heartPlaceholder.setScale(scaleHealth)
+            heartPlaceholder.zPosition = zPositionPlaceholder
+            let placeholderXPosition = heartFill.size.width * CGFloat(i) + (CGFloat(i) - 1) * gap
+            heartPlaceholder.position = CGPoint(x: placeholderXPosition - scene.size.width/2 + 100, y: scene.size.height / 2 - 80)
+            scene.addChild(heartPlaceholder)
+        }
     }
     
     func update(deltaTime: TimeInterval) {
