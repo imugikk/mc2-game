@@ -52,7 +52,7 @@ class Player: SKSpriteNode, Processable, PreSpawned {
                 heartFill.setScale(scaleHealth)
                 heartFill.zPosition = zPositionFill
                 let fillXPosition = heartFill.size.width * CGFloat(i) + (CGFloat(i) - 1) * gap
-                heartFill.position = CGPoint(x: fillXPosition - scene!.size.width/2 + 100, y: scene!.size.height / 2 - 65)
+                heartFill.position = CGPoint(x: fillXPosition - scene!.size.width/2 + 100, y: scene!.size.height / 2 - 80)
                 scene?.addChild(heartFill)
                 Player.healthBar.append(heartFill)
 
@@ -60,7 +60,7 @@ class Player: SKSpriteNode, Processable, PreSpawned {
                 heartPlaceholder.setScale(scaleHealth)
                 heartPlaceholder.zPosition = zPositionPlaceholder
                 let placeholderXPosition = heartFill.size.width * CGFloat(i) + (CGFloat(i) - 1) * gap
-                heartPlaceholder.position = CGPoint(x: placeholderXPosition - scene!.size.width/2 + 100, y: scene!.size.height / 2 - 65)
+                heartPlaceholder.position = CGPoint(x: placeholderXPosition - scene!.size.width/2 + 100, y: scene!.size.height / 2 - 80)
                 scene?.addChild(heartPlaceholder)
             }
         }
