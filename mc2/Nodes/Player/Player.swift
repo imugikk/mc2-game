@@ -20,11 +20,15 @@ class Player: SKSpriteNode, Processable, PreSpawned {
     static var killed = false
     static var killedAction = Event()
     
-//    var lastJoystickDirection: CGPoint = .zero
-//    var isRunning: Bool = false
+    let textureFill = SKTexture(imageNamed: "HealthFill")
+    let texturePlaceholder = SKTexture(imageNamed: "HealthPlaceholder")
+    let scaleHealth: CGFloat = 0.06
+    let zPositionFill: CGFloat = 11
+    let zPositionPlaceholder: CGFloat = 12
+    let gap: CGFloat = 10 // Adjust the gap size as needed
+    static var healthBar: [SKSpriteNode] = []
+
     var twinkleActionKey = "twinkleAction"
-    
-    private var healthBar: [SKNode?]!
     
     var cameraNode: SKNode!
     
@@ -42,13 +46,26 @@ class Player: SKSpriteNode, Processable, PreSpawned {
         Player.health = Player.maxHealth
         Player.killed = false
         
-        //ikutin maxhealth
-        healthBar = [scene?.childNode(withName: "heart_fill_1"), scene?.childNode(withName: "heart_fill_2"), scene?.childNode(withName: "heart_fill_3")]
-        
+        if Player.healthBar.count <= Player.health/2 {
+            for i in 1...Player.health {
+                let heartFill = SKSpriteNode(texture: textureFill)
+                heartFill.setScale(scaleHealth)
+                heartFill.zPosition = zPositionFill
+                let fillXPosition = heartFill.size.width * CGFloat(i) + (CGFloat(i) - 1) * gap
+                heartFill.position = CGPoint(x: fillXPosition - scene!.size.width/2 + 100, y: scene!.size.height / 2 - 65)
+                scene?.addChild(heartFill)
+                Player.healthBar.append(heartFill)
+
+                let heartPlaceholder = SKSpriteNode(texture: texturePlaceholder)
+                heartPlaceholder.setScale(scaleHealth)
+                heartPlaceholder.zPosition = zPositionPlaceholder
+                let placeholderXPosition = heartFill.size.width * CGFloat(i) + (CGFloat(i) - 1) * gap
+                heartPlaceholder.position = CGPoint(x: placeholderXPosition - scene!.size.width/2 + 100, y: scene!.size.height / 2 - 65)
+                scene?.addChild(heartPlaceholder)
+            }
+        }
+
         cameraNode = scene?.childNode(withName: "CameraNode")
-        
-//        // Start idle animation by default
-//        runIdleAnimation()
     }
     
     func update(deltaTime: TimeInterval) {
@@ -85,21 +102,23 @@ class Player: SKSpriteNode, Processable, PreSpawned {
         health += 1
     }
     
+    func soundCharacter() {
+        // play sfx character hit
+        SoundManager.shared.playSoundEffect(in: scene!, audioFileName: "Character Hit.wav", volume: 3.0, randomizePitch: true)
+    }
+    
     func decreaseHealth(amount: Int) {
         guard Player.health > 0, !iFrameActive else { return }
         
-        // play sfx character hit
-        SoundManager.shared.playSoundEffect(in: scene!, audioFileName: "Character Hit.wav", volume: 3.0, randomizePitch: true)
+        soundCharacter()
         
         Player.health -= amount
         Player.health = max(0, Player.health)
         enableIFrame()
         
-        if let lastNode = healthBar.last {
-            if let unwrappedNode = lastNode {
-                unwrappedNode.removeFromParent()
-            }
-            healthBar.removeLast()
+        if let lastNode = Player.healthBar.last {
+            lastNode.removeFromParent()
+            Player.healthBar.removeLast()
         }
         
         if Player.health == 0 {
@@ -107,7 +126,6 @@ class Player: SKSpriteNode, Processable, PreSpawned {
         }
         
         shakeScreen()
-        
     }
     
     func enableIFrame() {

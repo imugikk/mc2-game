@@ -34,6 +34,7 @@ class PowerupManager: SKSpriteNode, Processable, PreSpawned {
             PowerupManager.instance = self
         }
         else if PowerupManager.instance != self {
+            SoundManager.shared.playSoundEffect(in: scene!, audioFileName: "Failed Brewed.mp3", volume: 2.0)
             removeFromParent()
             return
         }
@@ -46,6 +47,7 @@ class PowerupManager: SKSpriteNode, Processable, PreSpawned {
     }
         
     func activateHealthPowerup() {
+        SoundManager.shared.playSoundEffect(in: scene!, audioFileName: "HealthUp.wav", volume: 2.0)
         Player.increaseHealth()
     }
     
@@ -54,6 +56,8 @@ class PowerupManager: SKSpriteNode, Processable, PreSpawned {
         runSlowMoPowerupTimer(deltaTime: deltaTime)
     }
     func activateDamagePowerup() {
+        SoundManager.shared.playSoundEffect(in: scene!, audioFileName: "DamageUp.wav", volume: 2.0)
+        
         if damageTimer <= 0 {
             damageTimer = damagePowerupDuration
         }
@@ -67,6 +71,8 @@ class PowerupManager: SKSpriteNode, Processable, PreSpawned {
         damageTimer -= deltaTime
     }
     func activateSlowDownPowerup() {
+        SoundManager.shared.playSoundEffect(in: scene!, audioFileName: "Slowmo.wav", volume: 2.0)
+        
         if slowMoTimer <= 0 {
             slowMoPowerupStarted.invoke()
             slowMoTimer = slowMoPowerupDuration

@@ -67,6 +67,11 @@
 		F19F21AF2A4AA00E0069A4AD /* ControllerScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F19F21AE2A4AA00E0069A4AD /* ControllerScene.sks */; };
 		F19F21B12A4AA48D0069A4AD /* ControllerScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19F21B02A4AA48D0069A4AD /* ControllerScene.swift */; };
 		F19F21B32A4BF28E0069A4AD /* BigWalkingEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19F21B22A4BF28E0069A4AD /* BigWalkingEnemy.swift */; };
+		F1B754FF2A4F43FC00B1FE77 /* Failed Brewed.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F1B754FB2A4F43FB00B1FE77 /* Failed Brewed.mp3 */; };
+		F1B755002A4F43FC00B1FE77 /* HealthUp.wav in Resources */ = {isa = PBXBuildFile; fileRef = F1B754FC2A4F43FB00B1FE77 /* HealthUp.wav */; };
+		F1B755012A4F43FC00B1FE77 /* DamageUp.wav in Resources */ = {isa = PBXBuildFile; fileRef = F1B754FD2A4F43FC00B1FE77 /* DamageUp.wav */; };
+		F1B755022A4F43FC00B1FE77 /* Slowmo.wav in Resources */ = {isa = PBXBuildFile; fileRef = F1B754FE2A4F43FC00B1FE77 /* Slowmo.wav */; };
+		F1B755042A4F47CC00B1FE77 /* Karen Hit.wav in Resources */ = {isa = PBXBuildFile; fileRef = F1B755032A4F47CC00B1FE77 /* Karen Hit.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,6 +156,11 @@
 		F19F21AE2A4AA00E0069A4AD /* ControllerScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ControllerScene.sks; sourceTree = "<group>"; };
 		F19F21B02A4AA48D0069A4AD /* ControllerScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerScene.swift; sourceTree = "<group>"; };
 		F19F21B22A4BF28E0069A4AD /* BigWalkingEnemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigWalkingEnemy.swift; sourceTree = "<group>"; };
+		F1B754FB2A4F43FB00B1FE77 /* Failed Brewed.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Failed Brewed.mp3"; sourceTree = "<group>"; };
+		F1B754FC2A4F43FB00B1FE77 /* HealthUp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = HealthUp.wav; sourceTree = "<group>"; };
+		F1B754FD2A4F43FC00B1FE77 /* DamageUp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = DamageUp.wav; sourceTree = "<group>"; };
+		F1B754FE2A4F43FC00B1FE77 /* Slowmo.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Slowmo.wav; sourceTree = "<group>"; };
+		F1B755032A4F47CC00B1FE77 /* Karen Hit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Karen Hit.wav"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -357,7 +367,12 @@
 		F14341B92A4C7B5A00681890 /* Sound Files */ = {
 			isa = PBXGroup;
 			children = (
+				F1B754FD2A4F43FC00B1FE77 /* DamageUp.wav */,
+				F1B754FB2A4F43FB00B1FE77 /* Failed Brewed.mp3 */,
+				F1B754FC2A4F43FB00B1FE77 /* HealthUp.wav */,
+				F1B754FE2A4F43FC00B1FE77 /* Slowmo.wav */,
 				F14341BA2A4C7B5A00681890 /* In Game.wav */,
+				F1B755032A4F47CC00B1FE77 /* Karen Hit.wav */,
 				F14341BB2A4C7B5A00681890 /* Character Hit.wav */,
 				F14341BC2A4C7B5A00681890 /* Enemy Die.wav */,
 				F14341BD2A4C7B5A00681890 /* Enemy Projectile.wav */,
@@ -530,10 +545,13 @@
 			files = (
 				BF3E31FA2A451028002C7214 /* GameOverScene.sks in Resources */,
 				F14341C52A4C7B5A00681890 /* Enemy Die.wav in Resources */,
+				F1B755042A4F47CC00B1FE77 /* Karen Hit.wav in Resources */,
 				F14C59332A373D83000F3D22 /* GameScene.sks in Resources */,
 				F14341CA2A4C7B5A00681890 /* Keris.wav in Resources */,
 				F14341C72A4C7B5A00681890 /* MainMenu.wav in Resources */,
+				F1B755002A4F43FC00B1FE77 /* HealthUp.wav in Resources */,
 				F14341B82A4C7B2800681890 /* TutorialScene.sks in Resources */,
+				F1B755022A4F43FC00B1FE77 /* Slowmo.wav in Resources */,
 				BF3E31F82A451028002C7214 /* CreditScene.sks in Resources */,
 				F14341C32A4C7B5A00681890 /* In Game.wav in Resources */,
 				BF3E31F92A451028002C7214 /* MainMenu.sks in Resources */,
@@ -543,6 +561,8 @@
 				F14341D62A4C891700681890 /* license.txt in Resources */,
 				F14341C82A4C7B5A00681890 /* Wave 1.wav in Resources */,
 				F14C593B2A373D84000F3D22 /* Assets.xcassets in Resources */,
+				F1B754FF2A4F43FC00B1FE77 /* Failed Brewed.mp3 in Resources */,
+				F1B755012A4F43FC00B1FE77 /* DamageUp.wav in Resources */,
 				F14C593E2A373D84000F3D22 /* Main.storyboard in Resources */,
 				F14341D72A4C891700681890 /* prstart.ttf in Resources */,
 				F14341C62A4C7B5A00681890 /* Enemy Projectile.wav in Resources */,

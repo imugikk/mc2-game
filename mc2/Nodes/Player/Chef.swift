@@ -26,7 +26,7 @@ class Chef: Player {
         self.physicsBody?.contactTestBitMask |= PsxBitmask.ingredient
         
         InputManager.buttonAPressed.subscribe(node: self, closure: pickupOrDropIngredient)
-        playerSprite = childNode(withName: "playerSprite")!
+        runIdleAnimation()
     }
     
     override func update(deltaTime: TimeInterval) {
@@ -122,7 +122,12 @@ class Chef: Player {
             playerSprite.xScale = lastJoystickDirection.x < 0 ? -abs(playerSprite.xScale) : abs(playerSprite.xScale)
         }
     }
-
+    
+    override func soundCharacter() {
+        // play sfx karen hit
+        SoundManager.shared.playSoundEffect(in: scene!, audioFileName: "Karen Hit.wav", volume: 1.5)
+    }
+    
     func runIdleAnimation() {
         let idleTextures = [
             SKTexture(imageNamed: "Karen_Idle_1"),
@@ -133,6 +138,8 @@ class Chef: Player {
 
         let idleAnimation = SKAction.animate(with: idleTextures, timePerFrame: 0.2)
         let idleAction = SKAction.repeatForever(idleAnimation)
+        
+        playerSprite = childNode(withName: "playerSprite")!
 
         playerSprite.run(idleAction, withKey: "idleAnimation")
     }
@@ -161,6 +168,8 @@ class Chef: Player {
 
         let runAnimation = SKAction.animate(with: runTextures, timePerFrame: 0.1)
         let runAction = SKAction.repeatForever(runAnimation)
+        
+        playerSprite = childNode(withName: "playerSprite")!
 
         playerSprite.run(runAction, withKey: "runAnimation")
     }

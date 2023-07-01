@@ -20,7 +20,7 @@ class Hunter: Player {
         weapon.setup()
         bulletSpawnPos = weapon.childNode(withName: "bulletSpawnPos")
         
-        playerSprite = childNode(withName: "playerSprite")!
+        runIdleAnimation()
     }
     
     override func update(deltaTime: TimeInterval) {
@@ -91,6 +91,8 @@ class Hunter: Player {
         let idleAnimation = SKAction.animate(with: idleTextures, timePerFrame: 0.2)
         let idleAction = SKAction.repeatForever(idleAnimation)
 
+        playerSprite = childNode(withName: "playerSprite")!
+        
         playerSprite.run(idleAction, withKey: "idleAnimation")
     }
 
@@ -118,6 +120,8 @@ class Hunter: Player {
 
         let runAnimation = SKAction.animate(with: runTextures, timePerFrame: 0.1)
         let runAction = SKAction.repeatForever(runAnimation)
+        
+        playerSprite = childNode(withName: "playerSprite")!
 
         playerSprite.run(runAction, withKey: "runAnimation")
     }
