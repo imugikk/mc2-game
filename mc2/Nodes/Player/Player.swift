@@ -46,6 +46,8 @@ class Player: SKSpriteNode, Processable, PreSpawned {
         Player.health = Player.maxHealth
         Player.killed = false
         
+        Player.healthBar.removeAll()
+        
         cameraNode = scene?.childNode(withName: "CameraNode")
     
     }
