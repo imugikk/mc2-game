@@ -50,6 +50,8 @@ class GameScene: Scene {
         ScoreManager.shared.setup(scoreLabel: scoreLabel)
         ScoreManager.shared.resetScore()
         
+        Player.setupHealth(in: self)
+        
         waveManager = WaveManager(gameScene: self)
         waveManager?.start()
     }
