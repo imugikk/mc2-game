@@ -28,6 +28,8 @@ class PowerupManager: SKSpriteNode, Processable, PreSpawned {
     var slowMoPowerupActive: Bool {
         return slowMoTimer > 0
     }
+    var powerUpText: SKLabelNode!
+    var powerUpTextStartPos = CGPoint.zero
     
     func setup() {
         if PowerupManager.instance == nil {
@@ -43,10 +45,14 @@ class PowerupManager: SKSpriteNode, Processable, PreSpawned {
             "RBR": activateDamagePowerup,
             "BBR": activateSlowDownPowerup
         ]
+        
+        powerUpText = scene!.childNode(withName: "powerUpText") as? SKLabelNode
+        powerUpTextStartPos = powerUpText.position
     }
         
     func activateHealthPowerup() {
         Player.increaseHealth()
+        playTextAnimation("Health Up!!!")
     }
     
     func update(deltaTime: TimeInterval) {
@@ -60,6 +66,7 @@ class PowerupManager: SKSpriteNode, Processable, PreSpawned {
         else {
             damageTimer += damagePowerupDuration
         }
+        playTextAnimation("Damage Up!!!")
     }
     func runDamagePowerupTimer(deltaTime: TimeInterval) {
         if damageTimer <= 0 { return }
@@ -74,6 +81,7 @@ class PowerupManager: SKSpriteNode, Processable, PreSpawned {
         else {
             slowMoTimer += slowMoPowerupDuration
         }
+        playTextAnimation("Slow Mo!!!")
     }
     func runSlowMoPowerupTimer(deltaTime: TimeInterval) {
         if slowMoTimer <= 0 { return }
@@ -82,6 +90,20 @@ class PowerupManager: SKSpriteNode, Processable, PreSpawned {
         
         if slowMoTimer <= 0 {
             slowMoPowerupStopped.invoke()
+        }
+    }
+    func playTextAnimation(_ text: String){
+        powerUpText.isHidden = false
+        powerUpText.alpha = 1.0
+        powerUpText.position = powerUpTextStartPos
+        powerUpText.text = text
+        
+        let moveAction = SKAction.move(by: CGVector(dx: 0, dy: 50), duration: 1.0)
+        let fadeOutAction = SKAction.fadeOut(withDuration: 1.0)
+        let groupAction = SKAction.group([moveAction, fadeOutAction])
+
+        powerUpText.run(groupAction) {
+            self.powerUpText.isHidden = true
         }
     }
 }
